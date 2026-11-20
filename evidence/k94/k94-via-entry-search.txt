@@ -1,0 +1,4 @@
+research/k94/KEMOVE-QMK-Firmware/quantum/via.c:295:__attribute__((weak)) bool via_command_kb(uint8_t *data, uint8_t length) {
+research/k94/KEMOVE-QMK-Firmware/quantum/via.c:392:void raw_hid_receive(uint8_t *data, uint8_t length) {
+research/k94/KEMOVE-QMK-Firmware/quantum/via.c:396:    // If via_command_kb() returns true, the command was fully
+research/k94/KEMOVE-QMK-Firmware/quantum/via.c:398:    if (via_command_kb(data, length)) {

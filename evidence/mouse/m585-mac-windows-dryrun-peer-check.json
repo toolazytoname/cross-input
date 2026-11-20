@@ -1,0 +1,39 @@
+{
+  "ok": false,
+  "returncode": 0,
+  "response": {
+    "schema": 1,
+    "controller": "windows-peer-health-v1",
+    "controller_ready": false,
+    "ready": true,
+    "return_ready": false,
+    "reason": "dry-run-controller-not-ready",
+    "desktop": {
+      "available": true,
+      "state": "INTERACTIVE_DESKTOP_ACCESSIBLE"
+    },
+    "mouse": {
+      "present": false,
+      "current_host_index": -1,
+      "host_count": -1,
+      "slot_evidence_verified": false,
+      "readonly_result": "READY_WINDOWS_SIMULATED"
+    },
+    "generated_at_utc": "2026-11-20T12:39:18.6367024Z",
+    "expires_at_utc": "2026-11-20T12:39:33.6367024Z",
+    "hid_output_report_sent": false
+  },
+  "validation": {
+    "ok": false,
+    "return_ready": false,
+    "checks": {
+      "schema": true,
+      "controller": true,
+      "controller_ready": false,
+      "desktop": true,
+      "no_hid_write": true
+    },
+    "hid_output_report_sent": false
+  },
+  "hid_output_report_sent": false
+}

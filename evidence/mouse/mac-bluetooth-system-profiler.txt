@@ -1,0 +1,52 @@
+Bluetooth:
+
+      Bluetooth Controller:
+          Address: BC:74:EA:AD:2E:28
+          State: On
+          Chipset: Apple N1
+          Discoverable: Off
+          Firmware Version: MAC FW Version: 26.217.0.0, PHY FW Version: 3.1.205.0
+          Product ID: 0x7938
+          Supported services: 0x1390039 < HFP AVRCP A2DP HID LEA AACP GATT SerialPort SCO >
+          Transport: PCIe
+          Vendor ID: 0x004C (Apple)
+      Connected:
+          M585/M590:
+              Address: FC:07:F2:53:5B:A2
+              Vendor ID: 0x046D
+              Product ID: 0xB01B
+              Battery Level: 100%
+              Firmware Version: MPM05.10_0011
+              Minor Type: Mouse
+              Services: 0x400020 < HID BLE >
+          小米蓝牙语音遥控器:
+              Address: E8:55:40:EE:55:FE
+              Vendor ID: 0x2717
+              Product ID: 0x32B8
+              Battery Level: 100%
+              Firmware Version: 2671
+              Services: 0x400020 < HID BLE >
+      Not Connected:
+          chao的AirPods:
+              Address: 80:82:23:EF:81:75
+              Vendor ID: 0x004C
+              Product ID: 0x2002
+              Firmware Version: 255.15.15
+              Minor Type: Headphones
+          iPhoneXR:
+              Address: F8:2D:7C:D7:4A:93
+              RSSI: -56
+          KEMOVE K94-1:
+              Address: CA:1D:A5:9E:C9:39
+              Minor Type: Keyboard
+          Keyboard K380:
+              Address: 34:88:5D:D7:D5:65
+              Vendor ID: 0x046D
+              Product ID: 0xB342
+              Firmware Version: 66.0.1
+              Minor Type: Keyboard
+              RSSI: -54
+          Lazy's iPhone 11:
+              Address: F0:A3:5A:F1:19:8E
+              RSSI: -77
+

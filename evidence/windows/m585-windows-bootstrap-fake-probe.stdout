@@ -1,0 +1,4 @@
+"@{schema=1; host=windows; event=bootstrap-starting; mode=watch; generated_at_utc=2026-11-20T04:50:28.5622905Z; result=probe-output-will-be-logged; exit_code=0; log_file=C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585EdgeBootstrapTest\\logs\\m585-edge-watch.jsonl; deskflow_unchanged=True}"
+{"fake":"first"}
+"@{schema=1; host=windows; event=bootstrap-error; mode=watch; generated_at_utc=2026-11-20T04:50:28.5961615Z; result=fake red error; exit_code=4; log_file=C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585EdgeBootstrapTest\\logs\\m585-edge-watch.jsonl; deskflow_unchanged=True}"
+"@{schema=1; host=windows; event=bootstrap-stopped; mode=watch; generated_at_utc=2026-11-20T04:50:28.6032871Z; result=controller-process-returned; exit_code=4; log_file=C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585EdgeBootstrapTest\\logs\\m585-edge-watch.jsonl; deskflow_unchanged=True}"

@@ -1,0 +1,15 @@
+2026-11-19 classification: early-implementation result, retained verbatim.
+
+The JSON file was produced before the corrected request builder. Its request is
+00 01 00 0C followed by zeros, so byte 3 pre-filled the expected protocol-version
+minor value that belongs in a reply. It is not the same-shape control as the
+Mac B1 request or the KEMOVE Hub request.
+
+The run also used the earlier timing field, which recorded ElapsedMilliseconds=0
+for a timeout. The native cancellation error and zero byte count remain useful
+history, but this file must not be cited as keyboard-end evidence, an echo-proof
+response match, or a valid current implementation result.
+
+The corrected current builder sends 00 01 followed by an all-zero 31-byte tail
+and is validated only with an independent reply fixture. No replacement HID
+output was sent in the 2026-11-19 rework because this round is offline-only.

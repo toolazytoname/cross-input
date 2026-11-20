@@ -1,0 +1,5 @@
+feature_index 10
+hosts [(0, 'LAZY-WINDOWS', True), (1, 'lazy的Mac Mini', True)]
+request_functions [0, 0, 16, 48, 16, 48, 48]
+forbidden_set_function_0x40_present False
+request_count 7

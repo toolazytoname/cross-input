@@ -1,0 +1,31 @@
+2026-11-20 Mac RECOVERY_REQUIRED recovery fix
+
+Runtime review:
+- The coordinator's event-callback change restored CFRunLoop movement.
+- The first button-field draft used CGEvent integer fields 100..102, but the macOS SDK
+  defines those as scroll fields, not mouse button state.
+- The callback now separates the low eight mouse-button flag bits from modifier masks.
+  Drag event types remain inherently button-pressed, and other mouse events use public
+  kCGMouseEventPressure field 2 through CGEventGetDoubleValueField.
+- CGEventSourceButtonState is no longer declared or called anywhere in the controller.
+
+Recovery semantics:
+- The live old process reported stderr "M585/M590 is not connected" with
+  query_failure_count=9 and controller_running=true. The classifier now maps that exact
+  diagnostic to device-absent rather than ambiguous query-failed.
+- RECOVERY_REQUIRED now records the monotonic time at entry.
+- A successful return to READY_MAC requires the listen-only event tap/controller running,
+  two consecutive read-only slot-1 results, and a five-second stability window.
+- Query failures and wrong-slot results reset recovery confirmations and do not alone
+  recover the controller.
+- READY_MAC retains leave-edge rearming, preventing an immediate edge trigger during
+  recovery.
+
+Validation:
+- Edge-controller unit tests: 21/21.
+- Combined Mac M585 offline suite: 42/42.
+- Read-only environment check: Accessibility true, listen-only event tap creation true,
+  exactly one expected M585/M590 vendor collection and serial.
+- One real read-only slot query transiently failed with hidapi short write (-1 of 20);
+  no HID write was sent. The new recovery state machine is designed to recover from this
+  startup transient after stable slot evidence rather than requiring a process restart.

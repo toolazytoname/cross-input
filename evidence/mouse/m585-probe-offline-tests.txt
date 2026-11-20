@@ -1,0 +1,16 @@
+test_bad_host_descriptor_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_bad_status_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_descriptor_slot_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_name_context_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_capability_gate_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_readonly_sequence_is_whitelisted (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_response_classifier_rejects_wrong_frames (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_root_unsupported_never_sends_status_request (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_strict_selection_requires_one_exact_collection (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_timeout_and_error_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_valid_readonly_sequence (test_m585_readonly_probe.M585ProbeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+OK

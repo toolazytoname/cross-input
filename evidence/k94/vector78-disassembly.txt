@@ -1,0 +1,988 @@
+
+evidence/k94/rdr_common.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.es_keyboard_leds:
+
+Disassembly of section .text.User_Lcd_Power_Mark_Synced:
+
+Disassembly of section .text.rgb_matrix_driver_set_color:
+
+Disassembly of section .text.rgb_matrix_driver_set_color_all:
+
+Disassembly of section .text.IAPROM_WORD_PROGRAM:
+
+Disassembly of section .text.ee_verify_pagefull_write_variable:
+
+Disassembly of section .text.rgb_matrix_driver_init:
+
+Disassembly of section .text.IAPROM_PAGE_ERASE.isra.0:
+
+Disassembly of section .text.ee_format:
+
+Disassembly of section .text.User_Fn_Mode_Led_Restore:
+
+Disassembly of section .text.Vector68:
+
+Disassembly of section .text.Uart_Tx_Dma_Start:
+
+Disassembly of section .text.Uart_Rx_Dma_Start:
+
+Disassembly of section .text.Uart_Dma_Init:
+
+Disassembly of section .text.User_Uart_Deinit:
+
+Disassembly of section .text.Vector64:
+
+Disassembly of section .text.Init_Uart_Information:
+
+Disassembly of section .text.User_Uart_Send_Data:
+
+Disassembly of section .text.Uart_While_Send_Commad:
+
+Disassembly of section .text.Reset_Uart:
+
+Disassembly of section .text.Init_Home_Mov:
+
+Disassembly of section .text.Reset_Home_Mov_Mode_Time:
+
+Disassembly of section .text.Lvgl_Init:
+
+Disassembly of section .text.Reset_Power_Lvgl:
+
+Disassembly of section .text.Scan_Uart_Rf:
+
+Disassembly of section .text.Scan_Uart_Work_Mode:
+
+Disassembly of section .text.Scan_Uart_Func:
+
+Disassembly of section .text.Scan_Uart_Batt:
+
+Disassembly of section .text.Scan_Uart_Gif:
+
+Disassembly of section .text.Scan_Uart_Language:
+
+Disassembly of section .text.Get_Lcd_Usb_Work_Status:
+
+Disassembly of section .text.Scan_Lcd_Usb_Work_Mode:
+
+Disassembly of section .text.Uart_Key_Mode_Key_Scan:
+
+Disassembly of section .text.App_Uart_Main_Loop:
+
+Disassembly of section .text.app_2g4_buffer_full:
+
+Disassembly of section .text.app_2g4_buffer_empty:
+
+Disassembly of section .text.app_2g4_buffer_rev_add:
+
+Disassembly of section .text.app_2g4_buffer_send_add:
+
+Disassembly of section .text.Emi_Init:
+
+Disassembly of section .text.Emi_Write_Data:
+
+Disassembly of section .text.es_ble_spi_init:
+
+Disassembly of section .text.es_ble_spi_deinit:
+
+Disassembly of section .text.es_spi_send_recv_by_dma:
+
+Disassembly of section .text.Emi_Read_Data:
+
+Disassembly of section .text.Spi_Send_Commad:
+
+Disassembly of section .text.Sleep_Time_Synchronization:
+
+Disassembly of section .text.DSleep_Time_Synchronization:
+
+Disassembly of section .text.Spi_Ack_Send_Commad:
+
+Disassembly of section .text.encoder_wait_pullup_charge:
+
+Disassembly of section .text.encoder_quadrature_init_pin:
+
+Disassembly of section .text.encoder_quadrature_read_pin:
+
+Disassembly of section .text.encoder_quadrature_post_init_kb:
+
+Disassembly of section .text.encoder_quadrature_post_init:
+
+Disassembly of section .text.encoder_driver_init:
+
+Disassembly of section .text.encoder_quadrature_handle_read:
+
+Disassembly of section .text.encoder_driver_task:
+
+Disassembly of section .text.Mode_Synchronization:
+
+Disassembly of section .text.Ble_Name_Synchronization:
+
+Disassembly of section .text.User_bluetooth_send_keyboard:
+
+Disassembly of section .text.es_send_keyboard:
+
+Disassembly of section .text.es_send_nkro:
+
+Disassembly of section .text.es_send_mouse:
+
+Disassembly of section .text.es_send_extra:
+
+Disassembly of section .text.bootloader_jump:
+
+Disassembly of section .text.mcu_reset:
+
+Disassembly of section .text.es_mcu_reset:
+
+Disassembly of section .text.Spi_Main_Loop:
+
+Disassembly of section .text.Battery_Scan:
+
+Disassembly of section .text.Save_Flash_Set:
+
+Disassembly of section .text.Vector6C:
+
+Disassembly of section .text.Lcd_Usb_Work_Init:
+
+Disassembly of section .text.Lcd_Work_Sync_GIF:
+
+Disassembly of section .text.User_Systime_Init:
+
+Disassembly of section .text.User_Systime_Deinit:
+
+Disassembly of section .text.Init_Gpio_Infomation:
+
+Disassembly of section .text.User_Sleep:
+
+Disassembly of section .text.Get_Spi_Return_Data:
+
+Disassembly of section .text.User_Wakeup:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_enable:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_disable:
+
+Disassembly of section .text.User_Keyboard_Post_Init:
+
+Disassembly of section .text.User_Consumer_Send:
+
+Disassembly of section .text.User_Usb_Init:
+
+Disassembly of section .text.es_restart_usb_driver:
+
+Disassembly of section .text.Usb_Disconnect:
+
+Disassembly of section .text.User_Usb_Deinit:
+
+Disassembly of section .text.clamp_length:
+
+Disassembly of section .text.clamp_length_user:
+
+Disassembly of section .text.eeprom_driver_erase:
+
+Disassembly of section .text.eeprom_driver_init:
+
+Disassembly of section .text.eeprom_read_block:
+
+Disassembly of section .text.eeprom_write_block:
+
+Disassembly of section .text.eeprom_read_block_user:
+
+Disassembly of section .text.Init_Keyboard_Infomation:
+
+Disassembly of section .text.eeprom_write_block_user:
+
+Disassembly of section .text.User_Adc_Init:
+
+Disassembly of section .text.User_Adc_Deinit:
+
+Disassembly of section .text.U16_Buff_Clear:
+
+Disassembly of section .text.Init_Batt_Infomation:
+
+Disassembly of section .text.Board_Wakeup_Init:
+
+Disassembly of section .text.User_Adc_Batt_Power_Up_Init:
+
+Disassembly of section .text.User_Adc_Batt_Number:
+
+Disassembly of section .text.Key_Switch_Mode_Scan:
+
+Disassembly of section .text.User_Keyboard_Reset:
+
+Disassembly of section .text.Key_Switch_Mode_Power:
+
+Disassembly of section .text.User_Keyboard_Init:
+
+Disassembly of section .text.User_Pwm_Deinit:
+
+Disassembly of section .text.es_chibios_user_idle_loop_hook:
+
+Disassembly of section .text.rgb_matrix_driver_flush_pwm_dma_start:
+
+Disassembly of section .text.rgb_matrix_driver_flush:
+
+Disassembly of section .text.Led_Power_Low_Show:
+
+Disassembly of section .text.Led_Power_Shut_Show:
+
+Disassembly of section .text.Led_Rf_Mode_Show:
+
+Disassembly of section .text.Led_Point_Flash_Show:
+
+Disassembly of section .text.Led_Winlock_Show:
+
+Disassembly of section .text.Led_Point_Reset:
+
+Disassembly of section .text.User_Test_White_Max:
+
+Disassembly of section .text.Led_Batt_Number_Show:
+
+Disassembly of section .text.User_Test_Colour_Show:
+
+Disassembly of section .text.User_Get_Led_Power_Status:
+
+Disassembly of section .text.RGB_Mode_Color_Show:
+
+Disassembly of section .text.User_Led_Show:
+
+Disassembly of section .text.Vector4C:
+
+Disassembly of section .text.Vector54:
+
+Disassembly of section .text.Vector58:
+
+Disassembly of section .text.Vector7C:
+
+Disassembly of section .text.Vector80:
+
+Disassembly of section .text.Vector84:
+
+Disassembly of section .text.Vector78:
+
+00000000 <Vector78>:
+   0:	4673      	mov	r3, lr
+   2:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+   4:	48bb      	ldr	r0, [pc, #748]	@ (2f4 <Vector78+0x2f4>)
+   6:	9301      	str	r3, [sp, #4]
+   8:	4bbb      	ldr	r3, [pc, #748]	@ (2f8 <Vector78+0x2f8>)
+   a:	7801      	ldrb	r1, [r0, #0]
+   c:	69da      	ldr	r2, [r3, #28]
+   e:	621a      	str	r2, [r3, #32]
+  10:	2900      	cmp	r1, #0
+  12:	d02e      	beq.n	72 <Vector78+0x72>
+  14:	4ab9      	ldr	r2, [pc, #740]	@ (2fc <Vector78+0x2fc>)
+  16:	7813      	ldrb	r3, [r2, #0]
+  18:	3301      	adds	r3, #1
+  1a:	b2db      	uxtb	r3, r3
+  1c:	2b09      	cmp	r3, #9
+  1e:	d801      	bhi.n	24 <Vector78+0x24>
+  20:	7013      	strb	r3, [r2, #0]
+  22:	e00a      	b.n	3a <Vector78+0x3a>
+  24:	2300      	movs	r3, #0
+  26:	7013      	strb	r3, [r2, #0]
+  28:	2390      	movs	r3, #144	@ 0x90
+  2a:	05db      	lsls	r3, r3, #23
+  2c:	6819      	ldr	r1, [r3, #0]
+  2e:	2310      	movs	r3, #16
+  30:	000c      	movs	r4, r1
+  32:	401c      	ands	r4, r3
+  34:	4219      	tst	r1, r3
+  36:	d11a      	bne.n	6e <Vector78+0x6e>
+  38:	7004      	strb	r4, [r0, #0]
+  3a:	4bb1      	ldr	r3, [pc, #708]	@ (300 <Vector78+0x300>)
+  3c:	781b      	ldrb	r3, [r3, #0]
+  3e:	2b02      	cmp	r3, #2
+  40:	d009      	beq.n	56 <Vector78+0x56>
+  42:	4ab0      	ldr	r2, [pc, #704]	@ (304 <Vector78+0x304>)
+  44:	7811      	ldrb	r1, [r2, #0]
+  46:	2900      	cmp	r1, #0
+  48:	d01e      	beq.n	88 <Vector78+0x88>
+  4a:	7952      	ldrb	r2, [r2, #5]
+  4c:	2a00      	cmp	r2, #0
+  4e:	d11b      	bne.n	88 <Vector78+0x88>
+  50:	2009      	movs	r0, #9
+  52:	f7ff fffe 	bl	0 <Vector78>
+			52: R_ARM_THM_CALL	Spi_Ack_Send_Commad
+  56:	49ac      	ldr	r1, [pc, #688]	@ (308 <Vector78+0x308>)
+  58:	7808      	ldrb	r0, [r1, #0]
+  5a:	2800      	cmp	r0, #0
+  5c:	d050      	beq.n	100 <Vector78+0x100>
+  5e:	4aab      	ldr	r2, [pc, #684]	@ (30c <Vector78+0x30c>)
+  60:	8813      	ldrh	r3, [r2, #0]
+  62:	3301      	adds	r3, #1
+  64:	b29b      	uxth	r3, r3
+  66:	2b31      	cmp	r3, #49	@ 0x31
+  68:	d81c      	bhi.n	a4 <Vector78+0xa4>
+  6a:	8013      	strh	r3, [r2, #0]
+  6c:	e01d      	b.n	aa <Vector78+0xaa>
+  6e:	2305      	movs	r3, #5
+  70:	e7d6      	b.n	20 <Vector78+0x20>
+  72:	4aa7      	ldr	r2, [pc, #668]	@ (310 <Vector78+0x310>)
+  74:	7813      	ldrb	r3, [r2, #0]
+  76:	3301      	adds	r3, #1
+  78:	b2db      	uxtb	r3, r3
+  7a:	2b05      	cmp	r3, #5
+  7c:	d9d0      	bls.n	20 <Vector78+0x20>
+  7e:	7011      	strb	r1, [r2, #0]
+  80:	2201      	movs	r2, #1
+  82:	4ba4      	ldr	r3, [pc, #656]	@ (314 <Vector78+0x314>)
+  84:	701a      	strb	r2, [r3, #0]
+  86:	e7d8      	b.n	3a <Vector78+0x3a>
+  88:	4aa3      	ldr	r2, [pc, #652]	@ (318 <Vector78+0x318>)
+  8a:	2b00      	cmp	r3, #0
+  8c:	d105      	bne.n	9a <Vector78+0x9a>
+  8e:	7813      	ldrb	r3, [r2, #0]
+  90:	3301      	adds	r3, #1
+  92:	b2db      	uxtb	r3, r3
+  94:	7013      	strb	r3, [r2, #0]
+  96:	2b04      	cmp	r3, #4
+  98:	d9dd      	bls.n	56 <Vector78+0x56>
+  9a:	2300      	movs	r3, #0
+  9c:	7013      	strb	r3, [r2, #0]
+  9e:	f7ff fffe 	bl	0 <Vector78>
+			9e: R_ARM_THM_CALL	Spi_Main_Loop
+  a2:	e7d8      	b.n	56 <Vector78+0x56>
+  a4:	2300      	movs	r3, #0
+  a6:	8013      	strh	r3, [r2, #0]
+  a8:	700b      	strb	r3, [r1, #0]
+  aa:	4a9c      	ldr	r2, [pc, #624]	@ (31c <Vector78+0x31c>)
+  ac:	7813      	ldrb	r3, [r2, #0]
+  ae:	3301      	adds	r3, #1
+  b0:	b2db      	uxtb	r3, r3
+  b2:	2b02      	cmp	r3, #2
+  b4:	d900      	bls.n	b8 <Vector78+0xb8>
+  b6:	e07a      	b.n	1ae <Vector78+0x1ae>
+  b8:	7013      	strb	r3, [r2, #0]
+  ba:	4a99      	ldr	r2, [pc, #612]	@ (320 <Vector78+0x320>)
+  bc:	7813      	ldrb	r3, [r2, #0]
+  be:	3301      	adds	r3, #1
+  c0:	b2db      	uxtb	r3, r3
+  c2:	2b04      	cmp	r3, #4
+  c4:	d900      	bls.n	c8 <Vector78+0xc8>
+  c6:	e085      	b.n	1d4 <Vector78+0x1d4>
+  c8:	7013      	strb	r3, [r2, #0]
+  ca:	4c96      	ldr	r4, [pc, #600]	@ (324 <Vector78+0x324>)
+  cc:	4d96      	ldr	r5, [pc, #600]	@ (328 <Vector78+0x328>)
+  ce:	8823      	ldrh	r3, [r4, #0]
+  d0:	882a      	ldrh	r2, [r5, #0]
+  d2:	3301      	adds	r3, #1
+  d4:	b29b      	uxth	r3, r3
+  d6:	8023      	strh	r3, [r4, #0]
+  d8:	429a      	cmp	r2, r3
+  da:	d80d      	bhi.n	f8 <Vector78+0xf8>
+  dc:	4b89      	ldr	r3, [pc, #548]	@ (304 <Vector78+0x304>)
+  de:	781b      	ldrb	r3, [r3, #0]
+  e0:	2b00      	cmp	r3, #0
+  e2:	d000      	beq.n	e6 <Vector78+0xe6>
+  e4:	e23f      	b.n	566 <Vector78+0x566>
+  e6:	2011      	movs	r0, #17
+  e8:	f7ff fffe 	bl	0 <Vector78>
+			e8: R_ARM_THM_CALL	Spi_Ack_Send_Commad
+  ec:	2800      	cmp	r0, #0
+  ee:	d000      	beq.n	f2 <Vector78+0xf2>
+  f0:	e239      	b.n	566 <Vector78+0x566>
+  f2:	882b      	ldrh	r3, [r5, #0]
+  f4:	3b0a      	subs	r3, #10
+  f6:	8023      	strh	r3, [r4, #0]
+  f8:	9801      	ldr	r0, [sp, #4]
+  fa:	f7ff fffe 	bl	0 <__port_irq_epilogue>
+			fa: R_ARM_THM_CALL	__port_irq_epilogue
+  fe:	bdf7      	pop	{r0, r1, r2, r4, r5, r6, r7, pc}
+ 100:	4a8a      	ldr	r2, [pc, #552]	@ (32c <Vector78+0x32c>)
+ 102:	498b      	ldr	r1, [pc, #556]	@ (330 <Vector78+0x330>)
+ 104:	7813      	ldrb	r3, [r2, #0]
+ 106:	7809      	ldrb	r1, [r1, #0]
+ 108:	3301      	adds	r3, #1
+ 10a:	b2db      	uxtb	r3, r3
+ 10c:	2900      	cmp	r1, #0
+ 10e:	d026      	beq.n	15e <Vector78+0x15e>
+ 110:	2b03      	cmp	r3, #3
+ 112:	d801      	bhi.n	118 <Vector78+0x118>
+ 114:	7013      	strb	r3, [r2, #0]
+ 116:	e7c8      	b.n	aa <Vector78+0xaa>
+ 118:	4b86      	ldr	r3, [pc, #536]	@ (334 <Vector78+0x334>)
+ 11a:	7010      	strb	r0, [r2, #0]
+ 11c:	6fdb      	ldr	r3, [r3, #124]	@ 0x7c
+ 11e:	2204      	movs	r2, #4
+ 120:	001c      	movs	r4, r3
+ 122:	4d85      	ldr	r5, [pc, #532]	@ (338 <Vector78+0x338>)
+ 124:	4014      	ands	r4, r2
+ 126:	4213      	tst	r3, r2
+ 128:	d1bf      	bne.n	aa <Vector78+0xaa>
+ 12a:	6d2b      	ldr	r3, [r5, #80]	@ 0x50
+ 12c:	4883      	ldr	r0, [pc, #524]	@ (33c <Vector78+0x33c>)
+ 12e:	469c      	mov	ip, r3
+ 130:	4667      	mov	r7, ip
+ 132:	7803      	ldrb	r3, [r0, #0]
+ 134:	4982      	ldr	r1, [pc, #520]	@ (340 <Vector78+0x340>)
+ 136:	005e      	lsls	r6, r3, #1
+ 138:	5277      	strh	r7, [r6, r1]
+ 13a:	69ae      	ldr	r6, [r5, #24]
+ 13c:	3301      	adds	r3, #1
+ 13e:	4396      	bics	r6, r2
+ 140:	4332      	orrs	r2, r6
+ 142:	b2db      	uxtb	r3, r3
+ 144:	61aa      	str	r2, [r5, #24]
+ 146:	2b09      	cmp	r3, #9
+ 148:	d801      	bhi.n	14e <Vector78+0x14e>
+ 14a:	7003      	strb	r3, [r0, #0]
+ 14c:	e7ad      	b.n	aa <Vector78+0xaa>
+ 14e:	2214      	movs	r2, #20
+ 150:	7004      	strb	r4, [r0, #0]
+ 152:	487c      	ldr	r0, [pc, #496]	@ (344 <Vector78+0x344>)
+ 154:	f7ff fffe 	bl	0 <memcpy>
+			154: R_ARM_THM_CALL	memcpy
+ 158:	f7ff fffe 	bl	0 <Vector78>
+			158: R_ARM_THM_CALL	User_Adc_Batt_Power_Up_Init
+ 15c:	e7a5      	b.n	aa <Vector78+0xaa>
+ 15e:	2b13      	cmp	r3, #19
+ 160:	d9d8      	bls.n	114 <Vector78+0x114>
+ 162:	4b74      	ldr	r3, [pc, #464]	@ (334 <Vector78+0x334>)
+ 164:	7011      	strb	r1, [r2, #0]
+ 166:	6fdb      	ldr	r3, [r3, #124]	@ 0x7c
+ 168:	2204      	movs	r2, #4
+ 16a:	001c      	movs	r4, r3
+ 16c:	4d72      	ldr	r5, [pc, #456]	@ (338 <Vector78+0x338>)
+ 16e:	4014      	ands	r4, r2
+ 170:	4213      	tst	r3, r2
+ 172:	d110      	bne.n	196 <Vector78+0x196>
+ 174:	6d2b      	ldr	r3, [r5, #80]	@ 0x50
+ 176:	4871      	ldr	r0, [pc, #452]	@ (33c <Vector78+0x33c>)
+ 178:	469c      	mov	ip, r3
+ 17a:	4667      	mov	r7, ip
+ 17c:	7803      	ldrb	r3, [r0, #0]
+ 17e:	4970      	ldr	r1, [pc, #448]	@ (340 <Vector78+0x340>)
+ 180:	005e      	lsls	r6, r3, #1
+ 182:	5277      	strh	r7, [r6, r1]
+ 184:	69ae      	ldr	r6, [r5, #24]
+ 186:	3301      	adds	r3, #1
+ 188:	4396      	bics	r6, r2
+ 18a:	4332      	orrs	r2, r6
+ 18c:	b2db      	uxtb	r3, r3
+ 18e:	61aa      	str	r2, [r5, #24]
+ 190:	2b09      	cmp	r3, #9
+ 192:	d804      	bhi.n	19e <Vector78+0x19e>
+ 194:	7003      	strb	r3, [r0, #0]
+ 196:	4a6c      	ldr	r2, [pc, #432]	@ (348 <Vector78+0x348>)
+ 198:	8813      	ldrh	r3, [r2, #0]
+ 19a:	3301      	adds	r3, #1
+ 19c:	e765      	b.n	6a <Vector78+0x6a>
+ 19e:	2214      	movs	r2, #20
+ 1a0:	7004      	strb	r4, [r0, #0]
+ 1a2:	4868      	ldr	r0, [pc, #416]	@ (344 <Vector78+0x344>)
+ 1a4:	f7ff fffe 	bl	0 <memcpy>
+			1a4: R_ARM_THM_CALL	memcpy
+ 1a8:	f7ff fffe 	bl	0 <Vector78>
+			1a8: R_ARM_THM_CALL	User_Adc_Batt_Number
+ 1ac:	e7f3      	b.n	196 <Vector78+0x196>
+ 1ae:	2300      	movs	r3, #0
+ 1b0:	7013      	strb	r3, [r2, #0]
+ 1b2:	f7ff fffe 	bl	0 <host_get_driver>
+			1b2: R_ARM_THM_CALL	host_get_driver
+ 1b6:	4c65      	ldr	r4, [pc, #404]	@ (34c <Vector78+0x34c>)
+ 1b8:	42a0      	cmp	r0, r4
+ 1ba:	d100      	bne.n	1be <Vector78+0x1be>
+ 1bc:	e77d      	b.n	ba <Vector78+0xba>
+ 1be:	2800      	cmp	r0, #0
+ 1c0:	d100      	bne.n	1c4 <Vector78+0x1c4>
+ 1c2:	e77a      	b.n	ba <Vector78+0xba>
+ 1c4:	f7ff fffe 	bl	0 <host_get_driver>
+			1c4: R_ARM_THM_CALL	host_get_driver
+ 1c8:	4b61      	ldr	r3, [pc, #388]	@ (350 <Vector78+0x350>)
+ 1ca:	6018      	str	r0, [r3, #0]
+ 1cc:	0020      	movs	r0, r4
+ 1ce:	f7ff fffe 	bl	0 <host_set_driver>
+			1ce: R_ARM_THM_CALL	host_set_driver
+ 1d2:	e772      	b.n	ba <Vector78+0xba>
+ 1d4:	2100      	movs	r1, #0
+ 1d6:	7011      	strb	r1, [r2, #0]
+ 1d8:	2201      	movs	r2, #1
+ 1da:	4b5e      	ldr	r3, [pc, #376]	@ (354 <Vector78+0x354>)
+ 1dc:	4c5e      	ldr	r4, [pc, #376]	@ (358 <Vector78+0x358>)
+ 1de:	701a      	strb	r2, [r3, #0]
+ 1e0:	78e3      	ldrb	r3, [r4, #3]
+ 1e2:	3b05      	subs	r3, #5
+ 1e4:	425a      	negs	r2, r3
+ 1e6:	4153      	adcs	r3, r2
+ 1e8:	4a5c      	ldr	r2, [pc, #368]	@ (35c <Vector78+0x35c>)
+ 1ea:	7013      	strb	r3, [r2, #0]
+ 1ec:	4b5c      	ldr	r3, [pc, #368]	@ (360 <Vector78+0x360>)
+ 1ee:	781a      	ldrb	r2, [r3, #0]
+ 1f0:	428a      	cmp	r2, r1
+ 1f2:	d002      	beq.n	1fa <Vector78+0x1fa>
+ 1f4:	7019      	strb	r1, [r3, #0]
+ 1f6:	f7ff fffe 	bl	0 <Vector78>
+			1f6: R_ARM_THM_CALL	Mode_Synchronization
+ 1fa:	4b5a      	ldr	r3, [pc, #360]	@ (364 <Vector78+0x364>)
+ 1fc:	781b      	ldrb	r3, [r3, #0]
+ 1fe:	2b00      	cmp	r3, #0
+ 200:	d001      	beq.n	206 <Vector78+0x206>
+ 202:	f7ff fffe 	bl	0 <Vector78>
+			202: R_ARM_THM_CALL	Ble_Name_Synchronization
+ 206:	4b58      	ldr	r3, [pc, #352]	@ (368 <Vector78+0x368>)
+ 208:	781b      	ldrb	r3, [r3, #0]
+ 20a:	2b00      	cmp	r3, #0
+ 20c:	d001      	beq.n	212 <Vector78+0x212>
+ 20e:	f7ff fffe 	bl	0 <Vector78>
+			20e: R_ARM_THM_CALL	Sleep_Time_Synchronization
+ 212:	4b56      	ldr	r3, [pc, #344]	@ (36c <Vector78+0x36c>)
+ 214:	781b      	ldrb	r3, [r3, #0]
+ 216:	2b00      	cmp	r3, #0
+ 218:	d001      	beq.n	21e <Vector78+0x21e>
+ 21a:	f7ff fffe 	bl	0 <Vector78>
+			21a: R_ARM_THM_CALL	DSleep_Time_Synchronization
+ 21e:	4a54      	ldr	r2, [pc, #336]	@ (370 <Vector78+0x370>)
+ 220:	7813      	ldrb	r3, [r2, #0]
+ 222:	3301      	adds	r3, #1
+ 224:	b2db      	uxtb	r3, r3
+ 226:	2bff      	cmp	r3, #255	@ 0xff
+ 228:	d04b      	beq.n	2c2 <Vector78+0x2c2>
+ 22a:	7013      	strb	r3, [r2, #0]
+ 22c:	4a51      	ldr	r2, [pc, #324]	@ (374 <Vector78+0x374>)
+ 22e:	7813      	ldrb	r3, [r2, #0]
+ 230:	3301      	adds	r3, #1
+ 232:	b2db      	uxtb	r3, r3
+ 234:	2bff      	cmp	r3, #255	@ 0xff
+ 236:	d046      	beq.n	2c6 <Vector78+0x2c6>
+ 238:	7013      	strb	r3, [r2, #0]
+ 23a:	4a4f      	ldr	r2, [pc, #316]	@ (378 <Vector78+0x378>)
+ 23c:	7813      	ldrb	r3, [r2, #0]
+ 23e:	3301      	adds	r3, #1
+ 240:	b2db      	uxtb	r3, r3
+ 242:	2bff      	cmp	r3, #255	@ 0xff
+ 244:	d041      	beq.n	2ca <Vector78+0x2ca>
+ 246:	7013      	strb	r3, [r2, #0]
+ 248:	4a4c      	ldr	r2, [pc, #304]	@ (37c <Vector78+0x37c>)
+ 24a:	7813      	ldrb	r3, [r2, #0]
+ 24c:	3301      	adds	r3, #1
+ 24e:	b2db      	uxtb	r3, r3
+ 250:	2bff      	cmp	r3, #255	@ 0xff
+ 252:	d03c      	beq.n	2ce <Vector78+0x2ce>
+ 254:	494a      	ldr	r1, [pc, #296]	@ (380 <Vector78+0x380>)
+ 256:	7013      	strb	r3, [r2, #0]
+ 258:	7808      	ldrb	r0, [r1, #0]
+ 25a:	2800      	cmp	r0, #0
+ 25c:	d106      	bne.n	26c <Vector78+0x26c>
+ 25e:	4a49      	ldr	r2, [pc, #292]	@ (384 <Vector78+0x384>)
+ 260:	8813      	ldrh	r3, [r2, #0]
+ 262:	3301      	adds	r3, #1
+ 264:	b29b      	uxth	r3, r3
+ 266:	2b4f      	cmp	r3, #79	@ 0x4f
+ 268:	d833      	bhi.n	2d2 <Vector78+0x2d2>
+ 26a:	8013      	strh	r3, [r2, #0]
+ 26c:	2196      	movs	r1, #150	@ 0x96
+ 26e:	4a46      	ldr	r2, [pc, #280]	@ (388 <Vector78+0x388>)
+ 270:	0049      	lsls	r1, r1, #1
+ 272:	8813      	ldrh	r3, [r2, #0]
+ 274:	3301      	adds	r3, #1
+ 276:	b29b      	uxth	r3, r3
+ 278:	428b      	cmp	r3, r1
+ 27a:	d234      	bcs.n	2e6 <Vector78+0x2e6>
+ 27c:	8013      	strh	r3, [r2, #0]
+ 27e:	4b43      	ldr	r3, [pc, #268]	@ (38c <Vector78+0x38c>)
+ 280:	4d43      	ldr	r5, [pc, #268]	@ (390 <Vector78+0x390>)
+ 282:	781b      	ldrb	r3, [r3, #0]
+ 284:	2b00      	cmp	r3, #0
+ 286:	d01a      	beq.n	2be <Vector78+0x2be>
+ 288:	2296      	movs	r2, #150	@ 0x96
+ 28a:	882b      	ldrh	r3, [r5, #0]
+ 28c:	0052      	lsls	r2, r2, #1
+ 28e:	3301      	adds	r3, #1
+ 290:	b29b      	uxth	r3, r3
+ 292:	802b      	strh	r3, [r5, #0]
+ 294:	4293      	cmp	r3, r2
+ 296:	d200      	bcs.n	29a <Vector78+0x29a>
+ 298:	e091      	b.n	3be <Vector78+0x3be>
+ 29a:	4b3e      	ldr	r3, [pc, #248]	@ (394 <Vector78+0x394>)
+ 29c:	781b      	ldrb	r3, [r3, #0]
+ 29e:	2b00      	cmp	r3, #0
+ 2a0:	d10b      	bne.n	2ba <Vector78+0x2ba>
+ 2a2:	2390      	movs	r3, #144	@ 0x90
+ 2a4:	05db      	lsls	r3, r3, #23
+ 2a6:	681a      	ldr	r2, [r3, #0]
+ 2a8:	2310      	movs	r3, #16
+ 2aa:	0016      	movs	r6, r2
+ 2ac:	401e      	ands	r6, r3
+ 2ae:	421a      	tst	r2, r3
+ 2b0:	d103      	bne.n	2ba <Vector78+0x2ba>
+ 2b2:	4b39      	ldr	r3, [pc, #228]	@ (398 <Vector78+0x398>)
+ 2b4:	781b      	ldrb	r3, [r3, #0]
+ 2b6:	2b00      	cmp	r3, #0
+ 2b8:	d174      	bne.n	3a4 <Vector78+0x3a4>
+ 2ba:	2391      	movs	r3, #145	@ 0x91
+ 2bc:	005b      	lsls	r3, r3, #1
+ 2be:	802b      	strh	r3, [r5, #0]
+ 2c0:	e07d      	b.n	3be <Vector78+0x3be>
+ 2c2:	2300      	movs	r3, #0
+ 2c4:	e7b1      	b.n	22a <Vector78+0x22a>
+ 2c6:	2300      	movs	r3, #0
+ 2c8:	e7b6      	b.n	238 <Vector78+0x238>
+ 2ca:	2300      	movs	r3, #0
+ 2cc:	e7bb      	b.n	246 <Vector78+0x246>
+ 2ce:	2300      	movs	r3, #0
+ 2d0:	e7c0      	b.n	254 <Vector78+0x254>
+ 2d2:	2301      	movs	r3, #1
+ 2d4:	8010      	strh	r0, [r2, #0]
+ 2d6:	4a0a      	ldr	r2, [pc, #40]	@ (300 <Vector78+0x300>)
+ 2d8:	700b      	strb	r3, [r1, #0]
+ 2da:	7812      	ldrb	r2, [r2, #0]
+ 2dc:	2a00      	cmp	r2, #0
+ 2de:	d1c5      	bne.n	26c <Vector78+0x26c>
+ 2e0:	4a2e      	ldr	r2, [pc, #184]	@ (39c <Vector78+0x39c>)
+ 2e2:	7013      	strb	r3, [r2, #0]
+ 2e4:	e7c2      	b.n	26c <Vector78+0x26c>
+ 2e6:	2300      	movs	r3, #0
+ 2e8:	8013      	strh	r3, [r2, #0]
+ 2ea:	2201      	movs	r2, #1
+ 2ec:	4b2c      	ldr	r3, [pc, #176]	@ (3a0 <Vector78+0x3a0>)
+ 2ee:	701a      	strb	r2, [r3, #0]
+ 2f0:	e7c5      	b.n	27e <Vector78+0x27e>
+ 2f2:	46c0      	nop			@ (mov r8, r8)
+ 2f4:	00000000 	.word	0x00000000
+			2f4: R_ARM_ABS32	.data.Init_Spi_Power_Up
+ 2f8:	40001000 	.word	0x40001000
+	...
+			2fc: R_ARM_ABS32	.bss.Init_Spi_100ms_Delay
+			300: R_ARM_ABS32	.data.Keyboard_Info
+			304: R_ARM_ABS32	.bss.Keyboard_Status
+			308: R_ARM_ABS32	.bss.User_Batt_Power_Up_Delay
+			30c: R_ARM_ABS32	.bss.User_Batt_Power_Up_Delay_100ms_Count
+			310: R_ARM_ABS32	.bss.Systick_12ms_Count
+			314: R_ARM_ABS32	.bss.Scan_Switch_Ok
+			318: R_ARM_ABS32	.bss.Spi_Main_Loop_count
+			31c: R_ARM_ABS32	.bss.Systick_6ms_Count
+			320: R_ARM_ABS32	.bss.Systick_10ms_Count
+			324: R_ARM_ABS32	.bss.Systick_Interval_Count
+			328: R_ARM_ABS32	.data.Spi_Interval
+			32c: R_ARM_ABS32	.bss.User_Batt_10ms_Count
+			330: R_ARM_ABS32	.bss.User_Batt_Power_Up
+ 334:	40012404 	.word	0x40012404
+ 338:	40012400 	.word	0x40012400
+	...
+			33c: R_ARM_ABS32	.bss.User_Adc_Batt_Count
+			340: R_ARM_ABS32	.bss.User_Adc_Batt
+			344: R_ARM_ABS32	.bss.User_Scan_Batt
+			348: R_ARM_ABS32	.bss.User_Batt_Time_15S_Count
+			34c: R_ARM_ABS32	.rodata.es_user_driver
+			350: R_ARM_ABS32	.bss.es_qmk_driver
+			354: R_ARM_ABS32	.bss.Uart_Lvgl_Scan_OK
+			358: R_ARM_ABS32	.bss.Lvgl_Home
+			35c: R_ARM_ABS32	.bss.Language_Layer
+			360: R_ARM_ABS32	.bss.Mode_Synchronization_Signal
+			364: R_ARM_ABS32	.bss.Ble_Name_Spi_Send
+			368: R_ARM_ABS32	.bss.User_Sleep_Time_Send
+			36c: R_ARM_ABS32	.bss.User_DSleep_Time_Send
+			370: R_ARM_ABS32	.bss.Systick_Led_Count
+			374: R_ARM_ABS32	.bss.Winlock_Led_Count
+			378: R_ARM_ABS32	.bss.Batt_Led_Count
+			37c: R_ARM_ABS32	.bss.Shut_Led_Count
+			380: R_ARM_ABS32	.bss.Led_Power_Up
+			384: R_ARM_ABS32	.bss.Led_Power_Up_Delay
+			388: R_ARM_ABS32	.bss.Usb_Change_Mode_Delay
+			38c: R_ARM_ABS32	.bss.Save_Flash
+			390: R_ARM_ABS32	.bss.Save_Flash_3S_Count
+			394: R_ARM_ABS32	.bss.Spi_Send_Recv_Flg
+			398: R_ARM_ABS32	.bss.Led_Flash_Busy
+			39c: R_ARM_ABS32	.bss.User_Batt_Send_Spi
+			3a0: R_ARM_ABS32	.bss.Usb_Change_Mode_Wakeup
+ 3a4:	2301      	movs	r3, #1
+ 3a6:	4a78      	ldr	r2, [pc, #480]	@ (588 <Vector78+0x588>)
+ 3a8:	0031      	movs	r1, r6
+ 3aa:	7013      	strb	r3, [r2, #0]
+ 3ac:	4877      	ldr	r0, [pc, #476]	@ (58c <Vector78+0x58c>)
+ 3ae:	221c      	movs	r2, #28
+ 3b0:	f7ff fffe 	bl	0 <Vector78>
+			3b0: R_ARM_THM_CALL	eeprom_write_block_user
+ 3b4:	4b74      	ldr	r3, [pc, #464]	@ (588 <Vector78+0x588>)
+ 3b6:	802e      	strh	r6, [r5, #0]
+ 3b8:	701e      	strb	r6, [r3, #0]
+ 3ba:	4b75      	ldr	r3, [pc, #468]	@ (590 <Vector78+0x590>)
+ 3bc:	701e      	strb	r6, [r3, #0]
+ 3be:	4e73      	ldr	r6, [pc, #460]	@ (58c <Vector78+0x58c>)
+ 3c0:	4d74      	ldr	r5, [pc, #464]	@ (594 <Vector78+0x594>)
+ 3c2:	7833      	ldrb	r3, [r6, #0]
+ 3c4:	2b02      	cmp	r3, #2
+ 3c6:	d04a      	beq.n	45e <Vector78+0x45e>
+ 3c8:	4b73      	ldr	r3, [pc, #460]	@ (598 <Vector78+0x598>)
+ 3ca:	781a      	ldrb	r2, [r3, #0]
+ 3cc:	2a00      	cmp	r2, #0
+ 3ce:	d004      	beq.n	3da <Vector78+0x3da>
+ 3d0:	2200      	movs	r2, #0
+ 3d2:	2010      	movs	r0, #16
+ 3d4:	701a      	strb	r2, [r3, #0]
+ 3d6:	f7ff fffe 	bl	0 <Vector78>
+			3d6: R_ARM_THM_CALL	Spi_Send_Commad
+ 3da:	2300      	movs	r3, #0
+ 3dc:	4a6f      	ldr	r2, [pc, #444]	@ (59c <Vector78+0x59c>)
+ 3de:	702b      	strb	r3, [r5, #0]
+ 3e0:	7013      	strb	r3, [r2, #0]
+ 3e2:	2196      	movs	r1, #150	@ 0x96
+ 3e4:	4a6e      	ldr	r2, [pc, #440]	@ (5a0 <Vector78+0x5a0>)
+ 3e6:	0049      	lsls	r1, r1, #1
+ 3e8:	8813      	ldrh	r3, [r2, #0]
+ 3ea:	3301      	adds	r3, #1
+ 3ec:	b29b      	uxth	r3, r3
+ 3ee:	428b      	cmp	r3, r1
+ 3f0:	d251      	bcs.n	496 <Vector78+0x496>
+ 3f2:	8013      	strh	r3, [r2, #0]
+ 3f4:	496b      	ldr	r1, [pc, #428]	@ (5a4 <Vector78+0x5a4>)
+ 3f6:	780b      	ldrb	r3, [r1, #0]
+ 3f8:	2b00      	cmp	r3, #0
+ 3fa:	d009      	beq.n	410 <Vector78+0x410>
+ 3fc:	2096      	movs	r0, #150	@ 0x96
+ 3fe:	4a6a      	ldr	r2, [pc, #424]	@ (5a8 <Vector78+0x5a8>)
+ 400:	0040      	lsls	r0, r0, #1
+ 402:	8813      	ldrh	r3, [r2, #0]
+ 404:	3301      	adds	r3, #1
+ 406:	b29b      	uxth	r3, r3
+ 408:	4283      	cmp	r3, r0
+ 40a:	d300      	bcc.n	40e <Vector78+0x40e>
+ 40c:	e07e      	b.n	50c <Vector78+0x50c>
+ 40e:	8013      	strh	r3, [r2, #0]
+ 410:	4966      	ldr	r1, [pc, #408]	@ (5ac <Vector78+0x5ac>)
+ 412:	780b      	ldrb	r3, [r1, #0]
+ 414:	2b00      	cmp	r3, #0
+ 416:	d008      	beq.n	42a <Vector78+0x42a>
+ 418:	2096      	movs	r0, #150	@ 0x96
+ 41a:	4a65      	ldr	r2, [pc, #404]	@ (5b0 <Vector78+0x5b0>)
+ 41c:	0040      	lsls	r0, r0, #1
+ 41e:	8813      	ldrh	r3, [r2, #0]
+ 420:	3301      	adds	r3, #1
+ 422:	b29b      	uxth	r3, r3
+ 424:	4283      	cmp	r3, r0
+ 426:	d278      	bcs.n	51a <Vector78+0x51a>
+ 428:	8013      	strh	r3, [r2, #0]
+ 42a:	4962      	ldr	r1, [pc, #392]	@ (5b4 <Vector78+0x5b4>)
+ 42c:	780b      	ldrb	r3, [r1, #0]
+ 42e:	2b00      	cmp	r3, #0
+ 430:	d008      	beq.n	444 <Vector78+0x444>
+ 432:	2096      	movs	r0, #150	@ 0x96
+ 434:	4a60      	ldr	r2, [pc, #384]	@ (5b8 <Vector78+0x5b8>)
+ 436:	0040      	lsls	r0, r0, #1
+ 438:	8813      	ldrh	r3, [r2, #0]
+ 43a:	3301      	adds	r3, #1
+ 43c:	b29b      	uxth	r3, r3
+ 43e:	4283      	cmp	r3, r0
+ 440:	d272      	bcs.n	528 <Vector78+0x528>
+ 442:	8013      	strh	r3, [r2, #0]
+ 444:	7963      	ldrb	r3, [r4, #5]
+ 446:	2b00      	cmp	r3, #0
+ 448:	d100      	bne.n	44c <Vector78+0x44c>
+ 44a:	e63e      	b.n	ca <Vector78+0xca>
+ 44c:	22fa      	movs	r2, #250	@ 0xfa
+ 44e:	88e3      	ldrh	r3, [r4, #6]
+ 450:	00d2      	lsls	r2, r2, #3
+ 452:	3301      	adds	r3, #1
+ 454:	b29b      	uxth	r3, r3
+ 456:	4293      	cmp	r3, r2
+ 458:	d27c      	bcs.n	554 <Vector78+0x554>
+ 45a:	80e3      	strh	r3, [r4, #6]
+ 45c:	e635      	b.n	ca <Vector78+0xca>
+ 45e:	782b      	ldrb	r3, [r5, #0]
+ 460:	2b00      	cmp	r3, #0
+ 462:	d00a      	beq.n	47a <Vector78+0x47a>
+ 464:	4b55      	ldr	r3, [pc, #340]	@ (5bc <Vector78+0x5bc>)
+ 466:	781a      	ldrb	r2, [r3, #0]
+ 468:	2a00      	cmp	r2, #0
+ 46a:	d106      	bne.n	47a <Vector78+0x47a>
+ 46c:	4954      	ldr	r1, [pc, #336]	@ (5c0 <Vector78+0x5c0>)
+ 46e:	880b      	ldrh	r3, [r1, #0]
+ 470:	3301      	adds	r3, #1
+ 472:	b29b      	uxth	r3, r3
+ 474:	2bc7      	cmp	r3, #199	@ 0xc7
+ 476:	d80b      	bhi.n	490 <Vector78+0x490>
+ 478:	800b      	strh	r3, [r1, #0]
+ 47a:	4a52      	ldr	r2, [pc, #328]	@ (5c4 <Vector78+0x5c4>)
+ 47c:	7b11      	ldrb	r1, [r2, #12]
+ 47e:	7b53      	ldrb	r3, [r2, #13]
+ 480:	4a51      	ldr	r2, [pc, #324]	@ (5c8 <Vector78+0x5c8>)
+ 482:	021b      	lsls	r3, r3, #8
+ 484:	430b      	orrs	r3, r1
+ 486:	8013      	strh	r3, [r2, #0]
+ 488:	2201      	movs	r2, #1
+ 48a:	4b50      	ldr	r3, [pc, #320]	@ (5cc <Vector78+0x5cc>)
+ 48c:	701a      	strb	r2, [r3, #0]
+ 48e:	e7a8      	b.n	3e2 <Vector78+0x3e2>
+ 490:	800a      	strh	r2, [r1, #0]
+ 492:	702a      	strb	r2, [r5, #0]
+ 494:	e7f1      	b.n	47a <Vector78+0x47a>
+ 496:	2300      	movs	r3, #0
+ 498:	7835      	ldrb	r5, [r6, #0]
+ 49a:	8013      	strh	r3, [r2, #0]
+ 49c:	2d02      	cmp	r5, #2
+ 49e:	d0a9      	beq.n	3f4 <Vector78+0x3f4>
+ 4a0:	4a4b      	ldr	r2, [pc, #300]	@ (5d0 <Vector78+0x5d0>)
+ 4a2:	7811      	ldrb	r1, [r2, #0]
+ 4a4:	4299      	cmp	r1, r3
+ 4a6:	d160      	bne.n	56a <Vector78+0x56a>
+ 4a8:	4b4a      	ldr	r3, [pc, #296]	@ (5d4 <Vector78+0x5d4>)
+ 4aa:	781b      	ldrb	r3, [r3, #0]
+ 4ac:	2b00      	cmp	r3, #0
+ 4ae:	d107      	bne.n	4c0 <Vector78+0x4c0>
+ 4b0:	4b49      	ldr	r3, [pc, #292]	@ (5d8 <Vector78+0x5d8>)
+ 4b2:	781b      	ldrb	r3, [r3, #0]
+ 4b4:	2b00      	cmp	r3, #0
+ 4b6:	d103      	bne.n	4c0 <Vector78+0x4c0>
+ 4b8:	4b48      	ldr	r3, [pc, #288]	@ (5dc <Vector78+0x5dc>)
+ 4ba:	781b      	ldrb	r3, [r3, #0]
+ 4bc:	2b00      	cmp	r3, #0
+ 4be:	d099      	beq.n	3f4 <Vector78+0x3f4>
+ 4c0:	2d00      	cmp	r5, #0
+ 4c2:	d197      	bne.n	3f4 <Vector78+0x3f4>
+ 4c4:	7873      	ldrb	r3, [r6, #1]
+ 4c6:	2b01      	cmp	r3, #1
+ 4c8:	d10c      	bne.n	4e4 <Vector78+0x4e4>
+ 4ca:	4b42      	ldr	r3, [pc, #264]	@ (5d4 <Vector78+0x5d4>)
+ 4cc:	781a      	ldrb	r2, [r3, #0]
+ 4ce:	2a00      	cmp	r2, #0
+ 4d0:	d004      	beq.n	4dc <Vector78+0x4dc>
+ 4d2:	2200      	movs	r2, #0
+ 4d4:	2005      	movs	r0, #5
+ 4d6:	701a      	strb	r2, [r3, #0]
+ 4d8:	f7ff fffe 	bl	0 <Vector78>
+			4d8: R_ARM_THM_CALL	Spi_Send_Commad
+ 4dc:	2201      	movs	r2, #1
+ 4de:	4b40      	ldr	r3, [pc, #256]	@ (5e0 <Vector78+0x5e0>)
+ 4e0:	701a      	strb	r2, [r3, #0]
+ 4e2:	e04d      	b.n	580 <Vector78+0x580>
+ 4e4:	2b02      	cmp	r3, #2
+ 4e6:	d107      	bne.n	4f8 <Vector78+0x4f8>
+ 4e8:	4b3b      	ldr	r3, [pc, #236]	@ (5d8 <Vector78+0x5d8>)
+ 4ea:	781a      	ldrb	r2, [r3, #0]
+ 4ec:	2a00      	cmp	r2, #0
+ 4ee:	d0f5      	beq.n	4dc <Vector78+0x4dc>
+ 4f0:	2200      	movs	r2, #0
+ 4f2:	2006      	movs	r0, #6
+ 4f4:	701a      	strb	r2, [r3, #0]
+ 4f6:	e7ef      	b.n	4d8 <Vector78+0x4d8>
+ 4f8:	2b03      	cmp	r3, #3
+ 4fa:	d1ef      	bne.n	4dc <Vector78+0x4dc>
+ 4fc:	4b37      	ldr	r3, [pc, #220]	@ (5dc <Vector78+0x5dc>)
+ 4fe:	781a      	ldrb	r2, [r3, #0]
+ 500:	2a00      	cmp	r2, #0
+ 502:	d0eb      	beq.n	4dc <Vector78+0x4dc>
+ 504:	2200      	movs	r2, #0
+ 506:	2007      	movs	r0, #7
+ 508:	701a      	strb	r2, [r3, #0]
+ 50a:	e7e5      	b.n	4d8 <Vector78+0x4d8>
+ 50c:	2300      	movs	r3, #0
+ 50e:	8013      	strh	r3, [r2, #0]
+ 510:	2201      	movs	r2, #1
+ 512:	700b      	strb	r3, [r1, #0]
+ 514:	4b33      	ldr	r3, [pc, #204]	@ (5e4 <Vector78+0x5e4>)
+ 516:	701a      	strb	r2, [r3, #0]
+ 518:	e77a      	b.n	410 <Vector78+0x410>
+ 51a:	2300      	movs	r3, #0
+ 51c:	8013      	strh	r3, [r2, #0]
+ 51e:	2201      	movs	r2, #1
+ 520:	700b      	strb	r3, [r1, #0]
+ 522:	4b31      	ldr	r3, [pc, #196]	@ (5e8 <Vector78+0x5e8>)
+ 524:	701a      	strb	r2, [r3, #0]
+ 526:	e780      	b.n	42a <Vector78+0x42a>
+ 528:	2300      	movs	r3, #0
+ 52a:	8013      	strh	r3, [r2, #0]
+ 52c:	4a2f      	ldr	r2, [pc, #188]	@ (5ec <Vector78+0x5ec>)
+ 52e:	700b      	strb	r3, [r1, #0]
+ 530:	7811      	ldrb	r1, [r2, #0]
+ 532:	3301      	adds	r3, #1
+ 534:	404b      	eors	r3, r1
+ 536:	7013      	strb	r3, [r2, #0]
+ 538:	220a      	movs	r2, #10
+ 53a:	2b00      	cmp	r3, #0
+ 53c:	d100      	bne.n	540 <Vector78+0x540>
+ 53e:	3a08      	subs	r2, #8
+ 540:	4b12      	ldr	r3, [pc, #72]	@ (58c <Vector78+0x58c>)
+ 542:	721a      	strb	r2, [r3, #8]
+ 544:	4b2a      	ldr	r3, [pc, #168]	@ (5f0 <Vector78+0x5f0>)
+ 546:	601a      	str	r2, [r3, #0]
+ 548:	2203      	movs	r2, #3
+ 54a:	4b2a      	ldr	r3, [pc, #168]	@ (5f4 <Vector78+0x5f4>)
+ 54c:	701a      	strb	r2, [r3, #0]
+ 54e:	f7ff fffe 	bl	0 <Vector78>
+			54e: R_ARM_THM_CALL	Save_Flash_Set
+ 552:	e777      	b.n	444 <Vector78+0x444>
+ 554:	2500      	movs	r5, #0
+ 556:	80e5      	strh	r5, [r4, #6]
+ 558:	f7ff fffe 	bl	0 <Vector78>
+			558: R_ARM_THM_CALL	Init_Home_Mov
+ 55c:	0029      	movs	r1, r5
+ 55e:	20c5      	movs	r0, #197	@ 0xc5
+ 560:	f7ff fffe 	bl	0 <Vector78>
+			560: R_ARM_THM_CALL	Uart_While_Send_Commad
+ 564:	e5b1      	b.n	ca <Vector78+0xca>
+ 566:	2300      	movs	r3, #0
+ 568:	e5c5      	b.n	f6 <Vector78+0xf6>
+ 56a:	2d00      	cmp	r5, #0
+ 56c:	d0aa      	beq.n	4c4 <Vector78+0x4c4>
+ 56e:	2d01      	cmp	r5, #1
+ 570:	d000      	beq.n	574 <Vector78+0x574>
+ 572:	e73f      	b.n	3f4 <Vector78+0x3f4>
+ 574:	2004      	movs	r0, #4
+ 576:	7013      	strb	r3, [r2, #0]
+ 578:	f7ff fffe 	bl	0 <Vector78>
+			578: R_ARM_THM_CALL	Spi_Send_Commad
+ 57c:	4b18      	ldr	r3, [pc, #96]	@ (5e0 <Vector78+0x5e0>)
+ 57e:	701d      	strb	r5, [r3, #0]
+ 580:	f7ff fffe 	bl	0 <Vector78>
+			580: R_ARM_THM_CALL	Reset_Uart
+ 584:	e736      	b.n	3f4 <Vector78+0x3f4>
+ 586:	46c0      	nop			@ (mov r8, r8)
+	...
+			588: R_ARM_ABS32	.bss.Reset_Save_Flash
+			58c: R_ARM_ABS32	.data.Keyboard_Info
+			590: R_ARM_ABS32	.bss.Save_Flash
+			594: R_ARM_ABS32	.bss.Usb_If_Ok
+			598: R_ARM_ABS32	.bss.User_Batt_Send_Spi
+			59c: R_ARM_ABS32	.bss.Usb_If_Ok_Led
+			5a0: R_ARM_ABS32	.bss.Time_3s_Count
+			5a4: R_ARM_ABS32	.bss.User_QMK_EE_CLR_Flag
+			5a8: R_ARM_ABS32	.bss.Time_3s_EE_CLR_Count
+			5ac: R_ARM_ABS32	.bss.Screen_Power_On_Off_Flg
+			5b0: R_ARM_ABS32	.bss.Screen_Power_On_Off_3S_Count
+			5b4: R_ARM_ABS32	.bss.Debounce_Function_Status
+			5b8: R_ARM_ABS32	.bss.User_Key_3s_Count
+			5bc: R_ARM_ABS32	.bss.Led_Point_Count
+			5c0: R_ARM_ABS32	.bss.Usb_If_Ok_Delay
+ 5c4:	40023800 	.word	0x40023800
+	...
+			5c8: R_ARM_ABS32	.bss.g_usb_sof_frame_id
+			5cc: R_ARM_ABS32	.bss.Usb_Dis_Connect
+			5d0: R_ARM_ABS32	.bss.Key_2p4g_Status
+			5d4: R_ARM_ABS32	.bss.Key_Ble_1_Status
+			5d8: R_ARM_ABS32	.bss.Key_Ble_2_Status
+			5dc: R_ARM_ABS32	.bss.Key_Ble_3_Status
+			5e0: R_ARM_ABS32	.bss.Led_Rf_Pair_Flg
+			5e4: R_ARM_ABS32	.bss.User_EE_CLR_Start_Flag
+			5e8: R_ARM_ABS32	.bss.Screen_Power_On_Off
+			5ec: R_ARM_ABS32	.bss.Debounce_Function_Count
+			5f0: R_ARM_ABS32	.bss.Debounce_Delay
+			5f4: R_ARM_ABS32	.bss.Debounce_Point_Count
+
+Disassembly of section .text.User_send_6kro_report:
+
+Disassembly of section .text.User_send_nkro_report:
+
+Disassembly of section .text.User_Clear_Board:
+
+Disassembly of section .text.add_key_to_report:
+
+Disassembly of section .text.General_Key_Reorder:
+
+Disassembly of section .text.del_key_from_report:
+
+Disassembly of section .text.User_Clear_Board_2ms:
+
+Disassembly of section .text.Send_Key:
+
+Disassembly of section .text.Reset_Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Home_Prev_Func:
+
+Disassembly of section .text.Lvgl_Home_Next_Func:
+
+Disassembly of section .text.Lvgl_Home_Enter_Func:
+
+Disassembly of section .text.User_process_record_user:

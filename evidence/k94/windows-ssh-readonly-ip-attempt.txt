@@ -1,0 +1,2 @@
+lazy@192.168.1.8: Permission denied (publickey,password,keyboard-interactive).
+ssh_exit=255

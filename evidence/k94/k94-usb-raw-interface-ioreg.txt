@@ -1,0 +1,65 @@
+  |   "ReportDescriptor" = <0660ff0961a1010962150026ff009520750881020963150026ff00952075089102c0>
+  |   "DebugState" = {"SetReportTime"=23362309666,"InputReportCount"=2,"SetReportCount"=1,"InputReportTime"=23360335666}
+  |   "IOUserServerOneProcess" = Yes
+  |   "BootProtocol" = 0
+  |   "MaxFeatureReportSize" = 0
+  |   "Product" = "KEMOVE K94"
+  |   "SerialNumber" = "20250901"
+  |   "Transport" = "USB"
+  |   "Elements" = ({"ReportID"=0,"ElementCookie"=1,"CollectionType"=1,"Type"=513,"VariableSize"=0,"Elements"=({"VariableSize"=0,"UnitExponent"=0,"IsRelative"=No,"UsagePage"=65376,"Max"=255,"IsArray"=No,"Type"=1,"Size"=256,"Min"=0,"Flags"=2,"ReportID"=0,"Usage"=98,"ReportCount"=1,"Unit"=0,"HasNullState"=No,"ReportSize"=256,"HasPreferredState"=Yes,"IsNonLinear"=No,"ScaledMin"=0,"IsWrapping"=No,"ScaledMax"=255,"ElementCookie"=4},{"VariableSize"=0,"UnitExponent"=0,"IsRelative"=No,"UsagePage"=65376,"Max"=255,"IsArray"=No,"Type"=129,"Size"=256,"Min"=0,"Flags"=2,"ReportID"=0,"Usage"=99,"ReportCount"=1,"Unit"=0,"HasNullState"=No,"ReportSize"=256,"HasPreferredState"=Yes,"IsNonLinear"=No,"ScaledMin"=0,"IsWrapping"=No,"ScaledMax"=255,"ElementCookie"=5}),"UsagePage"=65376,"Usage"=97},{"VariableSize"=0,"UnitExponent"=0,"IsRelative"=No,"UsagePage"=0,"Max"=0,"IsArray"=Yes,"Type"=5,"Size"=0,"Min"=0,"Flags"=0,"ReportID"=0,"Usage"=18446744073709551615,"ReportCount"=1,"Unit"=0,"HasNullState"=No,"ReportSize"=0,"HasPreferredState"=Yes,"IsNonLinear"=No,"ScaledMin"=0,"IsWrapping"=No,"ScaledMax"=0,"ElementCookie"=3},{"VariableSize"=0,"UnitExponent"=0,"IsRelative"=No,"UsagePage"=0,"Max"=1,"IsArray"=Yes,"Type"=5,"Size"=1,"Min"=0,"Flags"=0,"ReportID"=0,"Usage"=0,"ReportCount"=1,"Unit"=0,"HasNullState"=No,"ReportSize"=1,"HasPreferredState"=Yes,"IsNonLinear"=No,"ScaledMin"=0,"IsWrapping"=No,"ScaledMax"=1,"ElementCookie"=2})
+  |   "IOServiceDEXTEntitlements" = "com.apple.developer.driverkit.family.hid.device"
+  |   "IOUserClasses" = ("AppleUserUSBHostHIDDevice","IOUserUSBHostHIDDevice","IOUserHIDDevice","IOHIDDevice","IOService","OSObject")
+  |   "Manufacturer" = "RDMCTMZT"
+  |   "IOUserServerCDHash" = "8a80fafce976b1766ef7719cdb66d036adde5369"
+  |   "ProductID" = 12619
+  |   "RegisterService" = No
+  |   "DeviceUsagePairs" = ({"DeviceUsagePage"=65376,"DeviceUsage"=97})
+  |   "IOPowerManagement" = {"CapabilityFlags"=2,"MaxPowerState"=3,"CurrentPowerState"=3}
+  |   "IOUserServerName" = "com.apple.driverkit.AppleUserHIDDrivers"
+  |   "ReportInterval" = 1000
+  |   "InputReportElements" = ({"ReportID"=0,"ElementCookie"=6,"Size"=256,"ReportCount"=1,"Type"=1,"VariableSize"=0,"UsagePage"=0,"ReportSize"=256,"Usage"=0})
+  |   "IOMatchedPersonality" = {"IOClass"="AppleUserHIDDevice","CFBundleIdentifier"="com.apple.AppleUserHIDDrivers","IOProviderClass"="IOUSBHostInterface","IOUserServerCDHash"="8a80fafce976b1766ef7719cdb66d036adde5369","IOProbeScore"=1,"bInterfaceSubClass"=0,"IOUserServerName"="com.apple.driverkit.AppleUserHIDDrivers","HIDDefaultBehavior"="","kOSBundleDextUniqueIdentifier"=<b796d15d9354eae826f370c78da5a69a0107352f2c064353231d0efec890df26>,"CFBundleIdentifierKernel"="com.apple.iokit.IOHIDFamily","IOUserServerOneProcess"=Yes,"bInterfaceClass"=3,"IOUserClass"="AppleUserUSBHostHIDDevice"}
+  |   "CFBundleIdentifier" = "com.apple.AppleUserHIDDrivers"
+  |   "MaxOutputReportSize" = 32
+  |   "IOCFPlugInTypes" = {"FA12FA38-6F1A-11D4-BA0C-0005028F18D5"="IOHIDFamily.kext/Contents/PlugIns/IOHIDLib.plugin","40A57A4E-26A0-11D8-9295-000A958A2C78"="IOHIDFamily.kext/Contents/PlugIns/IOHIDLib.plugin","7DDEECA8-A7B4-11DA-8A0E-0014519758EF"="IOHIDFamily.kext/Contents/PlugIns/IOHIDLib.plugin"}
+  |   "IOProviderClass" = "IOUSBHostInterface"
+  |   "IOUserClass" = "AppleUserUSBHostHIDDevice"
+  |   "LocationID" = 51462912
+  |   "IOReportLegendPublic" = Yes
+  |   "IOClass" = "AppleUserHIDDevice"
+  |   "CFBundleIdentifierKernel" = "com.apple.iokit.IOHIDFamily"
+  |   "PrimaryUsage" = 97
+  |   "HIDDefaultBehavior" = ""
+  |   "CountryCode" = 0
+  |   "RequestTimeout" = 5000000
+  |   "bInterfaceSubClass" = 0
+  |   "IOMatchCategory" = "IODefaultMatchCategory"
+  |   "IOProbeScore" = 50001
+  |   "IOReportLegend" = ({"IOReportGroupName"="IOHIDDevice Input Report Errors","IOReportChannels"=((0,4295098369,"Report 0")),"IOReportChannelInfo"={"IOReportChannelUnit"=0},"IOReportSubGroupName"="Input Report IDs"})
+  |   "bInterfaceClass" = 3
+  |   "HIDDKStart" = Yes
+  | }
+  | 
+  +-o IOHIDInterface  <class IOHIDInterface, id 0x100299407, registered, matched, active, busy 0 (6 ms), retain 6>
+      {
+        "Transport" = "USB"
+        "BootProtocol" = 0
+        "HIDDefaultBehavior" = ""
+        "Manufacturer" = "RDMCTMZT"
+        "Product" = "KEMOVE K94"
+        "MaxInputReportSize" = 32
+        "DeviceUsagePairs" = ({"DeviceUsagePage"=65376,"DeviceUsage"=97})
+        "DebugState" = {"ReleasedBuffers"=0,"ReportAvailableCalls"=0,"ReportAvailableRuns"=0,"CreatedBuffers"=0}
+        "MaxOutputReportSize" = 32
+        "ReportDescriptor" = <0660ff0961a1010962150026ff009520750881020963150026ff00952075089102c0>
+        "CountryCode" = 0
+        "VendorID" = 14000
+        "VersionNumber" = 19
+        "IOServiceDEXTEntitlements" = ("com.apple.developer.driverkit.transport.hid")
+        "PrimaryUsage" = 97
+        "LocationID" = 51462912
+        "ProductID" = 12619
+        "SerialNumber" = "20250901"
+        "ReportInterval" = 1000
+        "PrimaryUsagePage" = 65376
+        "MaxFeatureReportSize" = 0

@@ -1,0 +1,21 @@
+=== task ===
+{
+    "TaskName":  "MiniOpsM585EdgeWatch",
+    "State":  4
+}
+{
+    "LastRunTime":  "\/Date(1795174884000)\/",
+    "LastTaskResult":  267009
+}
+=== process ===
+{
+    "ProcessId":  43388,
+    "ParentProcessId":  3032,
+    "SessionId":  1,
+    "CommandLine":  "\"powershell.exe\" -NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_m585_edge_bootstrap.ps1 -Mode watch"
+}
+=== health ===
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":true,"ready":false,"reason":"mouse-not-slot-0","desktop":{"available":true,"state":"INTERACTIVE_DESKTOP_ACCESSIBLE"},"mouse":{"present":false,"current_host_index":-1,"host_count":-1,"slot_evidence_verified":false,"readonly_result":"AWAITING_WINDOWS_DEVICE"},"generated_at_utc":"2026-11-20T11:49:13.6795068Z","expires_at_utc":"2026-11-20T11:49:28.6795068Z","hid_output_report_sent":false}
+=== old log ===
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T11:40:37.0999287Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:41:24.9029820Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}

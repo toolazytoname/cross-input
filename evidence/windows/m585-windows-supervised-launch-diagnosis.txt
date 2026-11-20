@@ -1,0 +1,34 @@
+2026-11-20 Windows supervised launcher diagnosis
+
+Initial visible-launcher state:
+- cmd PID 39068 and powershell PID 12976 ran in SessionId 1.
+- The PowerShell command invoked the probe with -WindowsEdgeWatch and piped output through Tee-Object.
+- The TEMP launcher directory and logs directory existed, but neither m585-edge-watch.jsonl nor windows-health.json existed.
+- Therefore the failure happened before the first controller Emit, and Tee-Object had not created its output file.
+- The coordinator's visible-desktop capture identified RegisterHotKey Ctrl+Alt+Shift+M failure 1459.
+
+Root causes and corrections:
+- Error 1459 means the operation requires an interactive window station. SSH Session 0 cannot satisfy it even when OpenInputDesktop appears accessible.
+- The first message-window experiment also failed handle creation; it is not used in the delivered watcher.
+- The watcher now uses PeekMessageW (the Unicode user32 entry point) and keeps thread-message hotkeys registered with IntPtr.Zero.
+- The PowerShell supervisor bootstrap creates its JSONL file before invoking the probe, writes bootstrap-start/bootstrap-error/bootstrap-stopped records directly, preserves the child exit code, and shows red child errors in the console.
+- The probe writes CONTROLLER_STARTING, ERROR_ADD_TYPE, and ERROR_RUNTIME health objects before Add-Type or dispatch can produce normal output. A deliberate invalid C# copy was tested and produced ERROR_ADD_TYPE health plus exit code 2.
+
+Interactive Scheduled Task validation:
+- A minimal Interactive-principal task ran as lazy-windows\Administrator in SessionId 1.
+- It reported UserInteractive=true, OpenInputDesktop=true, and RegisterHotKey(IntPtr.Zero)=true.
+- A second Interactive-principal task launched the real bootstrap in dry-run mode.
+- Live evidence recorded Scheduled Task State 4/Running, powershell PID 41200 in SessionId 1, desktop.available=true, READY_WINDOWS_SIMULATED health, controller_ready=false, and a valid JSONL bootstrap-start record.
+- The dry-run sent no HID++ output. The temporary MiniOpsM585SupervisedDryRun task was stopped and unregistered by its test script.
+
+Delivered reversible SSH entry:
+- scripts/start_windows_m585_edge_from_ssh.sh
+- Operations: register-start, status, stop, remove.
+- Modes: dry-run and watch.
+- Task name: MiniOpsM585EdgeWatch.
+- It copies probe/bootstrap/task-controller files to user TEMP only, uses LogonType Interactive, a two-hour execution limit, and MultipleInstances IgnoreNew, and does not create a service or login startup entry.
+
+Post-test boundary:
+- Near the end of this work, lazy-windows-ts and 192.168.1.8 stopped answering SSH/ping. No WOL was attempted.
+- The MiniOpsM585SupervisedDryRun task was removed by the successful test script before connectivity loss.
+- Cleanup of the earlier minimal MiniOpsInteractiveDesktopProbe task was requested but its completion could not be re-confirmed because connectivity dropped; the coordinator should query/remove that task when Windows is reachable.

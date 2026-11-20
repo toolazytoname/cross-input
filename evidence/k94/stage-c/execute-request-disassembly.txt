@@ -1,0 +1,33 @@
+
+research/k94/stage-c-work/.build/8r101_k94_via.elf:     file format elf32-littlearm
+
+
+Disassembly of section .vectors:
+
+Disassembly of section .text:
+
+000009d4 <k94_via_switch_execute_request>:
+     9d4:	b573      	push	{r0, r1, r4, r5, r6, lr}
+     9d6:	000e      	movs	r6, r1
+     9d8:	466d      	mov	r5, sp
+     9da:	0004      	movs	r4, r0
+     9dc:	2208      	movs	r2, #8
+     9de:	2100      	movs	r1, #0
+     9e0:	4668      	mov	r0, sp
+     9e2:	f010 ff5e 	bl	118a2 <memset>
+     9e6:	716e      	strb	r6, [r5, #5]
+     9e8:	2c01      	cmp	r4, #1
+     9ea:	d008      	beq.n	9fe <k94_via_switch_execute_request+0x2a>
+     9ec:	3c02      	subs	r4, #2
+     9ee:	1e63      	subs	r3, r4, #1
+     9f0:	419c      	sbcs	r4, r3
+     9f2:	4b04      	ldr	r3, [pc, #16]	@ (a04 <k94_via_switch_execute_request+0x30>)
+     9f4:	18e0      	adds	r0, r4, r3
+     9f6:	0029      	movs	r1, r5
+     9f8:	f7ff ffb8 	bl	96c <process_record_user>
+     9fc:	bd73      	pop	{r0, r1, r4, r5, r6, pc}
+     9fe:	4802      	ldr	r0, [pc, #8]	@ (a08 <k94_via_switch_execute_request+0x34>)
+     a00:	e7f9      	b.n	9f6 <k94_via_switch_execute_request+0x22>
+     a02:	46c0      	nop			@ (mov r8, r8)
+     a04:	00007e02 	.word	0x00007e02
+     a08:	00007e01 	.word	0x00007e01

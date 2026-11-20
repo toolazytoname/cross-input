@@ -1,0 +1,23 @@
+[
+    {
+        "schema":  1,
+        "controller":  "windows-peer-health-v1",
+        "controller_ready":  false,
+        "ready":  false,
+        "reason":  "mouse-not-slot-0",
+        "desktop":  {
+                        "available":  true,
+                        "state":  "INTERACTIVE_DESKTOP_ACCESSIBLE"
+                    },
+        "mouse":  {
+                      "present":  true,
+                      "current_host_index":  0,
+                      "host_count":  2,
+                      "slot_evidence_verified":  true,
+                      "readonly_result":  "TARGET_UNAVAILABLE"
+                  },
+        "generated_at_utc":  "2026-11-20T12:31:52.7347425Z",
+        "expires_at_utc":  "2026-11-20T12:32:07.7347425Z",
+        "hid_output_report_sent":  false
+    }
+]

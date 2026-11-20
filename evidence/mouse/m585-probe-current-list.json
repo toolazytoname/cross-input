@@ -1,0 +1,48 @@
+{
+  "devices": [
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 65347,
+      "usage": 514,
+      "interface_number": -1
+    }
+  ]
+}

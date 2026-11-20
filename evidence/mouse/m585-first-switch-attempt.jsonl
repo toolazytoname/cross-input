@@ -1,0 +1,2 @@
+{"event": "single-switch-attempt", "target": "LAZY-WINDOWS", "target_index": 0, "current_index": 1, "root_response_hex": "11ff000109000100000000000000000000000000", "status_response_hex": "11ff090102010000000000000000000000000000", "switch_frame_hex": "11ff091100000000000000000000000000000000"}
+{"event": "write-returned", "bytes_written": 20, "expected_bytes": 20}

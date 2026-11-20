@@ -1,0 +1,94 @@
+{
+  "devices": [
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": 2,
+      "path": "DevSrvsID:4297692148"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": 2,
+      "path": "DevSrvsID:4297692148"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": 2,
+      "path": "DevSrvsID:4297692148"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": 0,
+      "path": "DevSrvsID:4297692150"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 1,
+      "usage": 128,
+      "interface_number": 2,
+      "path": "DevSrvsID:4297692148"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 12,
+      "usage": 1,
+      "interface_number": 2,
+      "path": "DevSrvsID:4297692148"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 65376,
+      "usage": 97,
+      "interface_number": 1,
+      "path": "DevSrvsID:4297692152"
+    }
+  ],
+  "qmk_raw_collections": [
+    {
+      "vendor_id": 14000,
+      "product_id": 12619,
+      "serial_number": "20250901",
+      "manufacturer_string": "RDMCTMZT",
+      "product_string": "KEMOVE K94",
+      "usage_page": 65376,
+      "usage": 97,
+      "interface_number": 1,
+      "path": "DevSrvsID:4297692152"
+    }
+  ]
+}

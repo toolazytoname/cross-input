@@ -1,0 +1,48 @@
+test_ambiguous_submit_waits_for_device_departure_instead_of_permanent_recovery (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_controller_lock_is_exclusive (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_cooldown_and_slot_based_recovery (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_device_absence_is_distinguished_from_duplicate_and_query_failure (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_display_edge_comes_from_actual_frames_not_fixed_resolution (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_drag_and_wrong_event_do_not_consume_dwell (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_dry_run_logs_attempt_without_protocol_or_peer_commands (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_event_button_and_modifier_masks_are_separate_and_fields_are_public (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_health_server_port_failure_is_visible_to_caller (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_health_server_reports_only_verified_mac_readiness (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_mac_uses_real_windows_peer_health_not_offline_tests (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_mac_watch_advertises_exit_and_manual_return (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_native_api_signatures_are_fixed (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_no_departure_and_query_failures_have_distinct_recovery_behavior (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_post_submit_poll_requires_absence_then_two_slot_confirmations (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_real_path_uses_slot_peer_and_fixed_entry_before_submit (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_recovery_confirmations_reset_on_query_failure_and_wrong_slot (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_requires_dwell_and_rejects_interaction (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_slow_submit_and_stale_continuous_edge_submit_only_once (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_startup_recovery_requires_running_tap_stability_and_two_slot_confirmations (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_target_unavailable_is_not_auto_recovered_by_a_slot_poll (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_windows_peer_health_distinguishes_target_and_return_readiness (evidence.mouse.test_m585_edge_controller.M585EdgeControllerTests) ... ok
+test_apply_requires_target_name_even_when_other_confirmations_exist (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_apply_submits_exactly_once (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_current_slot_mismatch_blocks_write (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_default_mode_performs_no_hid_enumeration_or_io (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_dry_run_preflight_never_writes (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_existing_guard_blocks_before_transport (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_failed_submit_is_not_retried_and_guard_remains (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_missing_authorization_blocks_before_transport (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_target_unavailable_blocks_write (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_wrong_serial_or_duplicate_collection_fails (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_bad_host_descriptor_fails_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_bad_status_fail_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_descriptor_slot_mismatch_fails_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_name_context_mismatch_fails_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_capability_gate_fails_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_readonly_sequence_is_whitelisted (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_response_classifier_rejects_wrong_frames (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_root_unsupported_never_sends_status_request (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_strict_selection_requires_one_exact_collection (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_timeout_and_error_fail_closed (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+test_valid_readonly_sequence (evidence.mouse.test_m585_readonly_probe.M585ProbeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.066s
+
+OK

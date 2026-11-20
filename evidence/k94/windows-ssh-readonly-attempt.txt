@@ -1,0 +1,3 @@
+No ED25519 host key is known for lazy-windows.local and you have requested strict checking.
+Host key verification failed.
+ssh_exit=255

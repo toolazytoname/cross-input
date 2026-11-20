@@ -1,0 +1,28 @@
+2026-11-19 07:09:47 -0800
+-- corrected script static audit --
+test_ble_candidates_are_not_excluded_before_native_attributes (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_createfile_uses_metadata_access_sharing_and_open_existing (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_detail_buffer_is_dynamic_and_csharp5_compatible (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_documentation_does_not_default_to_execution_policy_bypass (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_hidp_caps_has_complete_sixty_four_byte_native_layout (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_hidp_caps_success_is_windows_hidp_status (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_json_output_is_stable_for_empty_and_single_results (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_reports_permission_and_query_gaps (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_script_avoids_post_csharp5_syntax (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_targets_and_hid_collection_fields_are_present (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_uses_exact_spelling_and_required_apis (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+test_uses_only_readonly_windows_api_surface (test_windows_hid_readonly_query_static.WindowsHidQueryStaticAuditTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+OK
+-- corrected script hashes --
+4b875c31604e336e2047edeba7123a464104f36c483022c999f18a1badd29d90  scripts/windows_hid_readonly_query.ps1
+f1c0bf5cb4832a84c782ddc56fc1f5aced72c81f041e6691c32602d5dd350f96  evidence/windows/test_windows_hid_readonly_query_static.py
+-- compiler/runtime boundary --
+No local C# compiler was present on Mac. The corrected C# was compiled in-process by Windows PowerShell 5.1 Add-Type during the authorized read-only remote run.
+-- HID IO boundary --
+Windows run used desiredAccess=0, shared metadata handles, OPEN_EXISTING=3, and no HID output report. No mouse switch was sent.
+-- remote stderr size --
+       0 evidence/windows/windows-hid-readonly-query.stderr

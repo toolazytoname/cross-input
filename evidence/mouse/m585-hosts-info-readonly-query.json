@@ -1,0 +1,159 @@
+{
+  "devices": [
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 65347,
+      "usage": 514,
+      "interface_number": -1
+    }
+  ],
+  "selected_collection": {
+    "path": "DevSrvsID:4297669905",
+    "vendor_id": 1133,
+    "product_id": 45083,
+    "serial_number": "7A09C04B5120EA18",
+    "manufacturer_string": "Logitech",
+    "product_string": "M585/M590",
+    "usage_page": 65347,
+    "usage": 514,
+    "interface_number": -1
+  },
+  "non_exclusive_open": {
+    "enabled": true
+  },
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  },
+  "queries": [
+    {
+      "name": "root-get-hosts-info",
+      "feature_id": 6165,
+      "function": 0,
+      "request_hex": "11ff000118150000000000000000000000000000",
+      "response_hex": "11ff00010a000100000000000000000000000000",
+      "feature_index": 10
+    },
+    {
+      "name": "hosts-info-get-state",
+      "feature_id": 6165,
+      "function": 0,
+      "request_hex": "11ff0a0100000000000000000000000000000000",
+      "response_hex": "11ff0a0113090201000000000000000000000000",
+      "decoded": {
+        "capability_flags": 19,
+        "host_count": 2,
+        "current_host_index": 1
+      }
+    },
+    {
+      "function": 16,
+      "request_hex": "11ff0a1100000000000000000000000000000000",
+      "response_hex": "11ff0a11000104000c1800000000000000000000",
+      "decoded": {
+        "host_index": 0,
+        "paired": true,
+        "status_raw": 1,
+        "name_length": 12,
+        "maximum_length": 24
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a3100000000000000000000000000000000",
+      "response_hex": "11ff0a3100004c415a592d57494e444f57530000",
+      "decoded": {
+        "host_index": 0,
+        "offset": 0
+      }
+    },
+    {
+      "function": 16,
+      "request_hex": "11ff0a1101000000000000000000000000000000",
+      "response_hex": "11ff0a11010104000f1800000000000000000000",
+      "decoded": {
+        "host_index": 1,
+        "paired": true,
+        "status_raw": 1,
+        "name_length": 15,
+        "maximum_length": 24
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a3101000000000000000000000000000000",
+      "response_hex": "11ff0a3101006c617a79e79a844d6163204d696e",
+      "decoded": {
+        "host_index": 1,
+        "offset": 0
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a31010e0000000000000000000000000000",
+      "response_hex": "11ff0a31010e6900000000000000000000000000",
+      "decoded": {
+        "host_index": 1,
+        "offset": 14
+      }
+    }
+  ],
+  "hosts": [
+    {
+      "host_index": 0,
+      "paired": true,
+      "status_raw": 1,
+      "name_length": 12,
+      "maximum_length": 24,
+      "name": "LAZY-WINDOWS"
+    },
+    {
+      "host_index": 1,
+      "paired": true,
+      "status_raw": 1,
+      "name_length": 15,
+      "maximum_length": 24,
+      "name": "lazy的Mac Mini"
+    }
+  ]
+}

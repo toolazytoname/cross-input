@@ -1,0 +1,1 @@
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T03:31:05.3687790Z","dry_run":true,"state":"SESSION_UNAVAILABLE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}

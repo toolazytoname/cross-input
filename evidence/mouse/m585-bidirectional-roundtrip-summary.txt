@@ -1,0 +1,31 @@
+2026-11-19 M585/M590 bidirectional hardware-channel round trip
+
+Starting state:
+- Mac read-only query: serial 7A09C04B5120EA18, FF43:0202, two hosts,
+  current slot 1.
+
+Mac to Windows:
+- Tool: scripts/m585_switch_to_windows_once.sh roundtrip-20261119
+- Strict preflight confirmed feature indexes 9/10, host count 2, current
+  slot 1, paired slots, and names LAZY-WINDOWS / lazy的Mac Mini.
+- One 20-byte CHANGE_HOST request was submitted: 11FF0911 00...
+- The report was not retried and no automatic return command was sent.
+
+Windows state and return:
+- Windows read-only query confirmed current slot 0 and the same host map.
+- Tool: scripts/run_windows_hid_protocol_probe.sh mouse-switch-mac-once
+- The fixed final request was 11FF0911 01...
+- One 20-byte WriteFile completed with WriteFinalNativeError 0, BytesWritten 20,
+  ReadTimedOut false, and no retry.
+
+Final state:
+- Mac read-only query again returned host_count 2, current_host_index 1.
+- A subsequent Windows metadata-only enumeration found no M585/M590 vendor
+  collection, consistent with the returned Mac channel.
+- Evidence: m585-mac-before-round-trip.json, m585-mac-to-windows-roundtrip.json,
+  ../windows/m585-windows-before-return-switch.json,
+  ../windows/m585-windows-to-mac-roundtrip.json, m585-mac-after-round-trip.json,
+  and ../windows/windows-protocol-probe-after-return-metadata.json.
+
+This proves the two hardware channel transitions. Target-host cursor usability
+still requires direct user observation; it is not inferred from report submission.

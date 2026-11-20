@@ -1,0 +1,5 @@
+Deleting .build/ ... done.
+Deleting *.bin, *.hex, and *.uf2 ... done.
+Deleting userspace *.bin, *.hex, and *.uf2 ... /bin/sh: -c: line 0: syntax error near unexpected token `('
+/bin/sh: -c: line 0: `rm -f None (None)/*.bin None (None)/*.hex None (None)/*.uf2'
+make: *** [distclean_userspace] Error 2

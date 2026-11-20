@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-11-20T02:50:01.129397+00:00",
+  "serial": "7A09C04B5120EA18",
+  "target_slot": 0,
+  "target_name": "LAZY-WINDOWS",
+  "policy": "one submit attempt; no retry; no automatic return switch"
+}

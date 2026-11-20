@@ -1,0 +1,127 @@
+[
+    {
+        "Mode":  "K94-via-version",
+        "Candidates":  [
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_00\\7\u00261BAD87F9\u00260\u00260000",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_00#7\u00261bad87f9\u00260\u00260000#{4d1e55b2-f16f-11cf-88cb-001111000030}\\kbd",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  6,
+                               "UsagePage":  1,
+                               "InputReportByteLength":  9,
+                               "OutputReportByteLength":  2,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_01\\7\u00263E9FBB4\u00260\u00260000",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_01#7\u00263e9fbb4\u00260\u00260000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  97,
+                               "UsagePage":  65376,
+                               "InputReportByteLength":  33,
+                               "OutputReportByteLength":  33,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_02\u0026COL01\\7\u0026256E6875\u00260\u00260000",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_02\u0026col01#7\u0026256e6875\u00260\u00260000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  2,
+                               "UsagePage":  1,
+                               "InputReportByteLength":  6,
+                               "OutputReportByteLength":  0,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_02\u0026COL02\\7\u0026256E6875\u00260\u00260001",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_02\u0026col02#7\u0026256e6875\u00260\u00260001#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  128,
+                               "UsagePage":  1,
+                               "InputReportByteLength":  3,
+                               "OutputReportByteLength":  0,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_02\u0026COL03\\7\u0026256E6875\u00260\u00260002",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_02\u0026col03#7\u0026256e6875\u00260\u00260002#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  1,
+                               "UsagePage":  12,
+                               "InputReportByteLength":  3,
+                               "OutputReportByteLength":  0,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_02\u0026COL04\\7\u0026256E6875\u00260\u00260003",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_02\u0026col04#7\u0026256e6875\u00260\u00260003#{4d1e55b2-f16f-11cf-88cb-001111000030}\\kbd",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  6,
+                               "UsagePage":  1,
+                               "InputReportByteLength":  32,
+                               "OutputReportByteLength":  2,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           },
+                           {
+                               "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_02\u0026COL05\\7\u0026256E6875\u00260\u00260004",
+                               "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_02\u0026col05#7\u0026256e6875\u00260\u00260004#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                               "VendorId":  14000,
+                               "ProductId":  12290,
+                               "Usage":  1,
+                               "UsagePage":  65280,
+                               "InputReportByteLength":  64,
+                               "OutputReportByteLength":  64,
+                               "OpenErrorCode":  0,
+                               "QueryError":  null
+                           }
+                       ],
+        "Selected":  {
+                         "DeviceInstanceId":  "HID\\VID_36B0\u0026PID_3002\u0026MI_01\\7\u00263E9FBB4\u00260\u00260000",
+                         "DevicePath":  "\\\\?\\hid#vid_36b0\u0026pid_3002\u0026mi_01#7\u00263e9fbb4\u00260\u00260000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+                         "VendorId":  14000,
+                         "ProductId":  12290,
+                         "Usage":  97,
+                         "UsagePage":  65376,
+                         "InputReportByteLength":  33,
+                         "OutputReportByteLength":  33,
+                         "OpenErrorCode":  0,
+                         "QueryError":  null
+                     },
+        "Requests":  [
+                         {
+                             "report_id_hex":  "00",
+                             "via_command":  1,
+                             "request_hex":  "0001000C0000000000000000000000000000000000000000000000000000000000"
+                         }
+                     ],
+        "Responses":  [
+                          {
+                              "Response":  null,
+                              "TimedOut":  true,
+                              "Canceled":  true,
+                              "NativeError":  995,
+                              "BytesWritten":  0,
+                              "BytesRead":  0,
+                              "NonMatchingReports":  [
+
+                                                     ],
+                              "ElapsedMilliseconds":  0,
+                              "Error":  "write-timeout"
+                          }
+                      ],
+        "Result":  "timeout",
+        "Error":  "write-timeout"
+    }
+]

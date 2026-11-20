@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "host": "mac",
+  "displays": [
+    {
+      "index": 1,
+      "display_id": 4,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1440.0,
+      "height": 900.0
+    }
+  ],
+  "selected_left_edge": 0.0,
+  "accessibility_trusted": true,
+  "listen_only_event_tap_available": true,
+  "mouse_entry_present": true,
+  "readonly_probe_present": true,
+  "mouse_vendor_collection_count": 1,
+  "mouse_serials": [
+    "7A09C04B5120EA18"
+  ],
+  "deskflow_unchanged": true,
+  "windows_peer": {
+    "ok": false,
+    "returncode": 0,
+    "response": {
+      "schema": 1,
+      "controller": "windows-peer-health-v1",
+      "controller_ready": false,
+      "ready": false,
+      "reason": "desktop-unavailable",
+      "desktop": {
+        "available": false,
+        "state": "SESSION_UNAVAILABLE"
+      },
+      "mouse": {
+        "present": false,
+        "current_host_index": null,
+        "host_count": null,
+        "slot_evidence_verified": false,
+        "readonly_result": "Expected exactly one Mouse collection, found 0"
+      },
+      "generated_at_utc": "2026-11-20T03:47:08.3869640Z",
+      "expires_at_utc": "2026-11-20T03:47:23.3869640Z",
+      "hid_output_report_sent": false
+    },
+    "validation": {
+      "ok": false,
+      "return_ready": false,
+      "checks": {
+        "schema": true,
+        "controller": true,
+        "controller_ready": false,
+        "desktop": false,
+        "no_hid_write": true
+      },
+      "hid_output_report_sent": false
+    },
+    "hid_output_report_sent": false
+  }
+}

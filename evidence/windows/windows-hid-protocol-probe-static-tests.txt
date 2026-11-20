@@ -1,0 +1,32 @@
+test_cancel_uses_exact_pending_pointer_and_handles_1168 (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_cli_surface_has_only_narrow_protocol_entries (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_default_mode_is_metadata_only (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_each_pending_operation_owns_a_manual_reset_event (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_full_native_error_and_timing_evidence_is_recorded (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_hidpp_matching_and_protocol_errors_are_strict (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_hidpp_swid_and_actual_function_whitelist (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_hosts_info_capability_quantity_slot_and_lengths_are_gated (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_input_and_output_caps_are_used_separately (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_interactive_foreground_modes_are_builtin (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_interactive_ssh_task_helper_is_explicit_and_reversible (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_k94_reply_prefixes_and_independent_fixture (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_k94_request_and_selection_are_exact (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_native_overlapped_uses_explicit_native_memory (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_offline_tests_replace_placeholder_assertions (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_peer_health_is_readonly_versioned_and_fresh (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_read_buffer_is_copied_before_confirmed_free (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_single_watch_has_return_and_stop_hotkeys (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_ssh_helper_has_fixed_entries_and_streams_stdin (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_unconfirmed_operation_is_retained_never_freed (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_visible_temp_launcher_does_not_install_or_elevate (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_watch_writes_start_and_error_health_before_first_output (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_windows_edge_geometry_uses_live_virtual_screen (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_windows_edge_peer_and_slot_are_fail_closed (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_windows_edge_requires_dwell_cooldown_and_no_interaction (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_windows_session_and_manual_return_are_explicit (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+test_windows_to_mac_switch_is_fixed_and_preflighted (test_windows_hid_protocol_probe_static.WindowsHidProtocolProbeStaticTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.006s
+
+OK

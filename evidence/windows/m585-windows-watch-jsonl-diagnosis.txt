@@ -1,0 +1,45 @@
+2026-11-20 Windows watch JSONL diagnosis
+
+Live official-watch state:
+- MiniOpsM585EdgeWatch was Scheduled Task State 4/Running.
+- Its bootstrap PowerShell was PID 43388 in SessionId 1.
+- windows-health.json updated about once per second.
+- Latest health: controller_ready=true, ready=false,
+  desktop=INTERACTIVE_DESKTOP_ACCESSIBLE, mouse.present=false,
+  state=AWAITING_WINDOWS_DEVICE, reason=mouse-not-slot-0, and
+  hid_output_report_sent=false.
+- The JSONL contained only bootstrap-starting records for the prior dry-run and
+  watch launch.
+
+Root cause:
+- The old bootstrap invoked the probe through a PowerShell pipeline.
+- The C# controller emits events with Console.Out.WriteLine. Those writes go directly
+  to the process console and do not enter the PowerShell pipeline.
+- Consequently the pipeline handler never appended watch-hotkeys-ready or state events,
+  even while the C# loop continued and updated health independently.
+- The watch was not hung. A separate temporary Interactive dry-run failed RegisterHotKey
+  with error 1409 because the official watch already owned Ctrl+Alt+Shift+M/X, which is
+  additional evidence that its hotkeys were registered.
+
+Supervisor correction:
+- windows_m585_edge_bootstrap.ps1 now launches a child cmd/PowerShell process with
+  stdout and stderr redirected to temporary files.
+- The parent tails those files while the child runs, appends every new byte to the main
+  JSONL, and mirrors stdout/stderr to its visible console.
+- It waits for the child, preserves the child exit code, and removes temporary capture
+  files afterward.
+- A fake probe test emitted direct Console.Out, Console.Error, and exit code 5. The fixed
+  supervisor captured all lines in JSONL, showed them on the console, and propagated 5.
+- A separate temporary Interactive task ran the real probe while the official watch held
+  the hotkeys. Its RegisterHotKey 1409 runtime error and exit code were captured in JSONL
+  and health; no HID++ output occurred. The temporary task and directory were removed.
+
+Deployment boundary:
+- The currently running official watch still has the old bootstrap loaded and therefore
+  still needs a coordinator-approved stop/restart to load the fixed supervisor.
+- The current health remains ready=false because the mouse is not present as Windows
+  slot 0. It will become ready only after the watcher's strict read-only preflight sees
+  the exact Windows device and slot 0.
+- Mac-side check from this workspace found no m585_edge_controller.py watch process,
+  no response on 127.0.0.1:8787, and no local edge event log. The coordinator must
+  restart/verify Mac watch before any forward automatic switch.

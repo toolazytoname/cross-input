@@ -1,0 +1,292 @@
+{
+  "ComputerName": "LAZY-WINDOWS",
+  "PowerShellVersion": "5.1.26100.9818",
+  "Devices": [
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "USB Input Device",
+      "Status": "OK",
+      "InstanceId": "USB\\VID_36B0&PID_3002&MI_00\\6&229FDE12&0&0000",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "USB\\VID_36B0&PID_3002&REV_0101&MI_00",
+            "USB\\VID_36B0&PID_3002&MI_00"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": [
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_01&Prot_01",
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_01",
+            "USB\\COMPAT_VID_36b0&Class_03",
+            "USB\\Class_03&SubClass_01&Prot_01",
+            "USB\\Class_03&SubClass_01",
+            "USB\\Class_03"
+          ]
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "HID-compliant system controller",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_02&COL02\\7&256E6875&0&0001",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_02&Col02",
+            "HID\\VID_36B0&PID_3002&MI_02&Col02",
+            "HID\\VID_36B0&UP:0001_U:0080",
+            "HID_DEVICE_SYSTEM_CONTROL",
+            "HID_DEVICE_UP:0001_U:0080",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "USB Input Device",
+      "Status": "OK",
+      "InstanceId": "USB\\VID_36B0&PID_3002&MI_01\\6&229FDE12&0&0001",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "USB\\VID_36B0&PID_3002&REV_0101&MI_01",
+            "USB\\VID_36B0&PID_3002&MI_01"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": [
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_00&Prot_00",
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_00",
+            "USB\\COMPAT_VID_36b0&Class_03",
+            "USB\\Class_03&SubClass_00&Prot_00",
+            "USB\\Class_03&SubClass_00",
+            "USB\\Class_03"
+          ]
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "HID-compliant consumer control device",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_02&COL03\\7&256E6875&0&0002",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_02&Col03",
+            "HID\\VID_36B0&PID_3002&MI_02&Col03",
+            "HID\\VID_36B0&UP:000C_U:0001",
+            "HID_DEVICE_SYSTEM_CONSUMER",
+            "HID_DEVICE_UP:000C_U:0001",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "Bluetooth",
+      "FriendlyName": "M585/M590",
+      "Status": "OK",
+      "InstanceId": "BTHLE\\DEV_FC07F2535BA3\\8&22BC69D&0&FC07F2535BA3",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "BTHLE\\Dev_fc07f2535ba3"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": [
+            "BTHLE\\GenericDevice"
+          ]
+        }
+      ]
+    },
+    {
+      "Class": "USB",
+      "FriendlyName": "USB Composite Device",
+      "Status": "OK",
+      "InstanceId": "USB\\VID_36B0&PID_3002\\19971217",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "USB\\VID_36B0&PID_3002&REV_0101",
+            "USB\\VID_36B0&PID_3002"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": [
+            "USB\\COMPAT_VID_36B0&DevClass_00&SubClass_00&Prot00",
+            "USB\\COMPAT_VID_36B0&DevClass_00&SubClass_00",
+            "USB\\COMPAT_VID_36B0&DevClass_00",
+            "USB\\DevClass_00&SubClass_00&Prot_00",
+            "USB\\DevClass_00&SubClass_00",
+            "USB\\DevClass_00",
+            "USB\\COMPOSITE"
+          ]
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "USB Input Device",
+      "Status": "OK",
+      "InstanceId": "USB\\VID_36B0&PID_3002&MI_02\\6&229FDE12&0&0002",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "USB\\VID_36B0&PID_3002&REV_0101&MI_02",
+            "USB\\VID_36B0&PID_3002&MI_02"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": [
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_00&Prot_00",
+            "USB\\COMPAT_VID_36b0&Class_03&SubClass_00",
+            "USB\\COMPAT_VID_36b0&Class_03",
+            "USB\\Class_03&SubClass_00&Prot_00",
+            "USB\\Class_03&SubClass_00",
+            "USB\\Class_03"
+          ]
+        }
+      ]
+    },
+    {
+      "Class": "Keyboard",
+      "FriendlyName": "HID Keyboard Device",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_02&COL04\\7&256E6875&0&0003",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_02&Col04",
+            "HID\\VID_36B0&PID_3002&MI_02&Col04",
+            "HID\\VID_36B0&UP:0001_U:0006",
+            "HID_DEVICE_SYSTEM_KEYBOARD",
+            "HID_DEVICE_UP:0001_U:0006",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "HID-compliant vendor-defined device",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_01\\7&3E9FBB4&0&0000",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_01",
+            "HID\\VID_36B0&PID_3002&MI_01",
+            "HID\\VID_36B0&UP:FF60_U:0061",
+            "HID_DEVICE_UP:FF60_U:0061",
+            "HID_DEVICE_UPR:FF00-FFFF",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "Keyboard",
+      "FriendlyName": "HID Keyboard Device",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_00\\7&1BAD87F9&0&0000",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_00",
+            "HID\\VID_36B0&PID_3002&MI_00",
+            "HID\\VID_36B0&UP:0001_U:0006",
+            "HID_DEVICE_SYSTEM_KEYBOARD",
+            "HID_DEVICE_UP:0001_U:0006",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "HIDClass",
+      "FriendlyName": "HID-compliant vendor-defined device",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_02&COL05\\7&256E6875&0&0004",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_02&Col05",
+            "HID\\VID_36B0&PID_3002&MI_02&Col05",
+            "HID\\VID_36B0&UP:FF00_U:0001",
+            "HID_DEVICE_UP:FF00_U:0001",
+            "HID_DEVICE_UPR:FF00-FFFF",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    },
+    {
+      "Class": "Mouse",
+      "FriendlyName": "HID-compliant mouse",
+      "Status": "OK",
+      "InstanceId": "HID\\VID_36B0&PID_3002&MI_02&COL01\\7&256E6875&0&0000",
+      "IdProperties": [
+        {
+          "KeyName": "DEVPKEY_Device_HardwareIds",
+          "Data": [
+            "HID\\VID_36B0&PID_3002&REV_0101&MI_02&Col01",
+            "HID\\VID_36B0&PID_3002&MI_02&Col01",
+            "HID\\VID_36B0&UP:0001_U:0002",
+            "HID_DEVICE_SYSTEM_MOUSE",
+            "HID_DEVICE_UP:0001_U:0002",
+            "HID_DEVICE"
+          ]
+        },
+        {
+          "KeyName": "DEVPKEY_Device_CompatibleIds",
+          "Data": []
+        }
+      ]
+    }
+  ]
+}

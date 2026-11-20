@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+logs/
+tmp/
+research/*/
+!research/k94/
+!research/k94/8r101_k94/
+!research/k94/8r101_k94/**
+evidence/SHA256SUMS
+**/*.bin
+**/*.elf
+**/*.hex
+**/*.map
+**/*.o

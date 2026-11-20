@@ -1,0 +1,1 @@
+{"schema": 1, "event": "controller-started", "mode": "dry-run", "edge_x": 0.0, "config": {"threshold_px": 8, "dwell_ms": 400, "cooldown_ms": 2500, "poll_interval_seconds": 0.05, "state_poll_seconds": 1.0, "switch_stability_ms": 5000, "return_confirmations_required": 2, "query_failure_limit": 3, "peer_check_timeout_seconds": 8.0}, "deskflow_unchanged": true}

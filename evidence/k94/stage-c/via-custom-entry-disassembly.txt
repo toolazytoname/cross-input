@@ -1,0 +1,36 @@
+
+research/k94/stage-c-work/.build/8r101_k94_via.elf:     file format elf32-littlearm
+
+
+Disassembly of section .vectors:
+
+Disassembly of section .text:
+
+00000a0c <via_custom_value_command_kb>:
+     a0c:	b5f0      	push	{r4, r5, r6, r7, lr}
+     a0e:	4b0c      	ldr	r3, [pc, #48]	@ (a40 <via_custom_value_command_kb+0x34>)
+     a10:	b085      	sub	sp, #20
+     a12:	881b      	ldrh	r3, [r3, #0]
+     a14:	ac02      	add	r4, sp, #8
+     a16:	8023      	strh	r3, [r4, #0]
+     a18:	4b0a      	ldr	r3, [pc, #40]	@ (a44 <via_custom_value_command_kb+0x38>)
+     a1a:	000f      	movs	r7, r1
+     a1c:	785a      	ldrb	r2, [r3, #1]
+     a1e:	0006      	movs	r6, r0
+     a20:	70a2      	strb	r2, [r4, #2]
+     a22:	789a      	ldrb	r2, [r3, #2]
+     a24:	70e2      	strb	r2, [r4, #3]
+     a26:	78db      	ldrb	r3, [r3, #3]
+     a28:	7123      	strb	r3, [r4, #4]
+     a2a:	f005 fd09 	bl	6440 <timer_read32>
+     a2e:	003b      	movs	r3, r7
+     a30:	9000      	str	r0, [sp, #0]
+     a32:	0032      	movs	r2, r6
+     a34:	0021      	movs	r1, r4
+     a36:	4804      	ldr	r0, [pc, #16]	@ (a48 <via_custom_value_command_kb+0x3c>)
+     a38:	f7ff fe74 	bl	724 <k94_via_switch_handle_custom_value>
+     a3c:	b005      	add	sp, #20
+     a3e:	bdf0      	pop	{r4, r5, r6, r7, pc}
+     a40:	200012e8 	.word	0x200012e8
+     a44:	20001aa5 	.word	0x20001aa5
+     a48:	200013a0 	.word	0x200013a0

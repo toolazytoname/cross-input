@@ -1,0 +1,84 @@
+2026-11-19 automatic edge-switching offline/read-only validation
+
+Implemented Mac controller:
+- scripts/m585_edge_controller.py
+- Listen-only CGEventTap for mouse-moved/dragged events; it does not alter events.
+- Active display frames come from CGGetActiveDisplayList/CGDisplayBounds; the selected
+  left edge was 0.0 for the current 1440x900 display, with no hardcoded width.
+- Accessibility and listen-only event-tap creation both succeeded.
+- Exactly one expected M585/M590 FF43:0202 collection with serial
+  7A09C04B5120EA18 was present.
+- A three-second dry run started the controller and logged its config without HID++
+  output or a peer command.
+- Post-submit cooldown is measured from actual submit completion using current
+  monotonic time. A trigger also requires the pointer to leave the edge before rearm;
+  a slow HID query followed by a continuous stale edge stream submits only once.
+- A one-second independent read-only poll distinguishes device-absent, query-failed,
+  wrong-slot, and present-slot-1 results. Return to READY_MAC requires observed
+  absence, the five-second stability window, and two consecutive slot-1 results.
+  No-departure, consecutive query failure, target unavailable, and submit failure
+  require explicit recovery rather than being collapsed into normal waiting.
+- CGEventSourceCreate, CGEventSourceButtonState, CGEventGetLocation, CGEventTapCreate,
+  CFMachPort run-loop functions, display enumeration, and relevant return types now
+  have explicit ctypes signatures.
+- Unit tests passed: 18 tests covering dwell, drag/modifier suppression, actual submit
+  completion cooldown, leave-edge rearm, slow HID query race, state poll distinctions,
+  native signatures, actual display frames, dry-run logging, fixed-entry submission
+  path, process locking, and health readiness.
+- The combined Mac M585 suite passed 39 tests across the readonly probe, one-shot
+  experiment, and edge controller.
+
+Implemented Windows controller:
+- Added mouse-edge-watch, mouse-edge-dry-run, and mouse-return-hotkey fixed entries.
+- Right-edge geometry uses live SM_XVIRTUALSCREEN/SM_CXVIRTUALSCREEN values.
+- Dwell, cooldown, held-button/modifier suppression, input-desktop availability,
+  Mac peer health, and slot-0 preflight are required before a return switch.
+- After a submitted or simulated edge transition, Windows also requires the pointer to
+  leave the right edge before rearming; a held edge cannot immediately produce a second
+  reverse switch.
+- Accepted edge or hot-key events include an independent attempt ID, slot evidence,
+  target, timestamp, result, and recovery entry in the JSONL output.
+- Ctrl+Alt+Shift+M returns to Mac and Ctrl+Alt+Shift+X stops the same watch process.
+- Windows test-only compile and 15 controlled-transport tests passed; 27 static audit
+  tests passed, including leave-edge rearming and the built-in interactive foreground
+  mode parameters.
+- A three-second SSH dry run correctly reported SESSION_UNAVAILABLE and made no HID++
+  output. This is expected for the noninteractive SSH desktop boundary and demonstrates
+  fail-closed behavior rather than claimed UAC/login support.
+
+Cross-host readiness:
+- Windows peer-health is a separate read-only JSON mode with schema/controller,
+  controller_ready/ready, desktop state, mouse slot evidence, generated/expiry UTC
+  timestamps, and hid_output_report_sent=false.
+- The interactive Windows watcher atomically updates a TEMP health file once per second
+  with a 15-second expiry. Mac validates peer-health v1, timestamp freshness with a
+  two-second clock-skew allowance, controller_ready, desktop availability, and no HID
+  write before switching toward Windows.
+- The current SSH peer-health result correctly fails closed: Session 0 reports
+  SESSION_UNAVAILABLE, the mouse is absent because it remains on Mac, and both
+  controller_ready and ready are false.
+- Mac watch mode exposes return readiness only from read-only slot evidence; Windows
+  requires ready=true, mouse_current_slot=1, and state=READY_MAC before its return hop.
+
+Supervised foreground preparation:
+- The single Windows watch registers Ctrl+Alt+Shift+M for explicit return to Mac and
+  Ctrl+Alt+Shift+X for one-key stop in the same message/polling thread.
+- scripts/deploy_windows_m585_edge_launcher.sh copies the probe, bootstrap,
+  Interactive-task controller, and visible CMD launcher into Windows user TEMP; it does
+  not execute them.
+- windows_m585_edge_launcher.cmd opens a visible PowerShell window, sets
+  192.168.1.4:8787, logs JSONL in TEMP, supports dry-run, and does not elevate or
+  install anything.
+- Mac watch prints Ctrl+C as its explicit exit and the existing one-shot Mac-to-Windows
+  command as manual return entry. Health-port bind failures are emitted as JSON.
+
+Boundary:
+- No edge-watch or hot-key process was left running.
+- No automatic service was installed or enabled.
+- Deskflow was not stopped or reconfigured; read-only process checks still saw the
+  Mac server and the Windows daemon/GUI/core processes.
+- No automatic hardware switch was executed in this stage.
+- No permanent Windows service, startup task, or desktop launcher remains. A one-shot
+  Interactive Scheduled Task was used for supervised validation and then removed.
+- The reversible SSH task entry is scripts/start_windows_m585_edge_from_ssh.sh with
+  register-start/status/stop/remove operations.

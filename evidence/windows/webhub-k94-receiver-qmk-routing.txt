@@ -1,0 +1,667 @@
+-- Product IDs recognized as dongles --
+}
+const nr = ([e, t]) => (t << 8) | e,
+  on = (e) => [e & 255, e >> 8],
+  bv = (e) => new z7(e),
+  V6 = 12290,
+  DI = 8194,
+  KI = 12992;
+function Ft(e) {
+  return e === V6 || e === DI || e === KI;
+}
+function Sv(e, t) {
+  if (!e?.length) return !1;
+  const n = e[0] === 170 ? 0 : e[1] === 170 ? 1 : -1;
+  if (n < 0) return !1;
+  const r = e[n + 1];
+  return r === 85 || (r === 208 && t !== 208);
+}
+class Vo {
+-- QMK protocol probe constructs mode 2 and sends VIA command 1 --
+    "DYNAMIC_KEYMAP_GET_LAYER_COUNT"),
+  (e[(e.DYNAMIC_KEYMAP_GET_BUFFER = 18)] = "DYNAMIC_KEYMAP_GET_BUFFER"),
+  (e[(e.DYNAMIC_KEYMAP_SET_BUFFER = 19)] = "DYNAMIC_KEYMAP_SET_BUFFER"),
+  (e[(e.DYNAMIC_KEYMAP_GET_ENCODER = 20)] = "DYNAMIC_KEYMAP_GET_ENCODER"),
+  (e[(e.DYNAMIC_KEYMAP_SET_ENCODER = 21)] = "DYNAMIC_KEYMAP_SET_ENCODER"),
+  (e[(e.BACKLIGHT_CONFIG_SET_VALUE = 7)] = "BACKLIGHT_CONFIG_SET_VALUE"),
+  (e[(e.BACKLIGHT_CONFIG_GET_VALUE = 8)] = "BACKLIGHT_CONFIG_GET_VALUE"),
+  (e[(e.BACKLIGHT_CONFIG_SAVE = 9)] = "BACKLIGHT_CONFIG_SAVE"),
+  e
+))(oM || {});
+Object.entries(oM).reduce((e, [t, n]) => ({ ...e, [n]: t }), {});
+function ade(e) {
+  return 2;
+}
+const w9 = async (e = "demo", t, n) => {
+    if (!xs()) return;
+    const r = eu();
+    if (!r.isSupported)
+      throw new Error(
+        qn.global.t("2050", {
+          browser: r.browserName,
+          browsers: qn.global.t("2052"),
+        }),
+      );
+    try {
+      let o = n ?? [];
+      if (!n) {
+        const a = await xn.devices(t);
+        if (a && !Array.isArray(a)) return;
+        o = Array.isArray(a) ? a : [];
+      }
+      if (o.length > 0) {
+        const a = o[0],
+          i = ade(a.productId),
+          l = new c1(new Vo(a.address, i)),
+          c = await l.getProtocolVersion();
+        if (c !== -1 && c !== 0)
+          return (
+            console.log(`当前键盘为QMK键盘,协议版本为V${c}`),
+            (l.version = c),
+            l
+          );
+      }
+    } catch (o) {
+      console.warn("[QMK] 探测/连接失败，将回退到普通键盘连接流程:", o);
+      return;
+    }
+  },
+  $v = 7,
+  b9 = 8,
+  j1 = ([e, t]) => (e << 8) | t,
+  Ei = (e) => [e >> 8, e & 255];
+function Vv(e, t) {
+  if (!e?.length) return -1;
+  if (e[0] === t) return 0;
+  if (e[0] === 0 && e[1] === t) return 1;
+  if (e[0] === 170) {
+    if (e[1] === t) return 1;
+    if (e.length > 2 && e[2] === t) return 2;
+  }
+  return e[1] === 170 && e.length > 2 && e[2] === t ? 2 : -1;
+-- getProtocolVersion --
+      return this.api.sendDeviceData(r, [...o, ...n]);
+    }
+    return this.api.sendDeviceData(t, n);
+  }
+  async getByteBuffer() {
+    return this.api.getHID().readP();
+  }
+  async getProtocolVersion() {
+    try {
+      const [, t, n] = await this.sendDeviceDataV2(1);
+      return ((this.version = j1([t, n])), j1([t, n]));
+    } catch {
+      return -1;
+    }
+  }
+  async getKey(t, n, r) {
+-- D0 RF notification parser --
+    : e;
+}
+function ic(e, t) {
+  return ((t ?? 0) << 8) | (e ?? 0);
+}
+function Q3e(e) {
+  if (!e?.length) return null;
+  let t = e;
+  if (
+    (e[0] !== 170 && e[1] === 170 && e[2] === 208 && (t = e.slice(1)),
+    t[0] !== 170 || t[1] !== 208)
+  )
+    return null;
+  const n = t[13] ?? 0,
+    r = t[8] ?? 0,
+    o = ic(t[9], t[10]),
+    a = ic(t[11], t[12]);
+  return {
+    status: n,
+    keyboardNum: r,
+    vendorId: o,
+    productId: a,
+    rfQmk: zs({ status: n, keyboardNum: r, vendorId: o, productId: a }),
+    payload: t,
+  };
+}
+let H1 = 0;
+function M9(e, t, n) {
+  return qr(e, t, n)?.layout || "";
+-- Dongle online path selects rfQmk/deviceMode --
+          xd = Math.max(0, xd - 1);
+          try {
+            await r.stopComm();
+          } catch {}
+        }
+      },
+      async applyDongleOnlineFromNotify(e, t, n) {
+        if (!Ft(e.productId) || n !== H1) return !1;
+        const r = t[8] ?? 0;
+        let o = ic(t[9], t[10]),
+          a = ic(t[11], t[12]);
+        const i = zs({ status: ur, keyboardNum: r, vendorId: o, productId: a });
+        if (i || (o && a)) {
+          const c = this.devices.findIndex((u) => u.address === e.api.address);
+          if (c >= 0) {
+            const u = this.devices[c];
+            if (i) {
+              const f = _a(e);
+              (u.devMode !== 1 ||
+                u.rfQmk !== !0 ||
+                u.rfQmkName !== f.rfQmkName) &&
+                (this.devices[c] = { ...u, ...f });
+            } else
+              (u.devMode !== 1 || u.devVID !== o || u.devPID !== a) &&
+                (this.devices[c] = {
+                  ...u,
+                  devMode: 1,
+                  devVID: o,
+                  devPID: a,
+                  devID: u.devID ?? 0,
+                  rfQmk: !1,
+                  rfQmkName: null,
+                });
+          }
+        }
+        if (i) {
+          if (n !== H1) return !1;
+          const c = await I9(e.vendorId, e.productId),
+            u = _a(e, c),
+            f = this.devices.findIndex((p) => p.address === e.api.address);
+          return (
+            f >= 0 && (this.devices[f] = { ...this.devices[f], ...u }),
+            this.isSameConnectedDevice(e) &&
+              ((this.deviceMode = 1),
+              (this.deviceOnline = !0),
+              (this.deviceStatus = !0),
+              (this.deviceVID = e.vendorId),
+              (this.devicePID = e.productId),
+              (this.deviceName = u.rfQmkName)),
+            !0
+          );
+        }
+        const l = await e.startComm();
+        try {
+          if (n !== H1) return !1;
+          if (
+            ((!o || !a) &&
+              ((o = ic(l?.[9], l?.[10])), (a = ic(l?.[11], l?.[12]))),
+            ol(o, a) ||
+              zs({
+                status: ur,
+                keyboardNum: l?.[8] ?? r,
+                vendorId: o,
+                productId: a,
+              }))
+          ) {
+-- QMK over dongle connect path --
+      },
+      async probeCapturedDeviceInfo(e) {
+        if (
+          !e.address ||
+          e.address === "demo" ||
+          jo(e) ||
+          !this.devices.some((r) => r.address === e.address) ||
+          (Ft(e.productId) && e.devMode !== 1) ||
+          (Ft(e.productId) &&
+            (e.powerStatus || (e.firmwareVer != null && e.firmwareVer > 0)))
+        )
+          return;
+        if (Ft(e.productId) && e.rfQmk && xs()) {
+          const r = await this.readQmkDeviceStatusForAddress(e.address);
+          if (!this.devices.some((o) => o.address === e.address)) return;
+          (r.powerStatus || r.firmwareVer) &&
+            this.applyDevicePowerStatus(
+              e.address,
+              r.powerStatus,
+              r.firmwareVer,
+            );
+          return;
+        }
+        const t = Ft(e.productId) ? 1 : 0,
+          n = await this.readPowerStatusForAddress(e.address, {
+            deviceMode: t,
+          });
+        if (this.devices.some((r) => r.address === e.address)) {
+          if (n.powerStatus || n.firmwareVer)
+            this.applyDevicePowerStatus(
+              e.address,
+              n.powerStatus,
+              n.firmwareVer,
+            );
+          else if (!Ft(e.productId) && xs()) {
+            const r = await this.readQmkDeviceStatusForAddress(e.address);
+            if (!this.devices.some((o) => o.address === e.address)) return;
+            (r.powerStatus || r.firmwareVer) &&
+              this.applyDevicePowerStatus(
+                e.address,
+                r.powerStatus,
+                r.firmwareVer,
+              );
+          }
+          if (n.keyboardID != null && n.keyboardID > 0) {
+            const r = this.devices.findIndex((o) => o.address === e.address);
+            r >= 0 &&
+              this.devices[r].devID !== n.keyboardID &&
+              (this.devices[r] = { ...this.devices[r], devID: n.keyboardID });
+          }
+        }
+      },
+      async probeAllCapturedDevices() {
+        const e = [...this.devices];
+        await Promise.all(
+          e.map((t) =>
+            this.probeCapturedDeviceInfo(t).catch((n) => {
+              console.warn("[probeAllCapturedDevices]", t.address, n);
+            }),
+          ),
+        );
+      },
+      async refreshConnectedPowerStatusFromKeyboard(e) {
+        const t = e ?? this.connectedKeyboard;
+        if (!t || t.test || !this.deviceStatus) return;
+        const n = t.api.address,
+          r =
+            this.deviceBasicInfo?.protocolVer ?? t.deviceBaseInfo?.protocolVer;
+        if (!r || r < 2) return;
+        try {
+          t.deviceBaseInfo?.protocolVer ||
+            Object.assign(t.deviceBaseInfo, { protocolVer: r });
+          const a = await t.getBatteryStatus();
+          if (a?.online) {
+            this.applyDevicePowerStatus(n, a);
+            return;
+          }
+        } catch (a) {
+          console.warn("[refreshConnectedPowerStatusFromKeyboard]", n, a);
+        }
+        const o = await this.readPowerStatusForAddress(n);
+        (o.powerStatus || o.firmwareVer) &&
+          this.applyDevicePowerStatus(n, o.powerStatus, o.firmwareVer);
+      },
+      async refreshConnectedPowerStatus() {
+        const e = this.connectedKeyboard;
+        if (
+          !e ||
+          e.test ||
+          !this.deviceStatus ||
+          this.keyboardType === "QMK" ||
+          this.keysLoading
+        )
+          return;
+        if (
+          this.deviceBasicInfo?.protocolVer &&
+          this.deviceBasicInfo.protocolVer >= 2
+        ) {
+          await this.refreshConnectedPowerStatusFromKeyboard(e);
+          return;
+        }
+        const t = e.api.address,
+          n = await this.readPowerStatusForAddress(t);
+        (n.powerStatus || n.firmwareVer) &&
+          this.applyDevicePowerStatus(t, n.powerStatus, n.firmwareVer);
+      },
+      async refreshAllDevicesPowerStatus() {
+        await this.probeAllCapturedDevices();
+      },
+      setDeviceFuncInfo(e) {
+        Object.assign(this.deviceFuncInfo, e);
+      },
+      ensureElectronScreenSession() {
+        yt() &&
+          (!this.deviceStatus ||
+            !this.connectedKeyboard ||
+            this.isDemoMode ||
+            this.connectedKeyboard.test ||
+            (this.deviceMode !== 1 &&
+              (this.deviceVID == null ||
+                this.devicePID == null ||
+                (X3(
+                  this.deviceVID,
+                  this.devicePID,
+                  this.deviceBasicInfo?.keyboardID ?? 0,
+                  this.deviceBasicInfo,
+                  this.deviceFuncInfo,
+                ) &&
+                  Oe(
+                    async () => {
+                      const { useLcdScreenStore: e } =
+                        await Promise.resolve().then(() => h4);
+                      return { useLcdScreenStore: e };
+                    },
+                    void 0,
+                  ).then(({ useLcdScreenStore: e }) => {
+                    e().startElectronScreenSession();
+                  })))));
+      },
+      async handleConsumerNotify(e) {
+        if (this.isDemoMode || !this.deviceStatus) {
+          console.warn("[ConsumerNotify] skip: demo or disconnected");
+          return;
+        }
+        const t = e?.api?.address,
+          n = this.connectedKeyboard;
+        if (!n || n.test) {
+          console.warn("[ConsumerNotify] skip: no connected keyboard");
+          return;
+        }
+        if (t && n.api?.address && t !== n.api.address) {
+          console.warn(
+            "[ConsumerNotify] skip: address mismatch",
+            t,
+            n.api.address,
+          );
+          return;
+        }
+        (E9 && clearTimeout(E9),
+          (E9 = setTimeout(async () => {
+            const r = this.connectedKeyboard;
+            if (!r || r.test || !this.deviceStatus) {
+              console.warn(
+                "[ConsumerNotify] skip after debounce: disconnected",
+              );
+              return;
+            }
+            if (t && r.api?.address && t !== r.api.address) {
+              console.warn(
+                "[ConsumerNotify] skip after debounce: address changed",
+              );
+              return;
+            }
+            if (L9) {
+              console.log("[ConsumerNotify] skip: sync already in progress");
+              return;
+            }
+            L9 = !0;
+            try {
+              if (this.keyboardType === "QMK") return;
+              await r.startComm();
+              let o =
+                this.deviceBasicInfo?.protocolVer ??
+                r.deviceBaseInfo?.protocolVer;
+              if (!o) {
+                console.log(
+                  "[ConsumerNotify] protocolVer missing, fetch device info once (0x12)",
+                );
+                const i = await r.getDeviceBaseInfo();
+                i &&
+                  Object.keys(i).length &&
+                  ((this.deviceBasicInfo = i),
+                  (o = i.protocolVer),
+                  i.firmwareVer != null &&
+                    (this.deviceVersion =
+                      qu(i.firmwareVer) || this.deviceVersion));
+              }
+              ((o = o ?? 2),
+                console.log("[ConsumerNotify] syncing func area (0x14)", {
+                  protocolVer: o,
+                }));
+              const a = await r.getFuncInfo(o);
+              (a && Object.keys(a).length
+                ? (this.setDeviceFuncInfo(a),
+                  console.log("[ConsumerNotify] func area synced", {
+                    lightMode: a.lightMode,
+                    fSwitch: a.fSwitch,
+                  }))
+                : console.warn("[ConsumerNotify] getFuncInfo empty"),
+                await r.stopComm());
+            } catch (o) {
+              console.error("[ConsumerNotify] sync func area failed:", o);
+              try {
+                await r.stopComm();
+              } catch {}
+            } finally {
+              L9 = !1;
+            }
+          }, 300)));
+      },
+      registerConsumerNotifyListener(e) {
+        e.test ||
+          (e.listeners.some((t) => t.name === "consumerNotify") ||
+            e.listeners.push({
+              name: "consumerNotify",
+              fn: () => {
+                this.handleConsumerNotify(e);
+              },
+            }),
+          coe(e.api.address, () => {
+            this.handleConsumerNotify(this.connectedKeyboard ?? e);
+          }),
+          e.initNotifyListener());
+      },
+      async handleDongleDeviceNotify(e, t) {
+        if (this.isDemoMode || e.test) return;
+        const n = Q3e(t);
+        if (!n) return;
+        const r = e.api?.address;
+        if (r) {
+          const a = ma.get(r);
+          if (
+            a &&
+            a.status === n.status &&
+            a.rfQmk === n.rfQmk &&
+            a.vendorId === n.vendorId &&
+            a.productId === n.productId &&
+            Date.now() - a.at < 80
+          )
+            return;
+          Nu(r, {
+            status: n.status,
+            vendorId: n.vendorId,
+            productId: n.productId,
+            keyboardNum: n.keyboardNum,
+          });
+        }
+        const o = ++H1;
+        if (n.status !== ur) {
+          (console.log(
+            "[DongleNotify] RF status=",
+            n.status,
+            "→ clear card (only 4=connected)",
+            r,
+          ),
+            this.markDongleDevicesOffline(e),
+            this.isSameConnectedDevice(e) &&
+              ((this.deviceOnline = !1), await this.endDriverSession()));
+          return;
+        }
+        if (xd > 0 || this.keysLoading) {
+          if (r && (n.rfQmk || (n.vendorId && n.productId))) {
+            const a = this.devices.findIndex((i) => i.address === r);
+            if (a >= 0) {
+              const i = this.devices[a];
+              if (n.rfQmk) {
+                const l = _a(e);
+                (i.devMode !== 1 ||
+                  i.rfQmk !== !0 ||
+                  i.rfQmkName !== l.rfQmkName) &&
+                  (this.devices[a] = { ...i, ...l });
+              } else
+                (i.devMode !== 1 ||
+                  i.devVID !== n.vendorId ||
+                  i.devPID !== n.productId) &&
+                  (this.devices[a] = {
+                    ...i,
+                    devMode: 1,
+                    devVID: n.vendorId,
+                    devPID: n.productId,
+                    rfQmk: !1,
+                    rfQmkName: null,
+                  });
+            }
+          }
+          return;
+        }
+        try {
+          await this.applyDongleOnlineFromNotify(e, n.payload, o);
+        } catch (a) {
+          console.error("[DongleNotify] reconnect sync failed:", a);
+        }
+      },
+      registerDongleNotifyListener(e) {
+        (this.attachDongleNotifyListener(e),
+          Ft(e.productId) && e.api?.address && Pu.set(e.api.address, e));
+      },
+      async initDemoKeyboardState(e) {
+        ((this.keysLoading = !0), (this.keysLoadProgress = 0));
+        try {
+          ((this.isDemoMode = !0),
+            (this.connectedKeyboard = e),
+            (this.deviceName = e.productName || "Demo"),
+            (this.deviceVID = Cc),
+            (this.devicePID = vc),
+            (this.deviceStatus = !0),
+            (this.deviceOnline = !0),
+            (this.deviceMode = 0),
+            (this.keyboardLayout = await e.getKeyboardLayout(e4)),
+            EI(this.keyboardLayout),
+            (this.deviceBasicInfo = II(this.keyboardLayout)),
+            (this.connectedPowerStatus = {
+              connectStatus: 1,
+              chargeFlag: 0,
+              batteryValue: 86,
+              online: !0,
+            }),
+            this.stopPowerStatusPolling());
+          const t = `0x${Cc.toString(16).toUpperCase()}_0x${vc.toString(16).toUpperCase()}_${this.deviceBasicInfo.keyboardID}`,
+            n = zn[t]?.fwVersion ?? this.deviceBasicInfo.firmwareVer ?? 100;
+          ((this.deviceVersion = Hv(n) || "100"),
+            await this.initLayoutKeys(this.keyboardLayout.layouts.keys));
+          const r = G6(this.keyboardLayout);
+          for (let a = 0; a < 4; a++) {
+            const i = await e.getDefaultKeyMatrixData(a);
+            this.defaultKeys[a] = this.updateDefaultKeys(p3(i, r, a), a);
+            const l = await e.getKeyMatrixData(a);
+            ((this.userKeys[a] = p3(l, r, a)),
+              (this.keysLoadProgress = Math.round(((a + 1) / 4) * 100)));
+          }
+          ((this.deviceFuncInfo = X7()),
+            this.setDeviceFuncInfo(this.deviceFuncInfo),
+            (this.lightMatrix = new Array(128).fill(0)),
+            this.initKeysColor("#EBEEF3"));
+          const o = this.keyboardLayout?.previewSkins;
+          return (
+            (this.selectedPreviewSkin =
+              o?.find((a) => a.value === "demoDefault")?.value ??
+              o?.[0]?.value ??
+              "demoDefault"),
+            !0
+          );
+        } finally {
+          this.keysLoading = !1;
+        }
+      },
+      async connectFromDeviceItem(e) {
+        ((this.qmkNeedsDefinitionUpload = !1), (this.lastConnectError = null));
+        try {
+          const t = Ft(e.productId),
+            n = hc(e.vendorId, e.productId, 0);
+          if (((this.deviceProtocol = n), e.isVirtualMouse || jo(e)))
+            return await this.enterVirtualMouseMode(e);
+          if (t && !g0())
+            return (
+              (this.keysLoading = !1),
+              (this.keysLoadProgress = 0),
+              (this.lastConnectError = "layout-missing"),
+              console.warn(
+                "[Connect] app.brand.json enable24G=false，已跳过 2.4G 接收器",
+              ),
+              !1
+            );
+          if (t && xs()) {
+            const a = e.address ? ma.get(e.address) : void 0;
+            if (
+              e.rfQmk === !0 ||
+              a?.rfQmk === !0 ||
+              (a != null &&
+                zs({
+                  status: a.status,
+                  keyboardNum: a.keyboardNum,
+                  vendorId: a.vendorId,
+                  productId: a.productId,
+                }))
+            ) {
+              ((this.keysLoading = !0),
+                (this.keysLoadProgress = 5),
+                await pt());
+              let l = await dT(e.vendorId, e.productId);
+              if (!l) {
+                const f =
+                  String(e.rfQmkName || Ar.defaultDeviceName || "")
+                    .replace(/\s+/g, "")
+                    .trim() || void 0;
+                l = await Nd({
+                  vendorId: e.vendorId,
+                  productId: e.productId,
+                  productName: f,
+                });
+              }
+              ((this.keysLoadProgress = Math.max(
+                this.keysLoadProgress,
+                l ? 12 : 8,
+              )),
+                (this.keysLoadProgress = Math.max(this.keysLoadProgress, 18)),
+                ioe(e.address));
+              const c = await w9("usb", !1, [e]);
+              if (!l)
+                return (
+                  c && (this.connectedKeyboard = c),
+                  (this.keyboardType = "QMK"),
+                  (this.deviceProtocol = "QMK"),
+                  (this.deviceMode = 1),
+                  (this.deviceVID = e.vendorId),
+                  (this.devicePID = e.productId),
+                  (this.deviceName =
+                    e.rfQmkName ||
+                    e.productName ||
+                    Lo(e.vendorId, e.productId, 0, void 0)),
+                  (this.connectedDeviceAddress = e.address),
+                  Ru(e.address),
+                  (this.qmkNeedsDefinitionUpload = !0),
+                  (this.showQmkFileManager = !0),
+                  (this.deviceStatus = !0),
+                  (this.keysLoading = !1),
+                  (this.keysLoadProgress = 0),
+                  (this.lastConnectError = "qmk-missing-via"),
+                  console.warn(
+                    "[QMK] 2.4G 接收器未匹配到专用 VIA JSON，请上传（VID/PID=",
+                    `0x${e.vendorId.toString(16)}`,
+                    `0x${e.productId.toString(16)})`,
+                  ),
+                  !1
+                );
+              if (!c)
+                return (
+                  (this.keysLoading = !1),
+                  (this.keysLoadProgress = 0),
+                  (this.lastConnectError = "qmk-protocol-failed"),
+                  console.warn(
+                    "[QMK] 2.4G D0 已判为 QMK，但 VIA 0x01 不通（请确认接收器 RAW HID）",
+                  ),
+                  !1
+                );
+              const u = l.name?.trim() || e.rfQmkName;
+              return (
+                u && (c.productName = u),
+                await this.setConnectQmkKeyboardStatus(c, l)
+              );
+            }
+          }
+          if (!t && !e.isDemo) {
+            if (fre(e.vendorId, e.productId, 0))
+              return (
+                (this.keysLoading = !1),
+                (this.keysLoadProgress = 0),
+                (this.lastConnectError = "mouse-protocol-unsupported"),
+                console.warn("[Connect] 鼠标协议尚未实现:", n),
+                !1
+              );
+            const a = n === "QMK",
+              l = !!qr(e.vendorId, e.productId, 0)?.layout && n !== "QMK",
+              c = xs() && (a || !l);
+            if (!xs() && a)
+              return (
+                (this.keysLoading = !1),
+                (this.keysLoadProgress = 0),
+                (this.lastConnectError = "layout-missing"),
+                console.warn(
+                  "[QMK] app.brand.json enableQmk=false，已跳过该设备",

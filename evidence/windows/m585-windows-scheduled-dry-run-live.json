@@ -1,0 +1,21 @@
+TASK
+{
+    "TaskName":  "MiniOpsM585SupervisedDryRun",
+    "State":  4
+}
+INFO
+{
+    "LastRunTime":  "\/Date(1795150994000)\/",
+    "LastTaskResult":  267009
+}
+PROCESSES
+{
+    "ProcessId":  41200,
+    "ParentProcessId":  3032,
+    "SessionId":  1,
+    "CommandLine":  "\"powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File C:/Users/Administrator/AppData/Local/Temp/MiniOpsM585SupervisedDryRun/windows_m585_edge_bootstrap.ps1 -Mode dry-run"
+}
+HEALTH
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":false,"ready":false,"reason":"desktop-unavailable","desktop":{"available":true,"state":"INTERACTIVE_DESKTOP_ACCESSIBLE"},"mouse":{"present":false,"current_host_index":-1,"host_count":-1,"slot_evidence_verified":false,"readonly_result":"READY_WINDOWS_SIMULATED"},"generated_at_utc":"2026-11-20T05:03:20.2041298Z","expires_at_utc":"2026-11-20T05:03:35.2041298Z","hid_output_report_sent":false}
+LOG
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T05:03:14.5486211Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585SupervisedDryRun\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}

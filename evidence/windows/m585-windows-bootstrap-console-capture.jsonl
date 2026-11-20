@@ -1,0 +1,5 @@
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:47:09.1696416Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"fake":"console-out-1"}
+{"fake":"console-out-2"}
+{"fake":"console-error"}
+{"schema":1,"host":"windows","event":"bootstrap-stopped","mode":"watch","generated_at_utc":"2026-11-20T11:47:09.8995857Z","result":"controller-process-returned","exit_code":5,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}

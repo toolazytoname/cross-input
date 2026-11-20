@@ -1,0 +1,43 @@
+=== health ===
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":false,"ready":true,"return_ready":false,"reason":"dry-run-controller-not-ready","desktop":{"available":true,"state":"INTERACTIVE_DESKTOP_ACCESSIBLE"},"mouse":{"present":false,"current_host_index":-1,"host_count":-1,"slot_evidence_verified":false,"readonly_result":"READY_WINDOWS_SIMULATED"},"generated_at_utc":"2026-11-20T12:37:07.3921793Z","expires_at_utc":"2026-11-20T12:37:22.3921793Z","hid_output_report_sent":false}
+=== log tail ===
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T11:40:37.0999287Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:41:24.9029820Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:50:59.3027403Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T11:51:00.0480319Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T11:51:00.0540245Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:51.9069172Z","dry_run":false,"state":"READY_WINDOWS","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"peer-not-ready","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":"auto-edge-e633d20af4644f0bafc524d83a910023","peer_health":"{\"schema\":1,\"host\":\"mac\",\"state\":\"RECOVERY_REQUIRED\",\"mouse_current_slot\":null,\"ready\":false,\"controller_running\":true,\"mouse_present\":false,\"poll_outcome\":\"device-absent\",\"return_confirmations\":0,\"query_failure_count\":0,\"recovery_started_at\":null,\"started_at\":\"2026-11-20T12:00:34.301677+00:00\",\"last_slot_evidence\":{\"ok\":false,\"returncode\":1,\"stderr_tail\":\"M585/M590 is not connected\\n\",\"stdout_tail\":\"\",\"device_present\":false,\"outcome\":\"device-absent\"},\"last_peer_health\":{\"ok\":true,\"returncode\":0,\"response\":{\"schema\":1,\"controller\":\"windows-peer-health-v1\",\"controller_ready\":true,\"ready\":false,\"reason\":\"mouse-not-slot-0\",\"desktop\":{\"available\":true,\"state\":\"INTERACTIVE_DESKTOP_ACCESSIBLE\"},\"mouse\":{\"present\":false,\"current_host_index\":-1,\"host_count\":-1,\"slot_evidence_verified\":false,\"readonly_result\":\"AWAITING_WINDOWS_DEVICE\"},\"generated_at_utc\":\"2026-11-20T12:15:48.7952420Z\",\"expires_at_utc\":\"2026-11-20T12:16:03.7952420Z\",\"hid_output_report_sent\":false},\"validation\":{\"ok\":true,\"return_ready\":false,\"checks\":{\"schema\":true,\"controller\":true,\"controller_ready\":true,\"desktop\":true,\"no_hid_write\":true},\"hid_output_report_sent\":false},\"hid_output_report_sent\":false}}","result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T12:36:54.5589755Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T12:36:55.8179677Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:36:55.8189740Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+=== task/process ===
+{
+    "TaskName":  "MiniOpsM585EdgeWatch",
+    "State":  4
+}
+{
+    "LastRunTime":  "\/Date(1795178214000)\/",
+    "LastTaskResult":  267009
+}
+[
+    {
+        "ProcessId":  33548,
+        "ParentProcessId":  3032,
+        "SessionId":  1,
+        "CommandLine":  "\"powershell.exe\" -NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_m585_edge_bootstrap.ps1 -Mode dry-run"
+    },
+    {
+        "ProcessId":  42924,
+        "ParentProcessId":  33548,
+        "SessionId":  1,
+        "CommandLine":  "\"cmd.exe\" /c powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_hid_protocol_probe.ps1 -WindowsEdgeDryRun 1\u003e C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\probe-stdout-923729aab60e4dd1a62f8197ff91fc29.log 2\u003e C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\probe-stderr-19f9d82de7e3420f88d1dc38f130ed1c.log"
+    },
+    {
+        "ProcessId":  41376,
+        "ParentProcessId":  42924,
+        "SessionId":  1,
+        "CommandLine":  "powershell.exe  -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_hid_protocol_probe.ps1 -WindowsEdgeDryRun "
+    }
+]

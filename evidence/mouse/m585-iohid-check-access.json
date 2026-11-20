@@ -1,0 +1,8 @@
+{
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  }
+}

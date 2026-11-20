@@ -1,0 +1,236 @@
+-- Web Hub receiver identity --
+      vendorId: "0x36B0",
+      productId: "0x33FF",
+      iapBoot: !0,
+    },
+    "0x36B0_0x3002_0": {
+      id: 1,
+      type: 102,
+      protocol: "键盘1K",
+      fwVersion: 102,
+      name: "2.4G Dongle",
+      layout: "36b0_3002_0",
+      updateFile: "./fw-files/KeyBoard/36b0_3002_0/0301.bin",
+      upgradeVersion: "0301",
+      vendorId: "0x36B0",
+      productId: "0x3002",
+    },
+    "0x36B0_0x3003_0": {
+      id: 2,
+      type: 102,
+      protocol: "键盘1K",
+      fwVersion: 104,
+      name: "DM100",
+      layout: "36b0_3003_0",
+      updateFile: "./fw-tool/RDM91683-X99-FW-Tool-102.zip",
+      upgradeVersion: "100",
+      vendorId: "0x36B0",
+-- Embedded K94 24G definition identity --
+        vendorId: pM,
+      },
+      Symbol.toStringTag,
+      { value: "Module" },
+    ),
+  ),
+  yM = "KEMOVE K94",
+  wM = "0x36B0",
+  bM = "0x3002",
+  SM = ["qmk_rgb_matrix_keycodes"],
+  EM = [
+    {
+      label: "Lighting",
+      content: [
+        {
+          label: "Backlight",
+-- QMK-over-dongle detection --
+    r.push(Cp(a, t.layouts.keymap, t.matrix));
+  }
+  return r;
+}
+const ur = 4,
+  H3e = 14e3;
+function ol(e, t) {
+  return t !== 0 ? !1 : e === 0 || e === H3e;
+}
+function zs(e) {
+  return e.status === ur && e.keyboardNum >= 1 && ol(e.vendorId, e.productId);
+}
+function W3e(e) {
+  return !(
+    e.status !== ur ||
+    e.keyboardNum < 1 ||
+    !e.vendorId ||
+    !e.productId ||
+    ol(e.vendorId, e.productId) ||
+    e.isDonglePid?.(e.productId)
+  );
+}
+let E9,
+  L9 = !1,
+  Bd;
+const z3e = 3e4,
+  Pu = new Map(),
+  ma = new Map();
+let xd = 0,
+  Fu = null,
+  Ud = 0;
+function Gd(e) {
+  let t = [...(e || [])];
+  return (g0() || (t = t.filter((n) => !Ft(n.productId))), fde(t));
+}
+function Nu(e, t) {
+  const n = t.keyboardNum ?? 0,
+    r = zs({
+      status: t.status,
+      keyboardNum: n,
+      vendorId: t.vendorId,
+      productId: t.productId,
+    });
+  ma.set(e, {
+    status: t.status,
+    at: t.at ?? Date.now(),
+    vendorId: t.vendorId,
+    productId: t.productId,
+    keyboardNum: n,
+    rfQmk: r,
+  });
+}
+function _a(e, t) {
+  const n = O3e(e.vendorId, e.productId).rfQmkName;
+  return {
+    devMode: 1,
+    rfQmk: !0,
+    rfQmkName: t !== void 0 ? t : n || e.rfQmkName || null,
+    devVID: null,
+    devPID: null,
+    devID: 0,
+  };
+}
+async function I9(e, t) {
+  return (await dT(e, t))?.name?.trim() || null;
+}
+function dy(e) {
+  if (!Ft(e.productId) || !e.address) return e;
+  const t = ma.get(e.address);
+  return t
+    ? t.status !== ur
+      ? {
+          ...e,
+          devMode: 0,
+          devVID: null,
+          devPID: null,
+          devID: null,
+          rfQmk: !1,
+          rfQmkName: null,
+          powerStatus: void 0,
+          batteryLevel: void 0,
+        }
+      : t.rfQmk || ol(t.vendorId, t.productId)
+        ? { ...e, ..._a(e) }
+        : t.vendorId && t.productId
+          ? {
+              ...e,
+              devMode: 1,
+              devVID: t.vendorId,
+              devPID: t.productId,
+              devID: e.devID ?? 0,
+              rfQmk: !1,
+              rfQmkName: null,
+            }
+          : e
+    : e;
+}
+function ic(e, t) {
+  return ((t ?? 0) << 8) | (e ?? 0);
+}
+function Q3e(e) {
+  if (!e?.length) return null;
+  let t = e;
+  if (
+    (e[0] !== 170 && e[1] === 170 && e[2] === 208 && (t = e.slice(1)),
+    t[0] !== 170 || t[1] !== 208)
+  )
+    return null;
+  const n = t[13] ?? 0,
+    r = t[8] ?? 0,
+    o = ic(t[9], t[10]),
+    a = ic(t[11], t[12]);
+  return {
+    status: n,
+    keyboardNum: r,
+    vendorId: o,
+    productId: a,
+    rfQmk: zs({ status: n, keyboardNum: r, vendorId: o, productId: a }),
+    payload: t,
+  };
+}
+let H1 = 0;
+function M9(e, t, n) {
+  return qr(e, t, n)?.layout || "";
+-- Dongle online apply path --
+          xd = Math.max(0, xd - 1);
+          try {
+            await r.stopComm();
+          } catch {}
+        }
+      },
+      async applyDongleOnlineFromNotify(e, t, n) {
+        if (!Ft(e.productId) || n !== H1) return !1;
+        const r = t[8] ?? 0;
+        let o = ic(t[9], t[10]),
+          a = ic(t[11], t[12]);
+        const i = zs({ status: ur, keyboardNum: r, vendorId: o, productId: a });
+        if (i || (o && a)) {
+          const c = this.devices.findIndex((u) => u.address === e.api.address);
+          if (c >= 0) {
+            const u = this.devices[c];
+            if (i) {
+              const f = _a(e);
+              (u.devMode !== 1 ||
+                u.rfQmk !== !0 ||
+                u.rfQmkName !== f.rfQmkName) &&
+                (this.devices[c] = { ...u, ...f });
+            } else
+              (u.devMode !== 1 || u.devVID !== o || u.devPID !== a) &&
+                (this.devices[c] = {
+                  ...u,
+                  devMode: 1,
+                  devVID: o,
+                  devPID: a,
+                  devID: u.devID ?? 0,
+                  rfQmk: !1,
+                  rfQmkName: null,
+                });
+          }
+        }
+        if (i) {
+          if (n !== H1) return !1;
+          const c = await I9(e.vendorId, e.productId),
+            u = _a(e, c),
+            f = this.devices.findIndex((p) => p.address === e.api.address);
+          return (
+            f >= 0 && (this.devices[f] = { ...this.devices[f], ...u }),
+            this.isSameConnectedDevice(e) &&
+              ((this.deviceMode = 1),
+              (this.deviceOnline = !0),
+              (this.deviceStatus = !0),
+              (this.deviceVID = e.vendorId),
+              (this.devicePID = e.productId),
+              (this.deviceName = u.rfQmkName)),
+            !0
+          );
+        }
+        const l = await e.startComm();
+        try {
+          if (n !== H1) return !1;
+          if (
+            ((!o || !a) &&
+              ((o = ic(l?.[9], l?.[10])), (a = ic(l?.[11], l?.[12]))),
+            ol(o, a) ||
+              zs({
+                status: ur,
+                keyboardNum: l?.[8] ?? r,
+                vendorId: o,
+                productId: a,
+              }))
+          ) {

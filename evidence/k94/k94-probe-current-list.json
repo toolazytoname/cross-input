@@ -1,0 +1,60 @@
+{
+  "devices": [
+    {
+      "vendor_id": 14000,
+      "product_id": 12292,
+      "serial_number": "",
+      "manufacturer_string": "inchips",
+      "product_string": "KEMOVE K94-1",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1,
+      "path": "DevSrvsID:4297328688"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12292,
+      "serial_number": "",
+      "manufacturer_string": "inchips",
+      "product_string": "KEMOVE K94-1",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1,
+      "path": "DevSrvsID:4297328688"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12292,
+      "serial_number": "",
+      "manufacturer_string": "inchips",
+      "product_string": "KEMOVE K94-1",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1,
+      "path": "DevSrvsID:4297328688"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12292,
+      "serial_number": "",
+      "manufacturer_string": "inchips",
+      "product_string": "KEMOVE K94-1",
+      "usage_page": 1,
+      "usage": 128,
+      "interface_number": -1,
+      "path": "DevSrvsID:4297328688"
+    },
+    {
+      "vendor_id": 14000,
+      "product_id": 12292,
+      "serial_number": "",
+      "manufacturer_string": "inchips",
+      "product_string": "KEMOVE K94-1",
+      "usage_page": 12,
+      "usage": 1,
+      "interface_number": -1,
+      "path": "DevSrvsID:4297328688"
+    }
+  ],
+  "qmk_raw_collections": []
+}

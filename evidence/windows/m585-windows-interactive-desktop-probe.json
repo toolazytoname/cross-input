@@ -1,0 +1,21 @@
+{
+    "schema":  1,
+    "started_at_utc":  "2026-11-20T04:55:05.4433218Z",
+    "pid":  23304,
+    "user":  "LAZY-WINDOWS\\Administrator",
+    "is_interactive":  true,
+    "session_id":  1,
+    "desktop_open":  true,
+    "desktop_last_error":  0,
+    "window_created":  false,
+    "window_error":  "使用“0”个参数调用“.ctor”时发生异常:“创建窗口句柄时出错。”",
+    "hotkey_zero_ok":  true,
+    "hotkey_zero_error":  0,
+    "hotkey_window_ok":  false,
+    "hotkey_window_error":  0,
+    "peek_ok":  false,
+    "peek_error":  0,
+    "finished_at_utc":  "2026-11-20T04:55:05.6898455Z"
+}
+
+{"TaskName":"MiniOpsInteractiveDesktopProbe","State":3}

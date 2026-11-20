@@ -1,0 +1,302 @@
+
+evidence/k94/rdr_common.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.es_keyboard_leds:
+
+Disassembly of section .text.User_Lcd_Power_Mark_Synced:
+
+Disassembly of section .text.rgb_matrix_driver_set_color:
+
+Disassembly of section .text.rgb_matrix_driver_set_color_all:
+
+Disassembly of section .text.IAPROM_WORD_PROGRAM:
+
+Disassembly of section .text.ee_verify_pagefull_write_variable:
+
+Disassembly of section .text.rgb_matrix_driver_init:
+
+Disassembly of section .text.IAPROM_PAGE_ERASE.isra.0:
+
+Disassembly of section .text.ee_format:
+
+Disassembly of section .text.User_Fn_Mode_Led_Restore:
+
+Disassembly of section .text.Vector68:
+
+Disassembly of section .text.Uart_Tx_Dma_Start:
+
+Disassembly of section .text.Uart_Rx_Dma_Start:
+
+Disassembly of section .text.Uart_Dma_Init:
+
+Disassembly of section .text.User_Uart_Deinit:
+
+Disassembly of section .text.Vector64:
+
+Disassembly of section .text.Init_Uart_Information:
+
+Disassembly of section .text.User_Uart_Send_Data:
+
+Disassembly of section .text.Uart_While_Send_Commad:
+
+Disassembly of section .text.Reset_Uart:
+
+Disassembly of section .text.Init_Home_Mov:
+
+Disassembly of section .text.Reset_Home_Mov_Mode_Time:
+
+Disassembly of section .text.Lvgl_Init:
+
+Disassembly of section .text.Reset_Power_Lvgl:
+
+Disassembly of section .text.Scan_Uart_Rf:
+
+Disassembly of section .text.Scan_Uart_Work_Mode:
+
+Disassembly of section .text.Scan_Uart_Func:
+
+Disassembly of section .text.Scan_Uart_Batt:
+
+Disassembly of section .text.Scan_Uart_Gif:
+
+Disassembly of section .text.Scan_Uart_Language:
+
+Disassembly of section .text.Get_Lcd_Usb_Work_Status:
+
+Disassembly of section .text.Scan_Lcd_Usb_Work_Mode:
+
+Disassembly of section .text.Uart_Key_Mode_Key_Scan:
+
+Disassembly of section .text.App_Uart_Main_Loop:
+
+Disassembly of section .text.app_2g4_buffer_full:
+
+Disassembly of section .text.app_2g4_buffer_empty:
+
+Disassembly of section .text.app_2g4_buffer_rev_add:
+
+Disassembly of section .text.app_2g4_buffer_send_add:
+
+Disassembly of section .text.Emi_Init:
+
+Disassembly of section .text.Emi_Write_Data:
+
+Disassembly of section .text.es_ble_spi_init:
+
+Disassembly of section .text.es_ble_spi_deinit:
+
+Disassembly of section .text.es_spi_send_recv_by_dma:
+
+Disassembly of section .text.Emi_Read_Data:
+
+Disassembly of section .text.Spi_Send_Commad:
+
+Disassembly of section .text.Sleep_Time_Synchronization:
+
+Disassembly of section .text.DSleep_Time_Synchronization:
+
+Disassembly of section .text.Spi_Ack_Send_Commad:
+
+Disassembly of section .text.encoder_wait_pullup_charge:
+
+Disassembly of section .text.encoder_quadrature_init_pin:
+
+Disassembly of section .text.encoder_quadrature_read_pin:
+
+Disassembly of section .text.encoder_quadrature_post_init_kb:
+
+Disassembly of section .text.encoder_quadrature_post_init:
+
+Disassembly of section .text.encoder_driver_init:
+
+Disassembly of section .text.encoder_quadrature_handle_read:
+
+Disassembly of section .text.encoder_driver_task:
+
+Disassembly of section .text.Mode_Synchronization:
+
+Disassembly of section .text.Ble_Name_Synchronization:
+
+Disassembly of section .text.User_bluetooth_send_keyboard:
+
+Disassembly of section .text.es_send_keyboard:
+
+Disassembly of section .text.es_send_nkro:
+
+Disassembly of section .text.es_send_mouse:
+
+Disassembly of section .text.es_send_extra:
+
+Disassembly of section .text.bootloader_jump:
+
+Disassembly of section .text.mcu_reset:
+
+Disassembly of section .text.es_mcu_reset:
+
+Disassembly of section .text.Spi_Main_Loop:
+
+Disassembly of section .text.Battery_Scan:
+
+Disassembly of section .text.Save_Flash_Set:
+
+00000000 <Save_Flash_Set>:
+   0:	2201      	movs	r2, #1
+   2:	4b03      	ldr	r3, [pc, #12]	@ (10 <Save_Flash_Set+0x10>)
+   4:	701a      	strb	r2, [r3, #0]
+   6:	2200      	movs	r2, #0
+   8:	4b02      	ldr	r3, [pc, #8]	@ (14 <Save_Flash_Set+0x14>)
+   a:	801a      	strh	r2, [r3, #0]
+   c:	4770      	bx	lr
+   e:	46c0      	nop			@ (mov r8, r8)
+	...
+			10: R_ARM_ABS32	.bss.Save_Flash
+			14: R_ARM_ABS32	.bss.Save_Flash_3S_Count
+
+Disassembly of section .text.Vector6C:
+
+Disassembly of section .text.Lcd_Usb_Work_Init:
+
+Disassembly of section .text.Lcd_Work_Sync_GIF:
+
+Disassembly of section .text.User_Systime_Init:
+
+Disassembly of section .text.User_Systime_Deinit:
+
+Disassembly of section .text.Init_Gpio_Infomation:
+
+Disassembly of section .text.User_Sleep:
+
+Disassembly of section .text.Get_Spi_Return_Data:
+
+Disassembly of section .text.User_Wakeup:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_enable:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_disable:
+
+Disassembly of section .text.User_Keyboard_Post_Init:
+
+Disassembly of section .text.User_Consumer_Send:
+
+Disassembly of section .text.User_Usb_Init:
+
+Disassembly of section .text.es_restart_usb_driver:
+
+Disassembly of section .text.Usb_Disconnect:
+
+Disassembly of section .text.User_Usb_Deinit:
+
+Disassembly of section .text.clamp_length:
+
+Disassembly of section .text.clamp_length_user:
+
+Disassembly of section .text.eeprom_driver_erase:
+
+Disassembly of section .text.eeprom_driver_init:
+
+Disassembly of section .text.eeprom_read_block:
+
+Disassembly of section .text.eeprom_write_block:
+
+Disassembly of section .text.eeprom_read_block_user:
+
+Disassembly of section .text.Init_Keyboard_Infomation:
+
+Disassembly of section .text.eeprom_write_block_user:
+
+Disassembly of section .text.User_Adc_Init:
+
+Disassembly of section .text.User_Adc_Deinit:
+
+Disassembly of section .text.U16_Buff_Clear:
+
+Disassembly of section .text.Init_Batt_Infomation:
+
+Disassembly of section .text.Board_Wakeup_Init:
+
+Disassembly of section .text.User_Adc_Batt_Power_Up_Init:
+
+Disassembly of section .text.User_Adc_Batt_Number:
+
+Disassembly of section .text.Key_Switch_Mode_Scan:
+
+Disassembly of section .text.User_Keyboard_Reset:
+
+Disassembly of section .text.Key_Switch_Mode_Power:
+
+Disassembly of section .text.User_Keyboard_Init:
+
+Disassembly of section .text.User_Pwm_Deinit:
+
+Disassembly of section .text.es_chibios_user_idle_loop_hook:
+
+Disassembly of section .text.rgb_matrix_driver_flush_pwm_dma_start:
+
+Disassembly of section .text.rgb_matrix_driver_flush:
+
+Disassembly of section .text.Led_Power_Low_Show:
+
+Disassembly of section .text.Led_Power_Shut_Show:
+
+Disassembly of section .text.Led_Rf_Mode_Show:
+
+Disassembly of section .text.Led_Point_Flash_Show:
+
+Disassembly of section .text.Led_Winlock_Show:
+
+Disassembly of section .text.Led_Point_Reset:
+
+Disassembly of section .text.User_Test_White_Max:
+
+Disassembly of section .text.Led_Batt_Number_Show:
+
+Disassembly of section .text.User_Test_Colour_Show:
+
+Disassembly of section .text.User_Get_Led_Power_Status:
+
+Disassembly of section .text.RGB_Mode_Color_Show:
+
+Disassembly of section .text.User_Led_Show:
+
+Disassembly of section .text.Vector4C:
+
+Disassembly of section .text.Vector54:
+
+Disassembly of section .text.Vector58:
+
+Disassembly of section .text.Vector7C:
+
+Disassembly of section .text.Vector80:
+
+Disassembly of section .text.Vector84:
+
+Disassembly of section .text.Vector78:
+
+Disassembly of section .text.User_send_6kro_report:
+
+Disassembly of section .text.User_send_nkro_report:
+
+Disassembly of section .text.User_Clear_Board:
+
+Disassembly of section .text.add_key_to_report:
+
+Disassembly of section .text.General_Key_Reorder:
+
+Disassembly of section .text.del_key_from_report:
+
+Disassembly of section .text.User_Clear_Board_2ms:
+
+Disassembly of section .text.Send_Key:
+
+Disassembly of section .text.Reset_Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Home_Prev_Func:
+
+Disassembly of section .text.Lvgl_Home_Next_Func:
+
+Disassembly of section .text.Lvgl_Home_Enter_Func:
+
+Disassembly of section .text.User_process_record_user:

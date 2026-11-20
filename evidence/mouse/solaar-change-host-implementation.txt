@@ -1,0 +1,164 @@
+-- Solaar ChangeHost implementation --
+    rw_options = {"read_fnid": 0x00, "write_fnid": 0x20}
+    validator_class = settings_validator.ChoicesValidator
+    validator_options = {"choices": choices_universe}
+
+
+class ChangeHost(settings.Setting):
+    name = "change-host"
+    label = _("Change Host")
+    description = _("Switch connection to a different host")
+    persist = False  # persisting this setting is harmful
+    feature = _F.CHANGE_HOST
+    rw_options = {"read_fnid": 0x00, "write_fnid": 0x10, "no_reply": True}
+    choices_universe = common.NamedInts(**{"Host " + str(i + 1): i for i in range(3)})
+
+    class validator_class(settings_validator.ChoicesValidator):
+        @classmethod
+        def build(cls, setting_class, device):
+            infos = device.feature_request(_F.CHANGE_HOST)
+            assert infos, "Oops, host count cannot be retrieved!"
+            numHosts, currentHost = struct.unpack("!BB", infos[:2])
+            hostNames = _hidpp20.get_host_names(device)
+            hostNames = hostNames if hostNames is not None else {}
+            if currentHost not in hostNames or hostNames[currentHost][1] == "":
+                hostNames[currentHost] = (True, socket.gethostname().partition(".")[0])
+            choices = common.NamedInts()
+            for host in range(0, numHosts):
+                paired, hostName = hostNames.get(host, (True, ""))
+                choices[host] = f"{str(host + 1)}:{hostName}" if hostName else str(host + 1)
+            return cls(choices=choices, read_skip_byte_count=1) if choices and len(choices) > 1 else None
+
+
+-- HID++ request/write framing --
+    return hidapi.find_paired_node(receiver_path, index, timeout)
+
+
+def find_paired_node_wpid(receiver_path: str, index: int):
+    """Find the node of a device paired with a receiver.
+
+    Get wpid from udev.
+    """
+    return hidapi.find_paired_node_wpid(receiver_path, index)
+
+
+# a very few requests (e.g., host switching) do not expect a reply, but use no_reply=True with extreme caution
+def request(
+    handle,
+    devnumber,
+    request_id: int,
+    *params,
+    no_reply: bool = False,
+    return_error: bool = False,
+    long_message: bool = False,
+    protocol: float = 1.0,
+):
+    """Makes a feature call to a device and waits for a matching reply.
+    :param handle: an open UR handle.
+    :param devnumber: attached device number.
+    :param request_id: a 16-bit integer.
+    :param params: parameters for the feature call, 3 to 16 bytes.
+    :returns: the reply data, or ``None`` if some error occurred. or no reply expected
+    """
+    with acquire_timeout(handle_lock(handle), handle, 10.0):
+        assert isinstance(request_id, int)
+        if (devnumber != 0xFF or protocol >= 2.0) and request_id < 0x8000:
+            # Always set the most significant bit (8) in SoftwareId,
+            # to make notifications easier to distinguish from request replies.
+            # This only applies to peripheral requests, ofc.
+            sw_id = _get_next_sw_id()
+            request_id = (request_id & 0xFFF0) | sw_id  # was 0x08 | getrandbits(3)
+
+        timeout = _RECEIVER_REQUEST_TIMEOUT if devnumber == 0xFF else _DEVICE_REQUEST_TIMEOUT
+        # be extra patient on long register read
+        if request_id & 0xFF00 == 0x8300:
+            timeout *= 2
+
+        if params:
+            params = b"".join(struct.pack("B", p) if isinstance(p, int) else p for p in params)
+        else:
+            params = b""
+        request_data = struct.pack("!H", request_id) + params
+
+        ihandle = int(handle)
+        notifications_hook = getattr(handle, "notifications_hook", None)
+        try:
+            _read_input_buffer(handle, ihandle, notifications_hook)
+        except exceptions.NoReceiver:
+            logger.warning("device or receiver disconnected")
+            return None
+        write(ihandle, devnumber, request_data, long_message)
+
+        if no_reply:
+            return None
+
+        # we consider timeout from this point
+        request_started = time()
+        delta = 0
+
+        while delta < timeout:
+-- Feature request construction --
+yaml.SafeLoader.add_constructor("!OnboardProfiles", OnboardProfiles.from_yaml)
+yaml.add_representer(OnboardProfiles, OnboardProfiles.to_yaml)
+
+
+def feature_request(device, feature, function=0x00, *params, no_reply=False):
+    if device.online and device.features:
+        if feature in device.features:
+            feature_index = device.features[feature]
+            return device.request((feature_index << 8) + (function & 0xFF), *params, no_reply=no_reply)
+    if logger.isEnabledFor(logging.WARN):
+        logger.warning(
+            "%s: feature request failure for device online %s and features %s", device, device.online, device.features
+        )
+
+
+class Hidpp20:
+    # Host-side counter for SetComplete cookies (see set_configuration_complete).
+    # Seeded to a non-zero random 16-bit value at import so successive sessions
+    # don't trivially collide; we just need to never send 0x0000.
+    _session_cookie = getrandbits(16) or 1
+
+    def get_firmware(self, device) -> tuple[common.FirmwareInfo] | None:
+        """Reads a device's firmware info.
+
+        :returns: a list of FirmwareInfo tuples, ordered by firmware layer.
+        """
+    kind = NamedInt(0x02, _("feature"))
+    default_read_fnid = 0x00
+    default_write_fnid = 0x10
+
+    def __init__(
+        self,
+        feature: hidpp20_constants.SupportedFeature,
+        read_fnid=0x00,
+        write_fnid=0x10,
+        prefix=b"",
+        suffix=b"",
+        read_prefix=b"",
+        no_reply=False,
+    ):
+        assert isinstance(feature, (hidpp20_constants.SupportedFeature, CenturionCoreFeature))
+        self.feature = feature
+        self.read_fnid = read_fnid
+        self.write_fnid = write_fnid
+        self.no_reply = no_reply
+        self.prefix = prefix
+        self.suffix = suffix
+        self.read_prefix = read_prefix
+
+    def read(self, device, data_bytes=b""):
+        assert self.feature is not None
+        if self.read_fnid is not None:
+            return device.feature_request(self.feature, self.read_fnid, self.prefix, self.read_prefix, data_bytes)
+        else:
+            return b""
+
+    def write(self, device, data_bytes):
+        assert self.feature is not None
+        write_bytes = self.prefix + (data_bytes.to_bytes(1) if isinstance(data_bytes, int) else data_bytes) + self.suffix
+        reply = device.feature_request(self.feature, self.write_fnid, write_bytes, no_reply=self.no_reply)
+        return reply if not self.no_reply else True
+
+
+class FeatureRWMap(FeatureRW):

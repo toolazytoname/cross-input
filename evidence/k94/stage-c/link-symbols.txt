@@ -1,0 +1,4 @@
+00005f90 T raw_hid_receive
+00005eac W via_command_kb
+00005f7c W via_custom_value_command
+00000a0c T via_custom_value_command_kb

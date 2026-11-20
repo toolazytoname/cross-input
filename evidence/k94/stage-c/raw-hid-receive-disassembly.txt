@@ -1,0 +1,229 @@
+
+research/k94/stage-c-work/.build/8r101_k94_via.elf:     file format elf32-littlearm
+
+
+Disassembly of section .vectors:
+
+Disassembly of section .text:
+
+00005f90 <raw_hid_receive>:
+    5f90:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    5f92:	0004      	movs	r4, r0
+    5f94:	000d      	movs	r5, r1
+    5f96:	f7ff ff89 	bl	5eac <via_command_kb>
+    5f9a:	2800      	cmp	r0, #0
+    5f9c:	d125      	bne.n	5fea <raw_hid_receive+0x5a>
+    5f9e:	7820      	ldrb	r0, [r4, #0]
+    5fa0:	2815      	cmp	r0, #21
+    5fa2:	d811      	bhi.n	5fc8 <raw_hid_receive+0x38>
+    5fa4:	2800      	cmp	r0, #0
+    5fa6:	d015      	beq.n	5fd4 <raw_hid_receive+0x44>
+    5fa8:	3801      	subs	r0, #1
+    5faa:	2814      	cmp	r0, #20
+    5fac:	d812      	bhi.n	5fd4 <raw_hid_receive+0x44>
+    5fae:	f7fa f91f 	bl	1f0 <__gnu_thumb1_case_uqi>
+    5fb2:	1d14      	.short	0x1d14
+    5fb4:	71655f48 	.word	0x71655f48
+    5fb8:	11747474 	.word	0x11747474
+    5fbc:	837d7911 	.word	0x837d7911
+    5fc0:	9f9c998e 	.word	0x9f9c998e
+    5fc4:	b5aa      	.short	0xb5aa
+    5fc6:	be          	.byte	0xbe
+    5fc7:	00          	.byte	0x00
+    5fc8:	28aa      	cmp	r0, #170	@ 0xaa
+    5fca:	d100      	bne.n	5fce <raw_hid_receive+0x3e>
+    5fcc:	e0be      	b.n	614c <raw_hid_receive+0x1bc>
+    5fce:	28bb      	cmp	r0, #187	@ 0xbb
+    5fd0:	d100      	bne.n	5fd4 <raw_hid_receive+0x44>
+    5fd2:	e0d4      	b.n	617e <raw_hid_receive+0x1ee>
+    5fd4:	23ff      	movs	r3, #255	@ 0xff
+    5fd6:	7023      	strb	r3, [r4, #0]
+    5fd8:	e003      	b.n	5fe2 <raw_hid_receive+0x52>
+    5fda:	2300      	movs	r3, #0
+    5fdc:	7063      	strb	r3, [r4, #1]
+    5fde:	330c      	adds	r3, #12
+    5fe0:	70a3      	strb	r3, [r4, #2]
+    5fe2:	0029      	movs	r1, r5
+    5fe4:	0020      	movs	r0, r4
+    5fe6:	f000 fc37 	bl	6858 <raw_hid_send>
+    5fea:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+    5fec:	7860      	ldrb	r0, [r4, #1]
+    5fee:	3801      	subs	r0, #1
+    5ff0:	2803      	cmp	r0, #3
+    5ff2:	d8ef      	bhi.n	5fd4 <raw_hid_receive+0x44>
+    5ff4:	f7fa f8fc 	bl	1f0 <__gnu_thumb1_case_uqi>
+    5ff8:	1f120a02 	.word	0x1f120a02
+    5ffc:	f000 fa20 	bl	6440 <timer_read32>
+    6000:	0e03      	lsrs	r3, r0, #24
+    6002:	70a3      	strb	r3, [r4, #2]
+    6004:	0c03      	lsrs	r3, r0, #16
+    6006:	70e3      	strb	r3, [r4, #3]
+    6008:	0a03      	lsrs	r3, r0, #8
+    600a:	e004      	b.n	6016 <raw_hid_receive+0x86>
+    600c:	f7ff ff0c 	bl	5e28 <via_get_layout_options>
+    6010:	2300      	movs	r3, #0
+    6012:	70a3      	strb	r3, [r4, #2]
+    6014:	70e3      	strb	r3, [r4, #3]
+    6016:	7123      	strb	r3, [r4, #4]
+    6018:	7160      	strb	r0, [r4, #5]
+    601a:	e7e2      	b.n	5fe2 <raw_hid_receive+0x52>
+    601c:	78a6      	ldrb	r6, [r4, #2]
+    601e:	1ce7      	adds	r7, r4, #3
+    6020:	2e06      	cmp	r6, #6
+    6022:	dcde      	bgt.n	5fe2 <raw_hid_receive+0x52>
+    6024:	b2f0      	uxtb	r0, r6
+    6026:	f7fc fa6b 	bl	2500 <matrix_get_row>
+    602a:	0a03      	lsrs	r3, r0, #8
+    602c:	703b      	strb	r3, [r7, #0]
+    602e:	7078      	strb	r0, [r7, #1]
+    6030:	3601      	adds	r6, #1
+    6032:	3702      	adds	r7, #2
+    6034:	e7f4      	b.n	6020 <raw_hid_receive+0x90>
+    6036:	2300      	movs	r3, #0
+    6038:	70a3      	strb	r3, [r4, #2]
+    603a:	70e3      	strb	r3, [r4, #3]
+    603c:	7123      	strb	r3, [r4, #4]
+    603e:	7163      	strb	r3, [r4, #5]
+    6040:	e7cf      	b.n	5fe2 <raw_hid_receive+0x52>
+    6042:	7863      	ldrb	r3, [r4, #1]
+    6044:	2b02      	cmp	r3, #2
+    6046:	d005      	beq.n	6054 <raw_hid_receive+0xc4>
+    6048:	2b05      	cmp	r3, #5
+    604a:	d1c3      	bne.n	5fd4 <raw_hid_receive+0x44>
+    604c:	78a0      	ldrb	r0, [r4, #2]
+    604e:	f7ff ff17 	bl	5e80 <via_set_device_indication>
+    6052:	e7c6      	b.n	5fe2 <raw_hid_receive+0x52>
+    6054:	78e2      	ldrb	r2, [r4, #3]
+    6056:	78a3      	ldrb	r3, [r4, #2]
+    6058:	0212      	lsls	r2, r2, #8
+    605a:	431a      	orrs	r2, r3
+    605c:	7923      	ldrb	r3, [r4, #4]
+    605e:	7960      	ldrb	r0, [r4, #5]
+    6060:	041b      	lsls	r3, r3, #16
+    6062:	4313      	orrs	r3, r2
+    6064:	0600      	lsls	r0, r0, #24
+    6066:	4318      	orrs	r0, r3
+    6068:	ba00      	rev	r0, r0
+    606a:	f7ff fee3 	bl	5e34 <via_set_layout_options>
+    606e:	e7b8      	b.n	5fe2 <raw_hid_receive+0x52>
+    6070:	78e2      	ldrb	r2, [r4, #3]
+    6072:	78a1      	ldrb	r1, [r4, #2]
+    6074:	7860      	ldrb	r0, [r4, #1]
+    6076:	f7ff f841 	bl	50fc <dynamic_keymap_get_keycode>
+    607a:	e7c5      	b.n	6008 <raw_hid_receive+0x78>
+    607c:	7963      	ldrb	r3, [r4, #5]
+    607e:	7922      	ldrb	r2, [r4, #4]
+    6080:	021b      	lsls	r3, r3, #8
+    6082:	4313      	orrs	r3, r2
+    6084:	ba5b      	rev16	r3, r3
+    6086:	78e2      	ldrb	r2, [r4, #3]
+    6088:	78a1      	ldrb	r1, [r4, #2]
+    608a:	7860      	ldrb	r0, [r4, #1]
+    608c:	b29b      	uxth	r3, r3
+    608e:	f7ff f84a 	bl	5126 <dynamic_keymap_set_keycode>
+    6092:	e7a6      	b.n	5fe2 <raw_hid_receive+0x52>
+    6094:	f7ff f896 	bl	51c4 <dynamic_keymap_reset>
+    6098:	e7a3      	b.n	5fe2 <raw_hid_receive+0x52>
+    609a:	0029      	movs	r1, r5
+    609c:	0020      	movs	r0, r4
+    609e:	f7ff ff6d 	bl	5f7c <via_custom_value_command>
+    60a2:	e79e      	b.n	5fe2 <raw_hid_receive+0x52>
+    60a4:	f7ff f901 	bl	52aa <dynamic_keymap_macro_get_count>
+    60a8:	7060      	strb	r0, [r4, #1]
+    60aa:	e79a      	b.n	5fe2 <raw_hid_receive+0x52>
+    60ac:	f7ff f8ff 	bl	52ae <dynamic_keymap_macro_get_buffer_size>
+    60b0:	0a03      	lsrs	r3, r0, #8
+    60b2:	7063      	strb	r3, [r4, #1]
+    60b4:	70a0      	strb	r0, [r4, #2]
+    60b6:	e794      	b.n	5fe2 <raw_hid_receive+0x52>
+    60b8:	78a0      	ldrb	r0, [r4, #2]
+    60ba:	7863      	ldrb	r3, [r4, #1]
+    60bc:	0200      	lsls	r0, r0, #8
+    60be:	4318      	orrs	r0, r3
+    60c0:	ba40      	rev16	r0, r0
+    60c2:	78e1      	ldrb	r1, [r4, #3]
+    60c4:	1d22      	adds	r2, r4, #4
+    60c6:	b280      	uxth	r0, r0
+    60c8:	f7ff f8f4 	bl	52b4 <dynamic_keymap_macro_get_buffer>
+    60cc:	e789      	b.n	5fe2 <raw_hid_receive+0x52>
+    60ce:	78a0      	ldrb	r0, [r4, #2]
+    60d0:	7863      	ldrb	r3, [r4, #1]
+    60d2:	0200      	lsls	r0, r0, #8
+    60d4:	4318      	orrs	r0, r3
+    60d6:	ba40      	rev16	r0, r0
+    60d8:	78e1      	ldrb	r1, [r4, #3]
+    60da:	1d22      	adds	r2, r4, #4
+    60dc:	b280      	uxth	r0, r0
+    60de:	f7ff f8fd 	bl	52dc <dynamic_keymap_macro_set_buffer>
+    60e2:	e77e      	b.n	5fe2 <raw_hid_receive+0x52>
+    60e4:	f7ff f90e 	bl	5304 <dynamic_keymap_macro_reset>
+    60e8:	e77b      	b.n	5fe2 <raw_hid_receive+0x52>
+    60ea:	f7fe fffd 	bl	50e8 <dynamic_keymap_get_layer_count>
+    60ee:	e7db      	b.n	60a8 <raw_hid_receive+0x118>
+    60f0:	78a0      	ldrb	r0, [r4, #2]
+    60f2:	7863      	ldrb	r3, [r4, #1]
+    60f4:	0200      	lsls	r0, r0, #8
+    60f6:	4318      	orrs	r0, r3
+    60f8:	ba40      	rev16	r0, r0
+    60fa:	78e1      	ldrb	r1, [r4, #3]
+    60fc:	1d22      	adds	r2, r4, #4
+    60fe:	b280      	uxth	r0, r0
+    6100:	f7ff f893 	bl	522a <dynamic_keymap_get_buffer>
+    6104:	e76d      	b.n	5fe2 <raw_hid_receive+0x52>
+    6106:	78a0      	ldrb	r0, [r4, #2]
+    6108:	7863      	ldrb	r3, [r4, #1]
+    610a:	0200      	lsls	r0, r0, #8
+    610c:	4318      	orrs	r0, r3
+    610e:	ba40      	rev16	r0, r0
+    6110:	78e1      	ldrb	r1, [r4, #3]
+    6112:	1d22      	adds	r2, r4, #4
+    6114:	b280      	uxth	r0, r0
+    6116:	f7ff f89c 	bl	5252 <dynamic_keymap_set_buffer>
+    611a:	e762      	b.n	5fe2 <raw_hid_receive+0x52>
+    611c:	78e2      	ldrb	r2, [r4, #3]
+    611e:	78a1      	ldrb	r1, [r4, #2]
+    6120:	1e53      	subs	r3, r2, #1
+    6122:	419a      	sbcs	r2, r3
+    6124:	7860      	ldrb	r0, [r4, #1]
+    6126:	b2d2      	uxtb	r2, r2
+    6128:	f7ff f810 	bl	514c <dynamic_keymap_get_encoder>
+    612c:	e76c      	b.n	6008 <raw_hid_receive+0x78>
+    612e:	7963      	ldrb	r3, [r4, #5]
+    6130:	7922      	ldrb	r2, [r4, #4]
+    6132:	021b      	lsls	r3, r3, #8
+    6134:	4313      	orrs	r3, r2
+    6136:	78e2      	ldrb	r2, [r4, #3]
+    6138:	ba5b      	rev16	r3, r3
+    613a:	1e51      	subs	r1, r2, #1
+    613c:	418a      	sbcs	r2, r1
+    613e:	7860      	ldrb	r0, [r4, #1]
+    6140:	78a1      	ldrb	r1, [r4, #2]
+    6142:	b29b      	uxth	r3, r3
+    6144:	b2d2      	uxtb	r2, r2
+    6146:	f7ff f821 	bl	518c <dynamic_keymap_set_encoder>
+    614a:	e74a      	b.n	5fe2 <raw_hid_receive+0x52>
+    614c:	7860      	ldrb	r0, [r4, #1]
+    614e:	38e0      	subs	r0, #224	@ 0xe0
+    6150:	2803      	cmp	r0, #3
+    6152:	d900      	bls.n	6156 <raw_hid_receive+0x1c6>
+    6154:	e745      	b.n	5fe2 <raw_hid_receive+0x52>
+    6156:	f7fa f84b 	bl	1f0 <__gnu_thumb1_case_uqi>
+    615a:	0702      	.short	0x0702
+    615c:	0e0a      	.short	0x0e0a
+    615e:	2101      	movs	r1, #1
+    6160:	2000      	movs	r0, #0
+    6162:	f005 f8c5 	bl	b2f0 <Lcd_Usb_Work_Init>
+    6166:	e73c      	b.n	5fe2 <raw_hid_receive+0x52>
+    6168:	2100      	movs	r1, #0
+    616a:	7a20      	ldrb	r0, [r4, #8]
+    616c:	e7f9      	b.n	6162 <raw_hid_receive+0x1d2>
+    616e:	f004 fa97 	bl	a6a0 <Get_Lcd_Usb_Work_Status>
+    6172:	7220      	strb	r0, [r4, #8]
+    6174:	e735      	b.n	5fe2 <raw_hid_receive+0x52>
+    6176:	7a20      	ldrb	r0, [r4, #8]
+    6178:	f005 f8dc 	bl	b334 <Lcd_Work_Sync_GIF>
+    617c:	e731      	b.n	5fe2 <raw_hid_receive+0x52>
+    617e:	0029      	movs	r1, r5
+    6180:	0020      	movs	r0, r4
+    6182:	f004 fce9 	bl	ab58 <Emi_Read_Data>
+    6186:	e72c      	b.n	5fe2 <raw_hid_receive+0x52>

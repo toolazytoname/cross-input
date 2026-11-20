@@ -1,0 +1,15 @@
+test_apply_requires_target_name_even_when_other_confirmations_exist (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_apply_submits_exactly_once (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_current_slot_mismatch_blocks_write (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_default_mode_performs_no_hid_enumeration_or_io (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_dry_run_preflight_never_writes (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_existing_guard_blocks_before_transport (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_failed_submit_is_not_retried_and_guard_remains (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_missing_authorization_blocks_before_transport (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_target_unavailable_blocks_write (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_wrong_serial_or_duplicate_collection_fails (evidence.mouse.test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.004s
+
+OK

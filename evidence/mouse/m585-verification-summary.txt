@@ -1,0 +1,350 @@
+2026-11-19 06:54:42 -0800
+-- readonly probe tests --
+test_bad_host_descriptor_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_bad_status_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_descriptor_slot_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_name_context_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_capability_gate_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_readonly_sequence_is_whitelisted (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_response_classifier_rejects_wrong_frames (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_root_unsupported_never_sends_status_request (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_strict_selection_requires_one_exact_collection (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_timeout_and_error_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_valid_readonly_sequence (test_m585_readonly_probe.M585ProbeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+OK
+-- one-shot experiment fake/CLI tests --
+test_bad_host_descriptor_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_bad_status_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_descriptor_slot_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_host_name_context_mismatch_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_capability_gate_fails_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_hosts_info_readonly_sequence_is_whitelisted (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_response_classifier_rejects_wrong_frames (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_root_unsupported_never_sends_status_request (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_strict_selection_requires_one_exact_collection (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_timeout_and_error_fail_closed (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_valid_readonly_sequence (test_m585_readonly_probe.M585ProbeTests) ... ok
+test_apply_requires_target_name_even_when_other_confirmations_exist (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_apply_submits_exactly_once (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_current_slot_mismatch_blocks_write (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_default_mode_performs_no_hid_enumeration_or_io (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_dry_run_preflight_never_writes (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_existing_guard_blocks_before_transport (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_failed_submit_is_not_retried_and_guard_remains (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_missing_authorization_blocks_before_transport (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_target_unavailable_blocks_write (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+test_wrong_serial_or_duplicate_collection_fails (test_m585_single_switch_experiment.M585SingleSwitchTests) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.005s
+
+OK
+-- access --
+{
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  }
+}
+-- CHANGE_HOST readonly result --
+{
+  "devices": [
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 65347,
+      "usage": 514,
+      "interface_number": -1
+    }
+  ],
+  "selected_collection": {
+    "path": "DevSrvsID:4297669905",
+    "vendor_id": 1133,
+    "product_id": 45083,
+    "serial_number": "7A09C04B5120EA18",
+    "manufacturer_string": "Logitech",
+    "product_string": "M585/M590",
+    "usage_page": 65347,
+    "usage": 514,
+    "interface_number": -1
+  },
+  "non_exclusive_open": {
+    "enabled": true
+  },
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  },
+  "queries": [
+    {
+      "name": "root-get-change-host",
+      "feature_id": 6164,
+      "function": 0,
+      "request_hex": "11ff000118140000000000000000000000000000",
+      "response_hex": "11ff000109000100000000000000000000000000",
+      "feature_index": 9
+    },
+    {
+      "name": "change-host-get-status",
+      "feature_id": 6164,
+      "function": 0,
+      "request_hex": "11ff090100000000000000000000000000000000",
+      "response_hex": "11ff090102010000000000000000000000000000",
+      "decoded": {
+        "host_count": 2,
+        "current_host_index": 1
+      }
+    }
+  ],
+  "change_host_status": {
+    "host_count": 2,
+    "current_host_index": 1
+  }
+}
+-- HOSTS_INFO readonly result --
+{
+  "devices": [
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4297669905",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 65347,
+      "usage": 514,
+      "interface_number": -1
+    }
+  ],
+  "selected_collection": {
+    "path": "DevSrvsID:4297669905",
+    "vendor_id": 1133,
+    "product_id": 45083,
+    "serial_number": "7A09C04B5120EA18",
+    "manufacturer_string": "Logitech",
+    "product_string": "M585/M590",
+    "usage_page": 65347,
+    "usage": 514,
+    "interface_number": -1
+  },
+  "non_exclusive_open": {
+    "enabled": true
+  },
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  },
+  "queries": [
+    {
+      "name": "root-get-hosts-info",
+      "feature_id": 6165,
+      "function": 0,
+      "request_hex": "11ff000118150000000000000000000000000000",
+      "response_hex": "11ff00010a000100000000000000000000000000",
+      "feature_index": 10
+    },
+    {
+      "name": "hosts-info-get-state",
+      "feature_id": 6165,
+      "function": 0,
+      "request_hex": "11ff0a0100000000000000000000000000000000",
+      "response_hex": "11ff0a0113090201000000000000000000000000",
+      "decoded": {
+        "capability_flags": 19,
+        "host_count": 2,
+        "current_host_index": 1
+      }
+    },
+    {
+      "function": 16,
+      "request_hex": "11ff0a1100000000000000000000000000000000",
+      "response_hex": "11ff0a11000104000c1800000000000000000000",
+      "decoded": {
+        "host_index": 0,
+        "paired": true,
+        "status_raw": 1,
+        "name_length": 12,
+        "maximum_length": 24
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a3100000000000000000000000000000000",
+      "response_hex": "11ff0a3100004c415a592d57494e444f57530000",
+      "decoded": {
+        "host_index": 0,
+        "offset": 0
+      }
+    },
+    {
+      "function": 16,
+      "request_hex": "11ff0a1101000000000000000000000000000000",
+      "response_hex": "11ff0a11010104000f1800000000000000000000",
+      "decoded": {
+        "host_index": 1,
+        "paired": true,
+        "status_raw": 1,
+        "name_length": 15,
+        "maximum_length": 24
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a3101000000000000000000000000000000",
+      "response_hex": "11ff0a3101006c617a79e79a844d6163204d696e",
+      "decoded": {
+        "host_index": 1,
+        "offset": 0
+      }
+    },
+    {
+      "function": 48,
+      "request_hex": "11ff0a31010e0000000000000000000000000000",
+      "response_hex": "11ff0a31010e6900000000000000000000000000",
+      "decoded": {
+        "host_index": 1,
+        "offset": 14
+      }
+    }
+  ],
+  "hosts": [
+    {
+      "host_index": 0,
+      "paired": true,
+      "status_raw": 1,
+      "name_length": 12,
+      "maximum_length": 24,
+      "name": "LAZY-WINDOWS"
+    },
+    {
+      "host_index": 1,
+      "paired": true,
+      "status_raw": 1,
+      "name_length": 15,
+      "maximum_length": 24,
+      "name": "lazy的Mac Mini"
+    }
+  ]
+}
+-- first authorized switch summary --
+2026-11-19 M585/M590 first authorized switch summary
+Execution: coordinator only; worker performed no hardware IO.
+Authorization: one Mac-to-Windows attempt; authorization consumed.
+
+Preflight after user restored mouse to Mac:
+- serial 7A09C04B5120EA18
+- CHANGE_HOST feature index 9
+- current host index 1
+- HOSTS_INFO feature index 10
+- two hosts and both descriptor slots validated
+
+Submitted frame:
+11ff091100000000000000000000000000000000
+- CHANGE_HOST feature 9, function 0x10 with Software ID 1
+- target host index 0
+- one write, 20/20 bytes
+- no retry and no automatic return command
+
+Observed timeline:
+- 2026-11-19 06:44:27.719 Mac BLE reports M585/M590 disconnected
+- user observed cursor response on Windows hardware channel 1
+- 2026-11-19 06:44:36.717 first Mac BLE power-source event after the switch
+- later read-only check: current host index restored to 1
+
+Deskflow context:
+- 06:44:27.125 Windows -> Mac (before BLE disconnect)
+- 06:44:45.935 Mac -> Windows
+- 06:44:46.193 Windows -> Mac
+- 06:44:46.483 Mac -> Windows
+The 290 ms screen bounce is consistent with the user description, but the log cannot attribute it to one exact key/mouse event.
+
+Conclusion:
+- One forward hardware switch and target-host input were user-verified.
+- Windows-originated software return remains unverified.
+- Repeated-switch reliability and a complete bidirectional state machine remain unverified.
+
+-- evidence hashes --
+5ecb0290d92d7fe6f4aeb30d48ab9266571833a10a9eda68271c434d216a5977  evidence/mouse/m585-first-switch-attempt.jsonl
+9e4a4d317d1b1f9f082bef57ba7f61ee05c0ded36a75bb7115555d2bcd9e66c2  evidence/mouse/m585-first-switch-mac-bluetooth.log
+04d3bbc7dd5c14b5c4b5dc8aa4734c4441c08e2efeda550149f420d68b51e685  evidence/mouse/m585-first-switch-deskflow.log
+72d16383ed1af62aa18478b9b967b655d4bbd3361391818e0c62d2c64409c640  evidence/mouse/m585-first-switch-mac-restored.json

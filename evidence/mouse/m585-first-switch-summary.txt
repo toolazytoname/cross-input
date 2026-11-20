@@ -1,0 +1,41 @@
+2026-11-19 M585/M590 first authorized switch summary
+Execution: coordinator only; worker performed no hardware IO.
+Authorization: one Mac-to-Windows attempt; authorization consumed.
+
+Preflight after user restored mouse to Mac:
+- serial 7A09C04B5120EA18
+- CHANGE_HOST feature index 9
+- current host index 1
+- HOSTS_INFO feature index 10
+- two hosts and both descriptor slots validated
+
+Submitted frame:
+11ff091100000000000000000000000000000000
+- CHANGE_HOST feature 9, function 0x10 with Software ID 1
+- target host index 0
+- one write, 20/20 bytes
+- no retry and no automatic return command
+
+Observed timeline:
+- 2026-11-19 06:44:27.719 Mac BLE reports M585/M590 disconnected
+- user observed cursor response on Windows hardware channel 1
+- 2026-11-19 06:44:36.717 first Mac BLE power-source event after the switch
+- later read-only check: current host index restored to 1
+
+Deskflow context:
+- 06:44:27.125 Windows -> Mac (before BLE disconnect)
+- 06:44:45.935 Mac -> Windows
+- 06:44:46.193 Windows -> Mac
+- 06:44:46.483 Mac -> Windows
+The 290 ms screen bounce is consistent with the user description, but the log cannot attribute it to one exact key/mouse event.
+
+Conclusion:
+- One forward hardware switch and target-host input were user-verified.
+- Windows-originated software return remains unverified.
+- Repeated-switch reliability and a complete bidirectional state machine remain unverified.
+
+-- evidence hashes --
+5ecb0290d92d7fe6f4aeb30d48ab9266571833a10a9eda68271c434d216a5977  evidence/mouse/m585-first-switch-attempt.jsonl
+9e4a4d317d1b1f9f082bef57ba7f61ee05c0ded36a75bb7115555d2bcd9e66c2  evidence/mouse/m585-first-switch-mac-bluetooth.log
+04d3bbc7dd5c14b5c4b5dc8aa4734c4441c08e2efeda550149f420d68b51e685  evidence/mouse/m585-first-switch-deskflow.log
+72d16383ed1af62aa18478b9b967b655d4bbd3361391818e0c62d2c64409c640  evidence/mouse/m585-first-switch-mac-restored.json

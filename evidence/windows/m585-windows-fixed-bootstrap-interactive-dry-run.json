@@ -1,0 +1,29 @@
+=== task ===
+{
+    "TaskName":  "MiniOpsBootstrapCaptureTest",
+    "State":  3
+}
+{
+    "LastRunTime":  "\/Date(1795175302000)\/",
+    "LastTaskResult":  1
+}
+=== processes ===
+=== health ===
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":false,"ready":false,"reason":"runtime: 使用“1”个参数调用“RunWindowsEdgeWatch”时发生异常:“RegisterHotKey Ctrl+Alt+Shift+M failed: 1409”","desktop":{"available":false,"state":"SESSION_UNAVAILABLE"},"mouse":{"present":false,"current_host_index":null,"host_count":null,"slot_evidence_verified":false,"readonly_result":"ERROR_RUNTIME"},"generated_at_utc":"2026-11-20T11:48:23.3140034Z","expires_at_utc":"2026-11-20T11:48:38.3140034Z","hid_output_report_sent":false}
+=== log ===
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:47:09.1696416Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"fake":"console-out-1"}
+{"fake":"console-out-2"}
+{"fake":"console-error"}
+{"schema":1,"host":"windows","event":"bootstrap-stopped","mode":"watch","generated_at_utc":"2026-11-20T11:47:09.8995857Z","result":"controller-process-returned","exit_code":5,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T11:48:22.7137703Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+C:\Users\Administrator\AppData\Local\Temp\MiniOpsBootstrapCaptureTest\windows_hid_protocol_probe.ps1 : ??á?1????????
+???á?RunWindowsEdgeWatch?????????:??RegisterHotKey Ctrl+Alt+Shift+M failed: 1409??
+????λ?? C:\Users\Administrator\AppData\Local\Temp\MiniOpsBootstrapCaptureTest\windows_hid_protocol_probe.ps1:2408 ???
+: 5
++     Write-Error $_
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,windows_hid_protocol_probe.ps1
+ 
+{"schema":1,"host":"windows","event":"bootstrap-stopped","mode":"dry-run","generated_at_utc":"2026-11-20T11:48:23.4767223Z","result":"controller-process-returned","exit_code":1,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsBootstrapCaptureTest\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}

@@ -1,0 +1,1251 @@
+
+evidence/k94/rdr_common.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.es_keyboard_leds:
+
+Disassembly of section .text.User_Lcd_Power_Mark_Synced:
+
+Disassembly of section .text.rgb_matrix_driver_set_color:
+
+Disassembly of section .text.rgb_matrix_driver_set_color_all:
+
+Disassembly of section .text.IAPROM_WORD_PROGRAM:
+
+Disassembly of section .text.ee_verify_pagefull_write_variable:
+
+Disassembly of section .text.rgb_matrix_driver_init:
+
+Disassembly of section .text.IAPROM_PAGE_ERASE.isra.0:
+
+Disassembly of section .text.ee_format:
+
+Disassembly of section .text.User_Fn_Mode_Led_Restore:
+
+Disassembly of section .text.Vector68:
+
+Disassembly of section .text.Uart_Tx_Dma_Start:
+
+Disassembly of section .text.Uart_Rx_Dma_Start:
+
+Disassembly of section .text.Uart_Dma_Init:
+
+Disassembly of section .text.User_Uart_Deinit:
+
+Disassembly of section .text.Vector64:
+
+Disassembly of section .text.Init_Uart_Information:
+
+Disassembly of section .text.User_Uart_Send_Data:
+
+Disassembly of section .text.Uart_While_Send_Commad:
+
+Disassembly of section .text.Reset_Uart:
+
+Disassembly of section .text.Init_Home_Mov:
+
+Disassembly of section .text.Reset_Home_Mov_Mode_Time:
+
+Disassembly of section .text.Lvgl_Init:
+
+Disassembly of section .text.Reset_Power_Lvgl:
+
+Disassembly of section .text.Scan_Uart_Rf:
+
+Disassembly of section .text.Scan_Uart_Work_Mode:
+
+Disassembly of section .text.Scan_Uart_Func:
+
+Disassembly of section .text.Scan_Uart_Batt:
+
+Disassembly of section .text.Scan_Uart_Gif:
+
+Disassembly of section .text.Scan_Uart_Language:
+
+Disassembly of section .text.Get_Lcd_Usb_Work_Status:
+
+Disassembly of section .text.Scan_Lcd_Usb_Work_Mode:
+
+Disassembly of section .text.Uart_Key_Mode_Key_Scan:
+
+Disassembly of section .text.App_Uart_Main_Loop:
+
+Disassembly of section .text.app_2g4_buffer_full:
+
+Disassembly of section .text.app_2g4_buffer_empty:
+
+Disassembly of section .text.app_2g4_buffer_rev_add:
+
+Disassembly of section .text.app_2g4_buffer_send_add:
+
+Disassembly of section .text.Emi_Init:
+
+Disassembly of section .text.Emi_Write_Data:
+
+Disassembly of section .text.es_ble_spi_init:
+
+Disassembly of section .text.es_ble_spi_deinit:
+
+Disassembly of section .text.es_spi_send_recv_by_dma:
+
+Disassembly of section .text.Emi_Read_Data:
+
+Disassembly of section .text.Spi_Send_Commad:
+
+Disassembly of section .text.Sleep_Time_Synchronization:
+
+Disassembly of section .text.DSleep_Time_Synchronization:
+
+Disassembly of section .text.Spi_Ack_Send_Commad:
+
+Disassembly of section .text.encoder_wait_pullup_charge:
+
+Disassembly of section .text.encoder_quadrature_init_pin:
+
+Disassembly of section .text.encoder_quadrature_read_pin:
+
+Disassembly of section .text.encoder_quadrature_post_init_kb:
+
+Disassembly of section .text.encoder_quadrature_post_init:
+
+Disassembly of section .text.encoder_driver_init:
+
+Disassembly of section .text.encoder_quadrature_handle_read:
+
+Disassembly of section .text.encoder_driver_task:
+
+Disassembly of section .text.Mode_Synchronization:
+
+Disassembly of section .text.Ble_Name_Synchronization:
+
+Disassembly of section .text.User_bluetooth_send_keyboard:
+
+Disassembly of section .text.es_send_keyboard:
+
+Disassembly of section .text.es_send_nkro:
+
+Disassembly of section .text.es_send_mouse:
+
+Disassembly of section .text.es_send_extra:
+
+Disassembly of section .text.bootloader_jump:
+
+Disassembly of section .text.mcu_reset:
+
+Disassembly of section .text.es_mcu_reset:
+
+Disassembly of section .text.Spi_Main_Loop:
+
+Disassembly of section .text.Battery_Scan:
+
+Disassembly of section .text.Save_Flash_Set:
+
+Disassembly of section .text.Vector6C:
+
+Disassembly of section .text.Lcd_Usb_Work_Init:
+
+Disassembly of section .text.Lcd_Work_Sync_GIF:
+
+Disassembly of section .text.User_Systime_Init:
+
+Disassembly of section .text.User_Systime_Deinit:
+
+Disassembly of section .text.Init_Gpio_Infomation:
+
+Disassembly of section .text.User_Sleep:
+
+Disassembly of section .text.Get_Spi_Return_Data:
+
+Disassembly of section .text.User_Wakeup:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_enable:
+
+Disassembly of section .text.es_change_qmk_nkro_mode_disable:
+
+Disassembly of section .text.User_Keyboard_Post_Init:
+
+Disassembly of section .text.User_Consumer_Send:
+
+Disassembly of section .text.User_Usb_Init:
+
+Disassembly of section .text.es_restart_usb_driver:
+
+Disassembly of section .text.Usb_Disconnect:
+
+Disassembly of section .text.User_Usb_Deinit:
+
+Disassembly of section .text.clamp_length:
+
+Disassembly of section .text.clamp_length_user:
+
+Disassembly of section .text.eeprom_driver_erase:
+
+Disassembly of section .text.eeprom_driver_init:
+
+Disassembly of section .text.eeprom_read_block:
+
+Disassembly of section .text.eeprom_write_block:
+
+Disassembly of section .text.eeprom_read_block_user:
+
+Disassembly of section .text.Init_Keyboard_Infomation:
+
+Disassembly of section .text.eeprom_write_block_user:
+
+Disassembly of section .text.User_Adc_Init:
+
+Disassembly of section .text.User_Adc_Deinit:
+
+Disassembly of section .text.U16_Buff_Clear:
+
+Disassembly of section .text.Init_Batt_Infomation:
+
+Disassembly of section .text.Board_Wakeup_Init:
+
+Disassembly of section .text.User_Adc_Batt_Power_Up_Init:
+
+Disassembly of section .text.User_Adc_Batt_Number:
+
+Disassembly of section .text.Key_Switch_Mode_Scan:
+
+Disassembly of section .text.User_Keyboard_Reset:
+
+Disassembly of section .text.Key_Switch_Mode_Power:
+
+Disassembly of section .text.User_Keyboard_Init:
+
+Disassembly of section .text.User_Pwm_Deinit:
+
+Disassembly of section .text.es_chibios_user_idle_loop_hook:
+
+Disassembly of section .text.rgb_matrix_driver_flush_pwm_dma_start:
+
+Disassembly of section .text.rgb_matrix_driver_flush:
+
+Disassembly of section .text.Led_Power_Low_Show:
+
+Disassembly of section .text.Led_Power_Shut_Show:
+
+Disassembly of section .text.Led_Rf_Mode_Show:
+
+Disassembly of section .text.Led_Point_Flash_Show:
+
+Disassembly of section .text.Led_Winlock_Show:
+
+Disassembly of section .text.Led_Point_Reset:
+
+Disassembly of section .text.User_Test_White_Max:
+
+Disassembly of section .text.Led_Batt_Number_Show:
+
+Disassembly of section .text.User_Test_Colour_Show:
+
+Disassembly of section .text.User_Get_Led_Power_Status:
+
+Disassembly of section .text.RGB_Mode_Color_Show:
+
+Disassembly of section .text.User_Led_Show:
+
+Disassembly of section .text.Vector4C:
+
+Disassembly of section .text.Vector54:
+
+Disassembly of section .text.Vector58:
+
+Disassembly of section .text.Vector7C:
+
+Disassembly of section .text.Vector80:
+
+Disassembly of section .text.Vector84:
+
+Disassembly of section .text.Vector78:
+
+Disassembly of section .text.User_send_6kro_report:
+
+Disassembly of section .text.User_send_nkro_report:
+
+Disassembly of section .text.User_Clear_Board:
+
+Disassembly of section .text.add_key_to_report:
+
+Disassembly of section .text.General_Key_Reorder:
+
+Disassembly of section .text.del_key_from_report:
+
+Disassembly of section .text.User_Clear_Board_2ms:
+
+Disassembly of section .text.Send_Key:
+
+Disassembly of section .text.Reset_Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Boot:
+
+Disassembly of section .text.Lvgl_Home_Prev_Func:
+
+Disassembly of section .text.Lvgl_Home_Next_Func:
+
+Disassembly of section .text.Lvgl_Home_Enter_Func:
+
+Disassembly of section .text.User_process_record_user:
+
+00000000 <User_process_record_user>:
+   0:	4baa      	ldr	r3, [pc, #680]	@ (2ac <User_process_record_user+0x2ac>)
+   2:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   4:	4298      	cmp	r0, r3
+   6:	d814      	bhi.n	32 <User_process_record_user+0x32>
+   8:	3b20      	subs	r3, #32
+   a:	4298      	cmp	r0, r3
+   c:	d213      	bcs.n	36 <User_process_record_user+0x36>
+   e:	4ba8      	ldr	r3, [pc, #672]	@ (2b0 <User_process_record_user+0x2b0>)
+  10:	4298      	cmp	r0, r3
+  12:	d849      	bhi.n	a8 <User_process_record_user+0xa8>
+  14:	4ba7      	ldr	r3, [pc, #668]	@ (2b4 <User_process_record_user+0x2b4>)
+  16:	4298      	cmp	r0, r3
+  18:	d900      	bls.n	1c <User_process_record_user+0x1c>
+  1a:	e350      	b.n	6be <User_process_record_user+0x6be>
+  1c:	28e3      	cmp	r0, #227	@ 0xe3
+  1e:	d03c      	beq.n	9a <User_process_record_user+0x9a>
+  20:	d830      	bhi.n	84 <User_process_record_user+0x84>
+  22:	2865      	cmp	r0, #101	@ 0x65
+  24:	d039      	beq.n	9a <User_process_record_user+0x9a>
+  26:	28e0      	cmp	r0, #224	@ 0xe0
+  28:	d100      	bne.n	2c <User_process_record_user+0x2c>
+  2a:	e351      	b.n	6d0 <User_process_record_user+0x6d0>
+  2c:	282c      	cmp	r0, #44	@ 0x2c
+  2e:	d100      	bne.n	32 <User_process_record_user+0x32>
+  30:	e289      	b.n	546 <User_process_record_user+0x546>
+  32:	2001      	movs	r0, #1
+  34:	bd76      	pop	{r1, r2, r4, r5, r6, pc}
+  36:	4ba0      	ldr	r3, [pc, #640]	@ (2b8 <User_process_record_user+0x2b8>)
+  38:	18c0      	adds	r0, r0, r3
+  3a:	2820      	cmp	r0, #32
+  3c:	d8f9      	bhi.n	32 <User_process_record_user+0x32>
+  3e:	f7ff fffe 	bl	0 <__gnu_thumb1_case_shi>
+			3e: R_ARM_THM_CALL	__gnu_thumb1_case_shi
+  42:	0205      	.short	0x0205
+  44:	02320219 	.word	0x02320219
+  48:	025e024c 	.word	0x025e024c
+  4c:	02a30296 	.word	0x02a30296
+  50:	027402c3 	.word	0x027402c3
+  54:	038e0355 	.word	0x038e0355
+  58:	02d503b9 	.word	0x02d503b9
+  5c:	032e02dc 	.word	0x032e02dc
+  60:	00a60098 	.word	0x00a60098
+  64:	00c200b4 	.word	0x00c200b4
+  68:	005d00dd 	.word	0x005d00dd
+  6c:	01a801a1 	.word	0x01a801a1
+  70:	011f007a 	.word	0x011f007a
+  74:	0155017a 	.word	0x0155017a
+  78:	fff8fff8 	.word	0xfff8fff8
+  7c:	fff8fff8 	.word	0xfff8fff8
+  80:	010c00f9 	.word	0x010c00f9
+  84:	23a4      	movs	r3, #164	@ 0xa4
+  86:	01db      	lsls	r3, r3, #7
+  88:	4298      	cmp	r0, r3
+  8a:	d100      	bne.n	8e <User_process_record_user+0x8e>
+  8c:	e188      	b.n	3a0 <User_process_record_user+0x3a0>
+  8e:	4b8b      	ldr	r3, [pc, #556]	@ (2bc <User_process_record_user+0x2bc>)
+  90:	4298      	cmp	r0, r3
+  92:	d100      	bne.n	96 <User_process_record_user+0x96>
+  94:	e1af      	b.n	3f6 <User_process_record_user+0x3f6>
+  96:	28e7      	cmp	r0, #231	@ 0xe7
+  98:	d1cb      	bne.n	32 <User_process_record_user+0x32>
+  9a:	4b89      	ldr	r3, [pc, #548]	@ (2c0 <User_process_record_user+0x2c0>)
+  9c:	795b      	ldrb	r3, [r3, #5]
+  9e:	2b00      	cmp	r3, #0
+  a0:	d0c7      	beq.n	32 <User_process_record_user+0x32>
+  a2:	2300      	movs	r3, #0
+  a4:	714b      	strb	r3, [r1, #5]
+  a6:	e7c4      	b.n	32 <User_process_record_user+0x32>
+  a8:	4b86      	ldr	r3, [pc, #536]	@ (2c4 <User_process_record_user+0x2c4>)
+  aa:	4298      	cmp	r0, r3
+  ac:	d812      	bhi.n	d4 <User_process_record_user+0xd4>
+  ae:	4b86      	ldr	r3, [pc, #536]	@ (2c8 <User_process_record_user+0x2c8>)
+  b0:	4298      	cmp	r0, r3
+  b2:	d9be      	bls.n	32 <User_process_record_user+0x32>
+  b4:	4b85      	ldr	r3, [pc, #532]	@ (2cc <User_process_record_user+0x2cc>)
+  b6:	18c0      	adds	r0, r0, r3
+  b8:	2809      	cmp	r0, #9
+  ba:	d8ba      	bhi.n	32 <User_process_record_user+0x32>
+  bc:	f7ff fffe 	bl	0 <__gnu_thumb1_case_shi>
+			bc: R_ARM_THM_CALL	__gnu_thumb1_case_shi
+  c0:	ffb90320 	.word	0xffb90320
+  c4:	ffb9ffb9 	.word	0xffb9ffb9
+  c8:	ffb9ffb9 	.word	0xffb9ffb9
+  cc:	03340327 	.word	0x03340327
+  d0:	0346033d 	.word	0x0346033d
+  d4:	4b7e      	ldr	r3, [pc, #504]	@ (2d0 <User_process_record_user+0x2d0>)
+  d6:	4298      	cmp	r0, r3
+  d8:	d1ab      	bne.n	32 <User_process_record_user+0x32>
+  da:	794b      	ldrb	r3, [r1, #5]
+  dc:	2b00      	cmp	r3, #0
+  de:	d0a8      	beq.n	32 <User_process_record_user+0x32>
+  e0:	2400      	movs	r4, #0
+  e2:	2301      	movs	r3, #1
+  e4:	4876      	ldr	r0, [pc, #472]	@ (2c0 <User_process_record_user+0x2c0>)
+  e6:	4d7b      	ldr	r5, [pc, #492]	@ (2d4 <User_process_record_user+0x2d4>)
+  e8:	221c      	movs	r2, #28
+  ea:	0021      	movs	r1, r4
+  ec:	8084      	strh	r4, [r0, #4]
+  ee:	71c4      	strb	r4, [r0, #7]
+  f0:	70c3      	strb	r3, [r0, #3]
+  f2:	702b      	strb	r3, [r5, #0]
+  f4:	f7ff fffe 	bl	0 <User_process_record_user>
+			f4: R_ARM_THM_CALL	eeprom_write_block_user
+  f8:	702c      	strb	r4, [r5, #0]
+  fa:	e79a      	b.n	32 <User_process_record_user+0x32>
+  fc:	794b      	ldrb	r3, [r1, #5]
+  fe:	2b00      	cmp	r3, #0
+ 100:	d097      	beq.n	32 <User_process_record_user+0x32>
+ 102:	2290      	movs	r2, #144	@ 0x90
+ 104:	4b6e      	ldr	r3, [pc, #440]	@ (2c0 <User_process_record_user+0x2c0>)
+ 106:	05d2      	lsls	r2, r2, #23
+ 108:	7d99      	ldrb	r1, [r3, #22]
+ 10a:	2900      	cmp	r1, #0
+ 10c:	d10b      	bne.n	126 <User_process_record_user+0x126>
+ 10e:	3101      	adds	r1, #1
+ 110:	7599      	strb	r1, [r3, #22]
+ 112:	2380      	movs	r3, #128	@ 0x80
+ 114:	045b      	lsls	r3, r3, #17
+ 116:	6093      	str	r3, [r2, #8]
+ 118:	f7ff fffe 	bl	0 <User_process_record_user>
+			118: R_ARM_THM_CALL	User_Uart_Deinit
+ 11c:	f7ff fffe 	bl	0 <User_process_record_user>
+			11c: R_ARM_THM_CALL	User_Lcd_Power_Mark_Synced
+ 120:	f7ff fffe 	bl	0 <User_process_record_user>
+			120: R_ARM_THM_CALL	Save_Flash_Set
+ 124:	e785      	b.n	32 <User_process_record_user+0x32>
+ 126:	2100      	movs	r1, #0
+ 128:	7599      	strb	r1, [r3, #22]
+ 12a:	2380      	movs	r3, #128	@ 0x80
+ 12c:	005b      	lsls	r3, r3, #1
+ 12e:	6093      	str	r3, [r2, #8]
+ 130:	f7ff fffe 	bl	0 <User_process_record_user>
+			130: R_ARM_THM_CALL	Reset_Power_Lvgl
+ 134:	e7f2      	b.n	11c <User_process_record_user+0x11c>
+ 136:	794b      	ldrb	r3, [r1, #5]
+ 138:	2b00      	cmp	r3, #0
+ 13a:	d100      	bne.n	13e <User_process_record_user+0x13e>
+ 13c:	e779      	b.n	32 <User_process_record_user+0x32>
+ 13e:	2490      	movs	r4, #144	@ 0x90
+ 140:	2380      	movs	r3, #128	@ 0x80
+ 142:	05e4      	lsls	r4, r4, #23
+ 144:	045b      	lsls	r3, r3, #17
+ 146:	60a3      	str	r3, [r4, #8]
+ 148:	f7ff fffe 	bl	0 <User_process_record_user>
+			148: R_ARM_THM_CALL	User_Uart_Deinit
+ 14c:	200a      	movs	r0, #10
+ 14e:	f7ff fffe 	bl	0 <chThdSleep>
+			14e: R_ARM_THM_CALL	chThdSleep
+ 152:	2380      	movs	r3, #128	@ 0x80
+ 154:	005b      	lsls	r3, r3, #1
+ 156:	60a3      	str	r3, [r4, #8]
+ 158:	f7ff fffe 	bl	0 <User_process_record_user>
+			158: R_ARM_THM_CALL	Reset_Power_Lvgl
+ 15c:	4b58      	ldr	r3, [pc, #352]	@ (2c0 <User_process_record_user+0x2c0>)
+ 15e:	7d9a      	ldrb	r2, [r3, #22]
+ 160:	2a00      	cmp	r2, #0
+ 162:	d003      	beq.n	16c <User_process_record_user+0x16c>
+ 164:	2200      	movs	r2, #0
+ 166:	759a      	strb	r2, [r3, #22]
+ 168:	f7ff fffe 	bl	0 <User_process_record_user>
+			168: R_ARM_THM_CALL	Save_Flash_Set
+ 16c:	f7ff fffe 	bl	0 <User_process_record_user>
+			16c: R_ARM_THM_CALL	User_Lcd_Power_Mark_Synced
+ 170:	e75f      	b.n	32 <User_process_record_user+0x32>
+ 172:	794b      	ldrb	r3, [r1, #5]
+ 174:	2b00      	cmp	r3, #0
+ 176:	d100      	bne.n	17a <User_process_record_user+0x17a>
+ 178:	e75b      	b.n	32 <User_process_record_user+0x32>
+ 17a:	4b51      	ldr	r3, [pc, #324]	@ (2c0 <User_process_record_user+0x2c0>)
+ 17c:	7d5a      	ldrb	r2, [r3, #21]
+ 17e:	2a00      	cmp	r2, #0
+ 180:	d100      	bne.n	184 <User_process_record_user+0x184>
+ 182:	e756      	b.n	32 <User_process_record_user+0x32>
+ 184:	2200      	movs	r2, #0
+ 186:	755a      	strb	r2, [r3, #21]
+ 188:	f7ff fffe 	bl	0 <User_process_record_user>
+			188: R_ARM_THM_CALL	Save_Flash_Set
+ 18c:	e751      	b.n	32 <User_process_record_user+0x32>
+ 18e:	794b      	ldrb	r3, [r1, #5]
+ 190:	2b00      	cmp	r3, #0
+ 192:	d100      	bne.n	196 <User_process_record_user+0x196>
+ 194:	e74d      	b.n	32 <User_process_record_user+0x32>
+ 196:	4b4a      	ldr	r3, [pc, #296]	@ (2c0 <User_process_record_user+0x2c0>)
+ 198:	7d5a      	ldrb	r2, [r3, #21]
+ 19a:	2a01      	cmp	r2, #1
+ 19c:	d100      	bne.n	1a0 <User_process_record_user+0x1a0>
+ 19e:	e748      	b.n	32 <User_process_record_user+0x32>
+ 1a0:	2201      	movs	r2, #1
+ 1a2:	755a      	strb	r2, [r3, #21]
+ 1a4:	f7ff fffe 	bl	0 <User_process_record_user>
+			1a4: R_ARM_THM_CALL	Save_Flash_Set
+ 1a8:	e743      	b.n	32 <User_process_record_user+0x32>
+ 1aa:	794b      	ldrb	r3, [r1, #5]
+ 1ac:	2b00      	cmp	r3, #0
+ 1ae:	d100      	bne.n	1b2 <User_process_record_user+0x1b2>
+ 1b0:	e73f      	b.n	32 <User_process_record_user+0x32>
+ 1b2:	4b43      	ldr	r3, [pc, #268]	@ (2c0 <User_process_record_user+0x2c0>)
+ 1b4:	7d5a      	ldrb	r2, [r3, #21]
+ 1b6:	2a02      	cmp	r2, #2
+ 1b8:	d100      	bne.n	1bc <User_process_record_user+0x1bc>
+ 1ba:	e73a      	b.n	32 <User_process_record_user+0x32>
+ 1bc:	2202      	movs	r2, #2
+ 1be:	755a      	strb	r2, [r3, #21]
+ 1c0:	f7ff fffe 	bl	0 <User_process_record_user>
+			1c0: R_ARM_THM_CALL	Save_Flash_Set
+ 1c4:	e735      	b.n	32 <User_process_record_user+0x32>
+ 1c6:	794b      	ldrb	r3, [r1, #5]
+ 1c8:	2b00      	cmp	r3, #0
+ 1ca:	d100      	bne.n	1ce <User_process_record_user+0x1ce>
+ 1cc:	e731      	b.n	32 <User_process_record_user+0x32>
+ 1ce:	4b42      	ldr	r3, [pc, #264]	@ (2d8 <User_process_record_user+0x2d8>)
+ 1d0:	781a      	ldrb	r2, [r3, #0]
+ 1d2:	2a00      	cmp	r2, #0
+ 1d4:	d005      	beq.n	1e2 <User_process_record_user+0x1e2>
+ 1d6:	2301      	movs	r3, #1
+ 1d8:	4a40      	ldr	r2, [pc, #256]	@ (2dc <User_process_record_user+0x2dc>)
+ 1da:	7811      	ldrb	r1, [r2, #0]
+ 1dc:	404b      	eors	r3, r1
+ 1de:	7013      	strb	r3, [r2, #0]
+ 1e0:	e727      	b.n	32 <User_process_record_user+0x32>
+ 1e2:	4b37      	ldr	r3, [pc, #220]	@ (2c0 <User_process_record_user+0x2c0>)
+ 1e4:	7d59      	ldrb	r1, [r3, #21]
+ 1e6:	2900      	cmp	r1, #0
+ 1e8:	d003      	beq.n	1f2 <User_process_record_user+0x1f2>
+ 1ea:	2901      	cmp	r1, #1
+ 1ec:	d102      	bne.n	1f4 <User_process_record_user+0x1f4>
+ 1ee:	2202      	movs	r2, #2
+ 1f0:	e000      	b.n	1f4 <User_process_record_user+0x1f4>
+ 1f2:	2201      	movs	r2, #1
+ 1f4:	755a      	strb	r2, [r3, #21]
+ 1f6:	f7ff fffe 	bl	0 <User_process_record_user>
+			1f6: R_ARM_THM_CALL	Save_Flash_Set
+ 1fa:	e71a      	b.n	32 <User_process_record_user+0x32>
+ 1fc:	794b      	ldrb	r3, [r1, #5]
+ 1fe:	2b00      	cmp	r3, #0
+ 200:	d100      	bne.n	204 <User_process_record_user+0x204>
+ 202:	e716      	b.n	32 <User_process_record_user+0x32>
+ 204:	492e      	ldr	r1, [pc, #184]	@ (2c0 <User_process_record_user+0x2c0>)
+ 206:	7d4b      	ldrb	r3, [r1, #21]
+ 208:	2b02      	cmp	r3, #2
+ 20a:	d000      	beq.n	20e <User_process_record_user+0x20e>
+ 20c:	e711      	b.n	32 <User_process_record_user+0x32>
+ 20e:	4b34      	ldr	r3, [pc, #208]	@ (2e0 <User_process_record_user+0x2e0>)
+ 210:	781b      	ldrb	r3, [r3, #0]
+ 212:	2b00      	cmp	r3, #0
+ 214:	d000      	beq.n	218 <User_process_record_user+0x218>
+ 216:	e70c      	b.n	32 <User_process_record_user+0x32>
+ 218:	4b32      	ldr	r3, [pc, #200]	@ (2e4 <User_process_record_user+0x2e4>)
+ 21a:	78da      	ldrb	r2, [r3, #3]
+ 21c:	2a00      	cmp	r2, #0
+ 21e:	d000      	beq.n	222 <User_process_record_user+0x222>
+ 220:	e707      	b.n	32 <User_process_record_user+0x32>
+ 222:	7e0b      	ldrb	r3, [r1, #24]
+ 224:	7d08      	ldrb	r0, [r1, #20]
+ 226:	3301      	adds	r3, #1
+ 228:	b2db      	uxtb	r3, r3
+ 22a:	760b      	strb	r3, [r1, #24]
+ 22c:	4298      	cmp	r0, r3
+ 22e:	d8e2      	bhi.n	1f6 <User_process_record_user+0x1f6>
+ 230:	760a      	strb	r2, [r1, #24]
+ 232:	e7e0      	b.n	1f6 <User_process_record_user+0x1f6>
+ 234:	794b      	ldrb	r3, [r1, #5]
+ 236:	2b00      	cmp	r3, #0
+ 238:	d100      	bne.n	23c <User_process_record_user+0x23c>
+ 23a:	e6fa      	b.n	32 <User_process_record_user+0x32>
+ 23c:	4b28      	ldr	r3, [pc, #160]	@ (2e0 <User_process_record_user+0x2e0>)
+ 23e:	781b      	ldrb	r3, [r3, #0]
+ 240:	2b00      	cmp	r3, #0
+ 242:	d000      	beq.n	246 <User_process_record_user+0x246>
+ 244:	e6f5      	b.n	32 <User_process_record_user+0x32>
+ 246:	4b27      	ldr	r3, [pc, #156]	@ (2e4 <User_process_record_user+0x2e4>)
+ 248:	4a27      	ldr	r2, [pc, #156]	@ (2e8 <User_process_record_user+0x2e8>)
+ 24a:	78db      	ldrb	r3, [r3, #3]
+ 24c:	7812      	ldrb	r2, [r2, #0]
+ 24e:	4313      	orrs	r3, r2
+ 250:	d000      	beq.n	254 <User_process_record_user+0x254>
+ 252:	e6ee      	b.n	32 <User_process_record_user+0x32>
+ 254:	f7ff fffe 	bl	0 <User_process_record_user>
+			254: R_ARM_THM_CALL	Lvgl_Home_Next_Func
+ 258:	e6eb      	b.n	32 <User_process_record_user+0x32>
+ 25a:	794b      	ldrb	r3, [r1, #5]
+ 25c:	2b00      	cmp	r3, #0
+ 25e:	d100      	bne.n	262 <User_process_record_user+0x262>
+ 260:	e6e7      	b.n	32 <User_process_record_user+0x32>
+ 262:	4b1f      	ldr	r3, [pc, #124]	@ (2e0 <User_process_record_user+0x2e0>)
+ 264:	781b      	ldrb	r3, [r3, #0]
+ 266:	2b00      	cmp	r3, #0
+ 268:	d000      	beq.n	26c <User_process_record_user+0x26c>
+ 26a:	e6e2      	b.n	32 <User_process_record_user+0x32>
+ 26c:	4b1d      	ldr	r3, [pc, #116]	@ (2e4 <User_process_record_user+0x2e4>)
+ 26e:	4a1e      	ldr	r2, [pc, #120]	@ (2e8 <User_process_record_user+0x2e8>)
+ 270:	78db      	ldrb	r3, [r3, #3]
+ 272:	7812      	ldrb	r2, [r2, #0]
+ 274:	4313      	orrs	r3, r2
+ 276:	d000      	beq.n	27a <User_process_record_user+0x27a>
+ 278:	e6db      	b.n	32 <User_process_record_user+0x32>
+ 27a:	f7ff fffe 	bl	0 <User_process_record_user>
+			27a: R_ARM_THM_CALL	Lvgl_Home_Prev_Func
+ 27e:	e6d8      	b.n	32 <User_process_record_user+0x32>
+ 280:	794b      	ldrb	r3, [r1, #5]
+ 282:	2b00      	cmp	r3, #0
+ 284:	d100      	bne.n	288 <User_process_record_user+0x288>
+ 286:	e6d4      	b.n	32 <User_process_record_user+0x32>
+ 288:	4b15      	ldr	r3, [pc, #84]	@ (2e0 <User_process_record_user+0x2e0>)
+ 28a:	781b      	ldrb	r3, [r3, #0]
+ 28c:	2b00      	cmp	r3, #0
+ 28e:	d108      	bne.n	2a2 <User_process_record_user+0x2a2>
+ 290:	4b14      	ldr	r3, [pc, #80]	@ (2e4 <User_process_record_user+0x2e4>)
+ 292:	4a15      	ldr	r2, [pc, #84]	@ (2e8 <User_process_record_user+0x2e8>)
+ 294:	78db      	ldrb	r3, [r3, #3]
+ 296:	7812      	ldrb	r2, [r2, #0]
+ 298:	4313      	orrs	r3, r2
+ 29a:	d102      	bne.n	2a2 <User_process_record_user+0x2a2>
+ 29c:	f7ff fffe 	bl	0 <User_process_record_user>
+			29c: R_ARM_THM_CALL	Lvgl_Home_Enter_Func
+ 2a0:	e6c7      	b.n	32 <User_process_record_user+0x32>
+ 2a2:	20a8      	movs	r0, #168	@ 0xa8
+ 2a4:	f7ff fffe 	bl	0 <User_process_record_user>
+			2a4: R_ARM_THM_CALL	Send_Key
+ 2a8:	e6c3      	b.n	32 <User_process_record_user+0x32>
+ 2aa:	46c0      	nop			@ (mov r8, r8)
+ 2ac:	00007e20 	.word	0x00007e20
+ 2b0:	00005223 	.word	0x00005223
+ 2b4:	00005221 	.word	0x00005221
+ 2b8:	ffff8200 	.word	0xffff8200
+ 2bc:	00005201 	.word	0x00005201
+ 2c0:	00000000 	.word	0x00000000
+			2c0: R_ARM_ABS32	.data.Keyboard_Info
+ 2c4:	0000782a 	.word	0x0000782a
+ 2c8:	00007820 	.word	0x00007820
+ 2cc:	ffff87df 	.word	0xffff87df
+ 2d0:	00007c03 	.word	0x00007c03
+	...
+			2d4: R_ARM_ABS32	.bss.Reset_Save_Flash
+			2d8: R_ARM_ABS32	.bss.Key_Crtl_Status
+			2dc: R_ARM_ABS32	.bss.White_Led_Max
+			2e0: R_ARM_ABS32	.bss.Led_Rf_Pair_Flg
+			2e4: R_ARM_ABS32	.bss.Keyboard_Status
+			2e8: R_ARM_ABS32	.data.Uart_Work_Mode
+ 2ec:	794b      	ldrb	r3, [r1, #5]
+ 2ee:	2b00      	cmp	r3, #0
+ 2f0:	d100      	bne.n	2f4 <User_process_record_user+0x2f4>
+ 2f2:	e69e      	b.n	32 <User_process_record_user+0x32>
+ 2f4:	4bc6      	ldr	r3, [pc, #792]	@ (610 <User_process_record_user+0x610>)
+ 2f6:	781b      	ldrb	r3, [r3, #0]
+ 2f8:	2b00      	cmp	r3, #0
+ 2fa:	d118      	bne.n	32e <User_process_record_user+0x32e>
+ 2fc:	4bc5      	ldr	r3, [pc, #788]	@ (614 <User_process_record_user+0x614>)
+ 2fe:	78dc      	ldrb	r4, [r3, #3]
+ 300:	4bc5      	ldr	r3, [pc, #788]	@ (618 <User_process_record_user+0x618>)
+ 302:	781b      	ldrb	r3, [r3, #0]
+ 304:	431c      	orrs	r4, r3
+ 306:	d112      	bne.n	32e <User_process_record_user+0x32e>
+ 308:	4bc4      	ldr	r3, [pc, #784]	@ (61c <User_process_record_user+0x61c>)
+ 30a:	781b      	ldrb	r3, [r3, #0]
+ 30c:	2b00      	cmp	r3, #0
+ 30e:	d00e      	beq.n	32e <User_process_record_user+0x32e>
+ 310:	4bc3      	ldr	r3, [pc, #780]	@ (620 <User_process_record_user+0x620>)
+ 312:	781b      	ldrb	r3, [r3, #0]
+ 314:	2b00      	cmp	r3, #0
+ 316:	d0b0      	beq.n	27a <User_process_record_user+0x27a>
+ 318:	4bc2      	ldr	r3, [pc, #776]	@ (624 <User_process_record_user+0x624>)
+ 31a:	75dc      	strb	r4, [r3, #23]
+ 31c:	f7ff fffe 	bl	0 <User_process_record_user>
+			31c: R_ARM_THM_CALL	Save_Flash_Set
+ 320:	0021      	movs	r1, r4
+ 322:	20c9      	movs	r0, #201	@ 0xc9
+ 324:	f7ff fffe 	bl	0 <User_process_record_user>
+			324: R_ARM_THM_CALL	Uart_While_Send_Commad
+ 328:	f7ff fffe 	bl	0 <User_process_record_user>
+			328: R_ARM_THM_CALL	Lvgl_Home_Prev_Func
+ 32c:	e681      	b.n	32 <User_process_record_user+0x32>
+ 32e:	20aa      	movs	r0, #170	@ 0xaa
+ 330:	f7ff fffe 	bl	0 <User_process_record_user>
+			330: R_ARM_THM_CALL	Send_Key
+ 334:	e67d      	b.n	32 <User_process_record_user+0x32>
+ 336:	794b      	ldrb	r3, [r1, #5]
+ 338:	2b00      	cmp	r3, #0
+ 33a:	d100      	bne.n	33e <User_process_record_user+0x33e>
+ 33c:	e679      	b.n	32 <User_process_record_user+0x32>
+ 33e:	4bb4      	ldr	r3, [pc, #720]	@ (610 <User_process_record_user+0x610>)
+ 340:	781b      	ldrb	r3, [r3, #0]
+ 342:	2b00      	cmp	r3, #0
+ 344:	d11a      	bne.n	37c <User_process_record_user+0x37c>
+ 346:	4bb3      	ldr	r3, [pc, #716]	@ (614 <User_process_record_user+0x614>)
+ 348:	78dc      	ldrb	r4, [r3, #3]
+ 34a:	4bb3      	ldr	r3, [pc, #716]	@ (618 <User_process_record_user+0x618>)
+ 34c:	781b      	ldrb	r3, [r3, #0]
+ 34e:	431c      	orrs	r4, r3
+ 350:	d114      	bne.n	37c <User_process_record_user+0x37c>
+ 352:	4bb2      	ldr	r3, [pc, #712]	@ (61c <User_process_record_user+0x61c>)
+ 354:	781b      	ldrb	r3, [r3, #0]
+ 356:	2b00      	cmp	r3, #0
+ 358:	d010      	beq.n	37c <User_process_record_user+0x37c>
+ 35a:	4bb1      	ldr	r3, [pc, #708]	@ (620 <User_process_record_user+0x620>)
+ 35c:	781b      	ldrb	r3, [r3, #0]
+ 35e:	2b00      	cmp	r3, #0
+ 360:	d100      	bne.n	364 <User_process_record_user+0x364>
+ 362:	e777      	b.n	254 <User_process_record_user+0x254>
+ 364:	2201      	movs	r2, #1
+ 366:	4baf      	ldr	r3, [pc, #700]	@ (624 <User_process_record_user+0x624>)
+ 368:	75da      	strb	r2, [r3, #23]
+ 36a:	f7ff fffe 	bl	0 <User_process_record_user>
+			36a: R_ARM_THM_CALL	Save_Flash_Set
+ 36e:	0021      	movs	r1, r4
+ 370:	20c9      	movs	r0, #201	@ 0xc9
+ 372:	f7ff fffe 	bl	0 <User_process_record_user>
+			372: R_ARM_THM_CALL	Uart_While_Send_Commad
+ 376:	f7ff fffe 	bl	0 <User_process_record_user>
+			376: R_ARM_THM_CALL	Lvgl_Home_Next_Func
+ 37a:	e65a      	b.n	32 <User_process_record_user+0x32>
+ 37c:	20a9      	movs	r0, #169	@ 0xa9
+ 37e:	f7ff fffe 	bl	0 <User_process_record_user>
+			37e: R_ARM_THM_CALL	Send_Key
+ 382:	e656      	b.n	32 <User_process_record_user+0x32>
+ 384:	794b      	ldrb	r3, [r1, #5]
+ 386:	2b00      	cmp	r3, #0
+ 388:	d100      	bne.n	38c <User_process_record_user+0x38c>
+ 38a:	e652      	b.n	32 <User_process_record_user+0x32>
+ 38c:	f7ff fffe 	bl	0 <User_process_record_user>
+			38c: R_ARM_THM_CALL	Lvgl_Boot
+ 390:	e64f      	b.n	32 <User_process_record_user+0x32>
+ 392:	794b      	ldrb	r3, [r1, #5]
+ 394:	2b00      	cmp	r3, #0
+ 396:	d100      	bne.n	39a <User_process_record_user+0x39a>
+ 398:	e64b      	b.n	32 <User_process_record_user+0x32>
+ 39a:	f7ff fffe 	bl	0 <User_process_record_user>
+			39a: R_ARM_THM_CALL	Reset_Lvgl_Boot
+ 39e:	e648      	b.n	32 <User_process_record_user+0x32>
+ 3a0:	794b      	ldrb	r3, [r1, #5]
+ 3a2:	2b00      	cmp	r3, #0
+ 3a4:	d000      	beq.n	3a8 <User_process_record_user+0x3a8>
+ 3a6:	e644      	b.n	32 <User_process_record_user+0x32>
+ 3a8:	466b      	mov	r3, sp
+ 3aa:	1d9c      	adds	r4, r3, #6
+ 3ac:	2202      	movs	r2, #2
+ 3ae:	0020      	movs	r0, r4
+ 3b0:	f7ff fffe 	bl	0 <memcpy>
+			3b0: R_ARM_THM_CALL	memcpy
+ 3b4:	4b9c      	ldr	r3, [pc, #624]	@ (628 <User_process_record_user+0x628>)
+ 3b6:	8822      	ldrh	r2, [r4, #0]
+ 3b8:	429a      	cmp	r2, r3
+ 3ba:	d000      	beq.n	3be <User_process_record_user+0x3be>
+ 3bc:	e639      	b.n	32 <User_process_record_user+0x32>
+ 3be:	4b99      	ldr	r3, [pc, #612]	@ (624 <User_process_record_user+0x624>)
+ 3c0:	791a      	ldrb	r2, [r3, #4]
+ 3c2:	2a00      	cmp	r2, #0
+ 3c4:	d100      	bne.n	3c8 <User_process_record_user+0x3c8>
+ 3c6:	e634      	b.n	32 <User_process_record_user+0x32>
+ 3c8:	2200      	movs	r2, #0
+ 3ca:	711a      	strb	r2, [r3, #4]
+ 3cc:	4b97      	ldr	r3, [pc, #604]	@ (62c <User_process_record_user+0x62c>)
+ 3ce:	3201      	adds	r2, #1
+ 3d0:	2065      	movs	r0, #101	@ 0x65
+ 3d2:	701a      	strb	r2, [r3, #0]
+ 3d4:	f7ff fffe 	bl	0 <unregister_code>
+			3d4: R_ARM_THM_CALL	unregister_code
+ 3d8:	20e2      	movs	r0, #226	@ 0xe2
+ 3da:	f7ff fffe 	bl	0 <unregister_code>
+			3da: R_ARM_THM_CALL	unregister_code
+ 3de:	20e3      	movs	r0, #227	@ 0xe3
+ 3e0:	f7ff fffe 	bl	0 <unregister_code>
+			3e0: R_ARM_THM_CALL	unregister_code
+ 3e4:	20e6      	movs	r0, #230	@ 0xe6
+ 3e6:	f7ff fffe 	bl	0 <unregister_code>
+			3e6: R_ARM_THM_CALL	unregister_code
+ 3ea:	20e7      	movs	r0, #231	@ 0xe7
+ 3ec:	f7ff fffe 	bl	0 <unregister_code>
+			3ec: R_ARM_THM_CALL	unregister_code
+ 3f0:	f7ff fffe 	bl	0 <User_process_record_user>
+			3f0: R_ARM_THM_CALL	Save_Flash_Set
+ 3f4:	e61d      	b.n	32 <User_process_record_user+0x32>
+ 3f6:	794b      	ldrb	r3, [r1, #5]
+ 3f8:	2b00      	cmp	r3, #0
+ 3fa:	d000      	beq.n	3fe <User_process_record_user+0x3fe>
+ 3fc:	e619      	b.n	32 <User_process_record_user+0x32>
+ 3fe:	466b      	mov	r3, sp
+ 400:	1d9c      	adds	r4, r3, #6
+ 402:	2202      	movs	r2, #2
+ 404:	0020      	movs	r0, r4
+ 406:	f7ff fffe 	bl	0 <memcpy>
+			406: R_ARM_THM_CALL	memcpy
+ 40a:	4b89      	ldr	r3, [pc, #548]	@ (630 <User_process_record_user+0x630>)
+ 40c:	8822      	ldrh	r2, [r4, #0]
+ 40e:	429a      	cmp	r2, r3
+ 410:	d000      	beq.n	414 <User_process_record_user+0x414>
+ 412:	e60e      	b.n	32 <User_process_record_user+0x32>
+ 414:	4b83      	ldr	r3, [pc, #524]	@ (624 <User_process_record_user+0x624>)
+ 416:	791a      	ldrb	r2, [r3, #4]
+ 418:	2a01      	cmp	r2, #1
+ 41a:	d100      	bne.n	41e <User_process_record_user+0x41e>
+ 41c:	e609      	b.n	32 <User_process_record_user+0x32>
+ 41e:	2201      	movs	r2, #1
+ 420:	809a      	strh	r2, [r3, #4]
+ 422:	4b82      	ldr	r3, [pc, #520]	@ (62c <User_process_record_user+0x62c>)
+ 424:	3202      	adds	r2, #2
+ 426:	2065      	movs	r0, #101	@ 0x65
+ 428:	701a      	strb	r2, [r3, #0]
+ 42a:	f7ff fffe 	bl	0 <unregister_code>
+			42a: R_ARM_THM_CALL	unregister_code
+ 42e:	20e2      	movs	r0, #226	@ 0xe2
+ 430:	f7ff fffe 	bl	0 <unregister_code>
+			430: R_ARM_THM_CALL	unregister_code
+ 434:	20e3      	movs	r0, #227	@ 0xe3
+ 436:	f7ff fffe 	bl	0 <unregister_code>
+			436: R_ARM_THM_CALL	unregister_code
+ 43a:	20e6      	movs	r0, #230	@ 0xe6
+ 43c:	f7ff fffe 	bl	0 <unregister_code>
+			43c: R_ARM_THM_CALL	unregister_code
+ 440:	20e7      	movs	r0, #231	@ 0xe7
+ 442:	f7ff fffe 	bl	0 <unregister_code>
+			442: R_ARM_THM_CALL	unregister_code
+ 446:	f7ff fffe 	bl	0 <User_process_record_user>
+			446: R_ARM_THM_CALL	Save_Flash_Set
+ 44a:	e5f2      	b.n	32 <User_process_record_user+0x32>
+ 44c:	4b75      	ldr	r3, [pc, #468]	@ (624 <User_process_record_user+0x624>)
+ 44e:	781d      	ldrb	r5, [r3, #0]
+ 450:	2d01      	cmp	r5, #1
+ 452:	d000      	beq.n	456 <User_process_record_user+0x456>
+ 454:	e5ed      	b.n	32 <User_process_record_user+0x32>
+ 456:	794b      	ldrb	r3, [r1, #5]
+ 458:	4c76      	ldr	r4, [pc, #472]	@ (634 <User_process_record_user+0x634>)
+ 45a:	2b00      	cmp	r3, #0
+ 45c:	d005      	beq.n	46a <User_process_record_user+0x46a>
+ 45e:	f7ff fffe 	bl	0 <User_process_record_user>
+			45e: R_ARM_THM_CALL	User_Clear_Board_2ms
+ 462:	7025      	strb	r5, [r4, #0]
+ 464:	f7ff fffe 	bl	0 <User_process_record_user>
+			464: R_ARM_THM_CALL	Reset_Uart
+ 468:	e000      	b.n	46c <User_process_record_user+0x46c>
+ 46a:	7023      	strb	r3, [r4, #0]
+ 46c:	2200      	movs	r2, #0
+ 46e:	4b72      	ldr	r3, [pc, #456]	@ (638 <User_process_record_user+0x638>)
+ 470:	801a      	strh	r2, [r3, #0]
+ 472:	e5de      	b.n	32 <User_process_record_user+0x32>
+ 474:	4b6b      	ldr	r3, [pc, #428]	@ (624 <User_process_record_user+0x624>)
+ 476:	781a      	ldrb	r2, [r3, #0]
+ 478:	2a00      	cmp	r2, #0
+ 47a:	d000      	beq.n	47e <User_process_record_user+0x47e>
+ 47c:	e5d9      	b.n	32 <User_process_record_user+0x32>
+ 47e:	7949      	ldrb	r1, [r1, #5]
+ 480:	4a6e      	ldr	r2, [pc, #440]	@ (63c <User_process_record_user+0x63c>)
+ 482:	2900      	cmp	r1, #0
+ 484:	d039      	beq.n	4fa <User_process_record_user+0x4fa>
+ 486:	2401      	movs	r4, #1
+ 488:	7014      	strb	r4, [r2, #0]
+ 48a:	785a      	ldrb	r2, [r3, #1]
+ 48c:	42a2      	cmp	r2, r4
+ 48e:	d0ed      	beq.n	46c <User_process_record_user+0x46c>
+ 490:	705c      	strb	r4, [r3, #1]
+ 492:	f7ff fffe 	bl	0 <User_process_record_user>
+			492: R_ARM_THM_CALL	User_Clear_Board_2ms
+ 496:	0020      	movs	r0, r4
+ 498:	f7ff fffe 	bl	0 <User_process_record_user>
+			498: R_ARM_THM_CALL	Spi_Send_Commad
+ 49c:	f7ff fffe 	bl	0 <User_process_record_user>
+			49c: R_ARM_THM_CALL	Save_Flash_Set
+ 4a0:	4b5b      	ldr	r3, [pc, #364]	@ (610 <User_process_record_user+0x610>)
+ 4a2:	701c      	strb	r4, [r3, #0]
+ 4a4:	e7de      	b.n	464 <User_process_record_user+0x464>
+ 4a6:	4b5f      	ldr	r3, [pc, #380]	@ (624 <User_process_record_user+0x624>)
+ 4a8:	781a      	ldrb	r2, [r3, #0]
+ 4aa:	2a00      	cmp	r2, #0
+ 4ac:	d000      	beq.n	4b0 <User_process_record_user+0x4b0>
+ 4ae:	e5c0      	b.n	32 <User_process_record_user+0x32>
+ 4b0:	7949      	ldrb	r1, [r1, #5]
+ 4b2:	4a63      	ldr	r2, [pc, #396]	@ (640 <User_process_record_user+0x640>)
+ 4b4:	2900      	cmp	r1, #0
+ 4b6:	d020      	beq.n	4fa <User_process_record_user+0x4fa>
+ 4b8:	2501      	movs	r5, #1
+ 4ba:	7015      	strb	r5, [r2, #0]
+ 4bc:	785a      	ldrb	r2, [r3, #1]
+ 4be:	2a02      	cmp	r2, #2
+ 4c0:	d0d4      	beq.n	46c <User_process_record_user+0x46c>
+ 4c2:	2402      	movs	r4, #2
+ 4c4:	705c      	strb	r4, [r3, #1]
+ 4c6:	f7ff fffe 	bl	0 <User_process_record_user>
+			4c6: R_ARM_THM_CALL	User_Clear_Board_2ms
+ 4ca:	0020      	movs	r0, r4
+ 4cc:	f7ff fffe 	bl	0 <User_process_record_user>
+			4cc: R_ARM_THM_CALL	Spi_Send_Commad
+ 4d0:	f7ff fffe 	bl	0 <User_process_record_user>
+			4d0: R_ARM_THM_CALL	Save_Flash_Set
+ 4d4:	4b4e      	ldr	r3, [pc, #312]	@ (610 <User_process_record_user+0x610>)
+ 4d6:	701d      	strb	r5, [r3, #0]
+ 4d8:	e7c4      	b.n	464 <User_process_record_user+0x464>
+ 4da:	4b52      	ldr	r3, [pc, #328]	@ (624 <User_process_record_user+0x624>)
+ 4dc:	781a      	ldrb	r2, [r3, #0]
+ 4de:	2a00      	cmp	r2, #0
+ 4e0:	d000      	beq.n	4e4 <User_process_record_user+0x4e4>
+ 4e2:	e5a6      	b.n	32 <User_process_record_user+0x32>
+ 4e4:	7949      	ldrb	r1, [r1, #5]
+ 4e6:	4a57      	ldr	r2, [pc, #348]	@ (644 <User_process_record_user+0x644>)
+ 4e8:	2900      	cmp	r1, #0
+ 4ea:	d006      	beq.n	4fa <User_process_record_user+0x4fa>
+ 4ec:	2501      	movs	r5, #1
+ 4ee:	7015      	strb	r5, [r2, #0]
+ 4f0:	785a      	ldrb	r2, [r3, #1]
+ 4f2:	2403      	movs	r4, #3
+ 4f4:	2a03      	cmp	r2, #3
+ 4f6:	d0b9      	beq.n	46c <User_process_record_user+0x46c>
+ 4f8:	e7e4      	b.n	4c4 <User_process_record_user+0x4c4>
+ 4fa:	7011      	strb	r1, [r2, #0]
+ 4fc:	e7b6      	b.n	46c <User_process_record_user+0x46c>
+ 4fe:	794b      	ldrb	r3, [r1, #5]
+ 500:	2b00      	cmp	r3, #0
+ 502:	d100      	bne.n	506 <User_process_record_user+0x506>
+ 504:	e595      	b.n	32 <User_process_record_user+0x32>
+ 506:	4b47      	ldr	r3, [pc, #284]	@ (624 <User_process_record_user+0x624>)
+ 508:	781a      	ldrb	r2, [r3, #0]
+ 50a:	2a02      	cmp	r2, #2
+ 50c:	d100      	bne.n	510 <User_process_record_user+0x510>
+ 50e:	e590      	b.n	32 <User_process_record_user+0x32>
+ 510:	2202      	movs	r2, #2
+ 512:	2008      	movs	r0, #8
+ 514:	701a      	strb	r2, [r3, #0]
+ 516:	f7ff fffe 	bl	0 <User_process_record_user>
+			516: R_ARM_THM_CALL	Spi_Send_Commad
+ 51a:	f7ff fffe 	bl	0 <User_process_record_user>
+			51a: R_ARM_THM_CALL	es_restart_usb_driver
+ 51e:	f7ff fffe 	bl	0 <User_process_record_user>
+			51e: R_ARM_THM_CALL	Save_Flash_Set
+ 522:	2200      	movs	r2, #0
+ 524:	4b3a      	ldr	r3, [pc, #232]	@ (610 <User_process_record_user+0x610>)
+ 526:	701a      	strb	r2, [r3, #0]
+ 528:	e583      	b.n	32 <User_process_record_user+0x32>
+ 52a:	794b      	ldrb	r3, [r1, #5]
+ 52c:	2b00      	cmp	r3, #0
+ 52e:	d000      	beq.n	532 <User_process_record_user+0x532>
+ 530:	e57f      	b.n	32 <User_process_record_user+0x32>
+ 532:	4a45      	ldr	r2, [pc, #276]	@ (648 <User_process_record_user+0x648>)
+ 534:	7813      	ldrb	r3, [r2, #0]
+ 536:	2b00      	cmp	r3, #0
+ 538:	d000      	beq.n	53c <User_process_record_user+0x53c>
+ 53a:	e57a      	b.n	32 <User_process_record_user+0x32>
+ 53c:	2101      	movs	r1, #1
+ 53e:	7011      	strb	r1, [r2, #0]
+ 540:	4a42      	ldr	r2, [pc, #264]	@ (64c <User_process_record_user+0x64c>)
+ 542:	7013      	strb	r3, [r2, #0]
+ 544:	e575      	b.n	32 <User_process_record_user+0x32>
+ 546:	794b      	ldrb	r3, [r1, #5]
+ 548:	2b00      	cmp	r3, #0
+ 54a:	d000      	beq.n	54e <User_process_record_user+0x54e>
+ 54c:	e571      	b.n	32 <User_process_record_user+0x32>
+ 54e:	4b3e      	ldr	r3, [pc, #248]	@ (648 <User_process_record_user+0x648>)
+ 550:	781b      	ldrb	r3, [r3, #0]
+ 552:	2b00      	cmp	r3, #0
+ 554:	d100      	bne.n	558 <User_process_record_user+0x558>
+ 556:	e56c      	b.n	32 <User_process_record_user+0x32>
+ 558:	4a3c      	ldr	r2, [pc, #240]	@ (64c <User_process_record_user+0x64c>)
+ 55a:	7813      	ldrb	r3, [r2, #0]
+ 55c:	3301      	adds	r3, #1
+ 55e:	b2db      	uxtb	r3, r3
+ 560:	2b03      	cmp	r3, #3
+ 562:	d801      	bhi.n	568 <User_process_record_user+0x568>
+ 564:	7013      	strb	r3, [r2, #0]
+ 566:	e564      	b.n	32 <User_process_record_user+0x32>
+ 568:	2300      	movs	r3, #0
+ 56a:	7013      	strb	r3, [r2, #0]
+ 56c:	e561      	b.n	32 <User_process_record_user+0x32>
+ 56e:	794b      	ldrb	r3, [r1, #5]
+ 570:	4a37      	ldr	r2, [pc, #220]	@ (650 <User_process_record_user+0x650>)
+ 572:	4938      	ldr	r1, [pc, #224]	@ (654 <User_process_record_user+0x654>)
+ 574:	2b00      	cmp	r3, #0
+ 576:	d004      	beq.n	582 <User_process_record_user+0x582>
+ 578:	2301      	movs	r3, #1
+ 57a:	700b      	strb	r3, [r1, #0]
+ 57c:	2300      	movs	r3, #0
+ 57e:	7013      	strb	r3, [r2, #0]
+ 580:	e557      	b.n	32 <User_process_record_user+0x32>
+ 582:	700b      	strb	r3, [r1, #0]
+ 584:	7013      	strb	r3, [r2, #0]
+ 586:	e554      	b.n	32 <User_process_record_user+0x32>
+ 588:	794a      	ldrb	r2, [r1, #5]
+ 58a:	2a00      	cmp	r2, #0
+ 58c:	d000      	beq.n	590 <User_process_record_user+0x590>
+ 58e:	e550      	b.n	32 <User_process_record_user+0x32>
+ 590:	4b24      	ldr	r3, [pc, #144]	@ (624 <User_process_record_user+0x624>)
+ 592:	7918      	ldrb	r0, [r3, #4]
+ 594:	7959      	ldrb	r1, [r3, #5]
+ 596:	2801      	cmp	r0, #1
+ 598:	d106      	bne.n	5a8 <User_process_record_user+0x5a8>
+ 59a:	2901      	cmp	r1, #1
+ 59c:	d000      	beq.n	5a0 <User_process_record_user+0x5a0>
+ 59e:	e548      	b.n	32 <User_process_record_user+0x32>
+ 5a0:	715a      	strb	r2, [r3, #5]
+ 5a2:	f7ff fffe 	bl	0 <User_process_record_user>
+			5a2: R_ARM_THM_CALL	Save_Flash_Set
+ 5a6:	e544      	b.n	32 <User_process_record_user+0x32>
+ 5a8:	2900      	cmp	r1, #0
+ 5aa:	d10b      	bne.n	5c4 <User_process_record_user+0x5c4>
+ 5ac:	2201      	movs	r2, #1
+ 5ae:	20e3      	movs	r0, #227	@ 0xe3
+ 5b0:	715a      	strb	r2, [r3, #5]
+ 5b2:	f7ff fffe 	bl	0 <unregister_code>
+			5b2: R_ARM_THM_CALL	unregister_code
+ 5b6:	20e7      	movs	r0, #231	@ 0xe7
+ 5b8:	f7ff fffe 	bl	0 <unregister_code>
+			5b8: R_ARM_THM_CALL	unregister_code
+ 5bc:	2065      	movs	r0, #101	@ 0x65
+ 5be:	f7ff fffe 	bl	0 <unregister_code>
+			5be: R_ARM_THM_CALL	unregister_code
+ 5c2:	e618      	b.n	1f6 <User_process_record_user+0x1f6>
+ 5c4:	715a      	strb	r2, [r3, #5]
+ 5c6:	e616      	b.n	1f6 <User_process_record_user+0x1f6>
+ 5c8:	794b      	ldrb	r3, [r1, #5]
+ 5ca:	2b00      	cmp	r3, #0
+ 5cc:	d100      	bne.n	5d0 <User_process_record_user+0x5d0>
+ 5ce:	e530      	b.n	32 <User_process_record_user+0x32>
+ 5d0:	4b21      	ldr	r3, [pc, #132]	@ (658 <User_process_record_user+0x658>)
+ 5d2:	2503      	movs	r5, #3
+ 5d4:	781b      	ldrb	r3, [r3, #0]
+ 5d6:	4c21      	ldr	r4, [pc, #132]	@ (65c <User_process_record_user+0x65c>)
+ 5d8:	2b7f      	cmp	r3, #127	@ 0x7f
+ 5da:	d903      	bls.n	5e4 <User_process_record_user+0x5e4>
+ 5dc:	f7ff fffe 	bl	0 <User_process_record_user>
+			5dc: R_ARM_THM_CALL	es_change_qmk_nkro_mode_disable
+ 5e0:	7025      	strb	r5, [r4, #0]
+ 5e2:	e526      	b.n	32 <User_process_record_user+0x32>
+ 5e4:	f7ff fffe 	bl	0 <User_process_record_user>
+			5e4: R_ARM_THM_CALL	es_change_qmk_nkro_mode_enable
+ 5e8:	7025      	strb	r5, [r4, #0]
+ 5ea:	e522      	b.n	32 <User_process_record_user+0x32>
+ 5ec:	794a      	ldrb	r2, [r1, #5]
+ 5ee:	4b1c      	ldr	r3, [pc, #112]	@ (660 <User_process_record_user+0x660>)
+ 5f0:	701a      	strb	r2, [r3, #0]
+ 5f2:	2200      	movs	r2, #0
+ 5f4:	4b1b      	ldr	r3, [pc, #108]	@ (664 <User_process_record_user+0x664>)
+ 5f6:	801a      	strh	r2, [r3, #0]
+ 5f8:	e51b      	b.n	32 <User_process_record_user+0x32>
+ 5fa:	794b      	ldrb	r3, [r1, #5]
+ 5fc:	2b00      	cmp	r3, #0
+ 5fe:	d000      	beq.n	602 <User_process_record_user+0x602>
+ 600:	e517      	b.n	32 <User_process_record_user+0x32>
+ 602:	4b08      	ldr	r3, [pc, #32]	@ (624 <User_process_record_user+0x624>)
+ 604:	68da      	ldr	r2, [r3, #12]
+ 606:	2a3c      	cmp	r2, #60	@ 0x3c
+ 608:	d12e      	bne.n	668 <User_process_record_user+0x668>
+ 60a:	22b4      	movs	r2, #180	@ 0xb4
+ 60c:	60da      	str	r2, [r3, #12]
+ 60e:	e030      	b.n	672 <User_process_record_user+0x672>
+	...
+			610: R_ARM_ABS32	.bss.Led_Rf_Pair_Flg
+			614: R_ARM_ABS32	.bss.Keyboard_Status
+			618: R_ARM_ABS32	.data.Uart_Work_Mode
+			61c: R_ARM_ABS32	.bss.Lvgl_Home
+			620: R_ARM_ABS32	.bss.Language_Layer
+			624: R_ARM_ABS32	.data.Keyboard_Info
+ 628:	00000301 	.word	0x00000301
+ 62c:	00000000 	.word	0x00000000
+			62c: R_ARM_ABS32	.bss.Mac_Win_Point_Count
+ 630:	00000302 	.word	0x00000302
+	...
+			634: R_ARM_ABS32	.bss.Key_2p4g_Status
+			638: R_ARM_ABS32	.bss.Time_3s_Count
+			63c: R_ARM_ABS32	.bss.Key_Ble_1_Status
+			640: R_ARM_ABS32	.bss.Key_Ble_2_Status
+			644: R_ARM_ABS32	.bss.Key_Ble_3_Status
+			648: R_ARM_ABS32	.bss.Test_Led
+			64c: R_ARM_ABS32	.bss.Test_Colour
+			650: R_ARM_ABS32	.bss.User_Key_Batt_Count
+			654: R_ARM_ABS32	.bss.User_Key_Batt_Num_Show
+			658: R_ARM_ABS32	keymap_config
+			65c: R_ARM_ABS32	.bss.INIT_ALL_SIX_KEY_Count
+			660: R_ARM_ABS32	.bss.Debounce_Function_Status
+			664: R_ARM_ABS32	.bss.User_Key_3s_Count
+ 668:	2096      	movs	r0, #150	@ 0x96
+ 66a:	0080      	lsls	r0, r0, #2
+ 66c:	2ab4      	cmp	r2, #180	@ 0xb4
+ 66e:	d10c      	bne.n	68a <User_process_record_user+0x68a>
+ 670:	60d8      	str	r0, [r3, #12]
+ 672:	2015      	movs	r0, #21
+ 674:	f7ff fffe 	bl	0 <User_process_record_user>
+			674: R_ARM_THM_CALL	Spi_Send_Commad
+ 678:	2200      	movs	r2, #0
+ 67a:	4b55      	ldr	r3, [pc, #340]	@ (7d0 <User_process_record_user+0x7d0>)
+ 67c:	701a      	strb	r2, [r3, #0]
+ 67e:	4b55      	ldr	r3, [pc, #340]	@ (7d4 <User_process_record_user+0x7d4>)
+ 680:	3203      	adds	r2, #3
+ 682:	701a      	strb	r2, [r3, #0]
+ 684:	f7ff fffe 	bl	0 <User_process_record_user>
+			684: R_ARM_THM_CALL	Save_Flash_Set
+ 688:	e4d3      	b.n	32 <User_process_record_user+0x32>
+ 68a:	21e1      	movs	r1, #225	@ 0xe1
+ 68c:	00c9      	lsls	r1, r1, #3
+ 68e:	4282      	cmp	r2, r0
+ 690:	d101      	bne.n	696 <User_process_record_user+0x696>
+ 692:	60d9      	str	r1, [r3, #12]
+ 694:	e7ed      	b.n	672 <User_process_record_user+0x672>
+ 696:	428a      	cmp	r2, r1
+ 698:	d1b7      	bne.n	60a <User_process_record_user+0x60a>
+ 69a:	223c      	movs	r2, #60	@ 0x3c
+ 69c:	e7b6      	b.n	60c <User_process_record_user+0x60c>
+ 69e:	794c      	ldrb	r4, [r1, #5]
+ 6a0:	2c00      	cmp	r4, #0
+ 6a2:	d000      	beq.n	6a6 <User_process_record_user+0x6a6>
+ 6a4:	e4c5      	b.n	32 <User_process_record_user+0x32>
+ 6a6:	4a4c      	ldr	r2, [pc, #304]	@ (7d8 <User_process_record_user+0x7d8>)
+ 6a8:	2016      	movs	r0, #22
+ 6aa:	6913      	ldr	r3, [r2, #16]
+ 6ac:	330f      	adds	r3, #15
+ 6ae:	6113      	str	r3, [r2, #16]
+ 6b0:	f7ff fffe 	bl	0 <User_process_record_user>
+			6b0: R_ARM_THM_CALL	Spi_Send_Commad
+ 6b4:	4b49      	ldr	r3, [pc, #292]	@ (7dc <User_process_record_user+0x7dc>)
+ 6b6:	701c      	strb	r4, [r3, #0]
+ 6b8:	f7ff fffe 	bl	0 <User_process_record_user>
+			6b8: R_ARM_THM_CALL	Save_Flash_Set
+ 6bc:	e4b9      	b.n	32 <User_process_record_user+0x32>
+ 6be:	794a      	ldrb	r2, [r1, #5]
+ 6c0:	4b47      	ldr	r3, [pc, #284]	@ (7e0 <User_process_record_user+0x7e0>)
+ 6c2:	2a00      	cmp	r2, #0
+ 6c4:	d002      	beq.n	6cc <User_process_record_user+0x6cc>
+ 6c6:	2201      	movs	r2, #1
+ 6c8:	701a      	strb	r2, [r3, #0]
+ 6ca:	e4b2      	b.n	32 <User_process_record_user+0x32>
+ 6cc:	701a      	strb	r2, [r3, #0]
+ 6ce:	e4b0      	b.n	32 <User_process_record_user+0x32>
+ 6d0:	794a      	ldrb	r2, [r1, #5]
+ 6d2:	4b44      	ldr	r3, [pc, #272]	@ (7e4 <User_process_record_user+0x7e4>)
+ 6d4:	2a00      	cmp	r2, #0
+ 6d6:	d006      	beq.n	6e6 <User_process_record_user+0x6e6>
+ 6d8:	4a41      	ldr	r2, [pc, #260]	@ (7e0 <User_process_record_user+0x7e0>)
+ 6da:	7812      	ldrb	r2, [r2, #0]
+ 6dc:	2a00      	cmp	r2, #0
+ 6de:	d002      	beq.n	6e6 <User_process_record_user+0x6e6>
+ 6e0:	2201      	movs	r2, #1
+ 6e2:	701a      	strb	r2, [r3, #0]
+ 6e4:	e4a5      	b.n	32 <User_process_record_user+0x32>
+ 6e6:	2200      	movs	r2, #0
+ 6e8:	701a      	strb	r2, [r3, #0]
+ 6ea:	e4a2      	b.n	32 <User_process_record_user+0x32>
+ 6ec:	7948      	ldrb	r0, [r1, #5]
+ 6ee:	2800      	cmp	r0, #0
+ 6f0:	d003      	beq.n	6fa <User_process_record_user+0x6fa>
+ 6f2:	20cf      	movs	r0, #207	@ 0xcf
+ 6f4:	f7ff fffe 	bl	0 <host_consumer_send>
+			6f4: R_ARM_THM_CALL	host_consumer_send
+ 6f8:	e49b      	b.n	32 <User_process_record_user+0x32>
+ 6fa:	f7ff fffe 	bl	0 <host_consumer_send>
+			6fa: R_ARM_THM_CALL	host_consumer_send
+ 6fe:	e498      	b.n	32 <User_process_record_user+0x32>
+ 700:	794b      	ldrb	r3, [r1, #5]
+ 702:	2b00      	cmp	r3, #0
+ 704:	d000      	beq.n	708 <User_process_record_user+0x708>
+ 706:	e494      	b.n	32 <User_process_record_user+0x32>
+ 708:	4a33      	ldr	r2, [pc, #204]	@ (7d8 <User_process_record_user+0x7d8>)
+ 70a:	7693      	strb	r3, [r2, #26]
+ 70c:	e491      	b.n	32 <User_process_record_user+0x32>
+ 70e:	794b      	ldrb	r3, [r1, #5]
+ 710:	2b00      	cmp	r3, #0
+ 712:	d000      	beq.n	716 <User_process_record_user+0x716>
+ 714:	e48d      	b.n	32 <User_process_record_user+0x32>
+ 716:	f7ff fffe 	bl	0 <rgb_matrix_get_val>
+			716: R_ARM_THM_CALL	rgb_matrix_get_val
+ 71a:	0603      	lsls	r3, r0, #24
+ 71c:	d400      	bmi.n	720 <User_process_record_user+0x720>
+ 71e:	e488      	b.n	32 <User_process_record_user+0x32>
+ 720:	2203      	movs	r2, #3
+ 722:	4b31      	ldr	r3, [pc, #196]	@ (7e8 <User_process_record_user+0x7e8>)
+ 724:	701a      	strb	r2, [r3, #0]
+ 726:	e484      	b.n	32 <User_process_record_user+0x32>
+ 728:	794b      	ldrb	r3, [r1, #5]
+ 72a:	2b00      	cmp	r3, #0
+ 72c:	d000      	beq.n	730 <User_process_record_user+0x730>
+ 72e:	e480      	b.n	32 <User_process_record_user+0x32>
+ 730:	f7ff fffe 	bl	0 <rgb_matrix_get_val>
+			730: R_ARM_THM_CALL	rgb_matrix_get_val
+ 734:	2820      	cmp	r0, #32
+ 736:	d9f3      	bls.n	720 <User_process_record_user+0x720>
+ 738:	e47b      	b.n	32 <User_process_record_user+0x32>
+ 73a:	794b      	ldrb	r3, [r1, #5]
+ 73c:	2b00      	cmp	r3, #0
+ 73e:	d000      	beq.n	742 <User_process_record_user+0x742>
+ 740:	e477      	b.n	32 <User_process_record_user+0x32>
+ 742:	f7ff fffe 	bl	0 <rgb_matrix_get_speed>
+			742: R_ARM_THM_CALL	rgb_matrix_get_speed
+ 746:	28cb      	cmp	r0, #203	@ 0xcb
+ 748:	d8ea      	bhi.n	720 <User_process_record_user+0x720>
+ 74a:	e472      	b.n	32 <User_process_record_user+0x32>
+ 74c:	794b      	ldrb	r3, [r1, #5]
+ 74e:	2b00      	cmp	r3, #0
+ 750:	d000      	beq.n	754 <User_process_record_user+0x754>
+ 752:	e46e      	b.n	32 <User_process_record_user+0x32>
+ 754:	f7ff fffe 	bl	0 <rgb_matrix_get_speed>
+			754: R_ARM_THM_CALL	rgb_matrix_get_speed
+ 758:	2833      	cmp	r0, #51	@ 0x33
+ 75a:	d9e1      	bls.n	720 <User_process_record_user+0x720>
+ 75c:	e469      	b.n	32 <User_process_record_user+0x32>
+ 75e:	794a      	ldrb	r2, [r1, #5]
+ 760:	4e22      	ldr	r6, [pc, #136]	@ (7ec <User_process_record_user+0x7ec>)
+ 762:	4d23      	ldr	r5, [pc, #140]	@ (7f0 <User_process_record_user+0x7f0>)
+ 764:	4b23      	ldr	r3, [pc, #140]	@ (7f4 <User_process_record_user+0x7f4>)
+ 766:	2a00      	cmp	r2, #0
+ 768:	d005      	beq.n	776 <User_process_record_user+0x776>
+ 76a:	2201      	movs	r2, #1
+ 76c:	7032      	strb	r2, [r6, #0]
+ 76e:	2200      	movs	r2, #0
+ 770:	802a      	strh	r2, [r5, #0]
+ 772:	701a      	strb	r2, [r3, #0]
+ 774:	e45d      	b.n	32 <User_process_record_user+0x32>
+ 776:	781a      	ldrb	r2, [r3, #0]
+ 778:	2a00      	cmp	r2, #0
+ 77a:	d114      	bne.n	7a6 <User_process_record_user+0x7a6>
+ 77c:	4b16      	ldr	r3, [pc, #88]	@ (7d8 <User_process_record_user+0x7d8>)
+ 77e:	79d9      	ldrb	r1, [r3, #7]
+ 780:	2900      	cmp	r1, #0
+ 782:	d014      	beq.n	7ae <User_process_record_user+0x7ae>
+ 784:	71da      	strb	r2, [r3, #7]
+ 786:	f7ff fffe 	bl	0 <rgb_matrix_get_val>
+			786: R_ARM_THM_CALL	rgb_matrix_get_val
+ 78a:	2800      	cmp	r0, #0
+ 78c:	d109      	bne.n	7a2 <User_process_record_user+0x7a2>
+ 78e:	f7ff fffe 	bl	0 <rgb_matrix_get_hue>
+			78e: R_ARM_THM_CALL	rgb_matrix_get_hue
+ 792:	0004      	movs	r4, r0
+ 794:	f7ff fffe 	bl	0 <rgb_matrix_get_sat>
+			794: R_ARM_THM_CALL	rgb_matrix_get_sat
+ 798:	22a0      	movs	r2, #160	@ 0xa0
+ 79a:	0001      	movs	r1, r0
+ 79c:	b2a0      	uxth	r0, r4
+ 79e:	f7ff fffe 	bl	0 <rgb_matrix_sethsv_noeeprom>
+			79e: R_ARM_THM_CALL	rgb_matrix_sethsv_noeeprom
+ 7a2:	f7ff fffe 	bl	0 <User_process_record_user>
+			7a2: R_ARM_THM_CALL	Save_Flash_Set
+ 7a6:	2300      	movs	r3, #0
+ 7a8:	7033      	strb	r3, [r6, #0]
+ 7aa:	802b      	strh	r3, [r5, #0]
+ 7ac:	e441      	b.n	32 <User_process_record_user+0x32>
+ 7ae:	2201      	movs	r2, #1
+ 7b0:	71da      	strb	r2, [r3, #7]
+ 7b2:	e7f6      	b.n	7a2 <User_process_record_user+0x7a2>
+ 7b4:	794b      	ldrb	r3, [r1, #5]
+ 7b6:	4a10      	ldr	r2, [pc, #64]	@ (7f8 <User_process_record_user+0x7f8>)
+ 7b8:	2b00      	cmp	r3, #0
+ 7ba:	d005      	beq.n	7c8 <User_process_record_user+0x7c8>
+ 7bc:	2301      	movs	r3, #1
+ 7be:	7013      	strb	r3, [r2, #0]
+ 7c0:	2203      	movs	r2, #3
+ 7c2:	4b0e      	ldr	r3, [pc, #56]	@ (7fc <User_process_record_user+0x7fc>)
+ 7c4:	701a      	strb	r2, [r3, #0]
+ 7c6:	e434      	b.n	32 <User_process_record_user+0x32>
+ 7c8:	7013      	strb	r3, [r2, #0]
+ 7ca:	4a0d      	ldr	r2, [pc, #52]	@ (800 <User_process_record_user+0x800>)
+ 7cc:	8013      	strh	r3, [r2, #0]
+ 7ce:	e430      	b.n	32 <User_process_record_user+0x32>
+	...
+			7d0: R_ARM_ABS32	.bss.User_Sleep_Time_Send
+			7d4: R_ARM_ABS32	.bss.User_Sleep_Timer_Count
+			7d8: R_ARM_ABS32	.data.Keyboard_Info
+			7dc: R_ARM_ABS32	.bss.User_DSleep_Time_Send
+			7e0: R_ARM_ABS32	.bss.Key_Fn_Status
+			7e4: R_ARM_ABS32	.bss.Key_Crtl_Status
+			7e8: R_ARM_ABS32	.bss.Led_Point_Count
+			7ec: R_ARM_ABS32	.bss.Screen_Power_On_Off_Flg
+			7f0: R_ARM_ABS32	.bss.Screen_Power_On_Off_3S_Count
+			7f4: R_ARM_ABS32	.bss.Screen_Or_Led_Change
+			7f8: R_ARM_ABS32	.bss.User_QMK_EE_CLR_Flag
+			7fc: R_ARM_ABS32	.bss.Reset_Point_Count
+			800: R_ARM_ABS32	.bss.Time_3s_EE_CLR_Count

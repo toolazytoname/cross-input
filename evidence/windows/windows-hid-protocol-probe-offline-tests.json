@@ -1,0 +1,89 @@
+[
+    {
+        "name":  "metadata-default-no-requests",
+        "passed":  true
+    },
+    {
+        "name":  "missing-device-fails",
+        "passed":  true
+    },
+    {
+        "name":  "k94-mi01-and-caps-selected",
+        "passed":  true
+    },
+    {
+        "name":  "wrong-interface-rejected",
+        "passed":  true
+    },
+    {
+        "name":  "hidpp-swid-and-function-whitelist",
+        "passed":  true
+    },
+    {
+        "name":  "hidpp-strict-response-and-error",
+        "passed":  true
+    },
+    {
+        "name":  "k94-independent-fixture-matches",
+        "passed":  true
+    },
+    {
+        "name":  "controlled-transport-success-distinct-caps",
+        "passed":  true
+    },
+    {
+        "name":  "short-read-rejected",
+        "passed":  true,
+        "bytes_read":  17,
+        "native_input_report_byte_length":  31,
+        "native_output_report_byte_length":  33
+    },
+    {
+        "name":  "pending-write-cancel-bounded",
+        "passed":  true,
+        "elapsed_ms":  43,
+        "write_elapsed_ms":  43,
+        "write_cancel_wait_ms":  15,
+        "write_initial_native_error":  997,
+        "write_wait_native_error":  0,
+        "write_cancel_native_error":  0,
+        "write_get_overlapped_native_error":  995,
+        "write_final_native_error":  995
+    },
+    {
+        "name":  "cancel-not-found-completed-race",
+        "passed":  true,
+        "elapsed_ms":  45,
+        "write_elapsed_ms":  45,
+        "write_cancel_wait_ms":  14,
+        "write_initial_native_error":  997,
+        "write_wait_native_error":  0,
+        "write_cancel_native_error":  1168,
+        "write_get_overlapped_native_error":  0,
+        "write_final_native_error":  0
+    },
+    {
+        "name":  "unconfirmed-cancel-never-freed",
+        "passed":  true,
+        "elapsed_ms":  30,
+        "write_elapsed_ms":  30,
+        "write_cancel_wait_ms":  15,
+        "write_initial_native_error":  997,
+        "write_wait_native_error":  0,
+        "write_cancel_native_error":  0,
+        "write_get_overlapped_native_error":  997,
+        "write_final_native_error":  997
+    },
+    {
+        "name":  "mouse-readonly-capability-and-name-gates",
+        "passed":  true
+    },
+    {
+        "name":  "mouse-switch-to-mac-once-after-preflight",
+        "passed":  true
+    },
+    {
+        "name":  "k94-receiver-path-uses-verified-request",
+        "passed":  true
+    }
+]

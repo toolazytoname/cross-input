@@ -1,0 +1,88 @@
+# Cross Input
+
+Experimental, hardware-channel mouse switching between a Mac mini and a Windows PC using a Logitech M585/M590, with research into KEMOVE K94 keyboard control.
+
+The mouse does not use Logitech Flow or software mouse forwarding. The local controllers read the mouse's HID++ state and send its documented `CHANGE_HOST` command to move the existing Bluetooth pairing between hosts.
+
+## Current status
+
+- **Mouse, both directions:** verified on hardware. Mac slot 1 to Windows slot 0 and back.
+- **Automatic screen-edge switching:** one supervised automatic Mac to Windows to Mac round trip completed, with JSONL evidence.
+- **Stability:** disconnect recovery, duplicate suppression, dwell, cooldown, and re-arm-after-leaving-edge have offline tests. A 50-round-trip soak test and sleep/network recovery acceptance remain to be completed.
+- **KEMOVE K94:** official firmware builds reproducibly. The unflashed VIA protocol patch compiles, but a control channel that is simultaneously reachable and capable of invoking a BLE transition is still unproven. No firmware was flashed.
+- **Keyboard following, clipboard synchronization, and a production GUI/service:** pending.
+
+Deskflow is a separate rollback path. The edge controllers must not run at the same time as Deskflow's edge handling.
+
+## Repository layout
+
+- `scripts/`: Mac and Windows probes, one-shot mouse tools, and supervised edge controllers.
+- `docs/`: implementation status, protocol notes, architecture, and acceptance criteria.
+- `evidence/`: selected hardware responses, test results, and research evidence.
+- `tests/`: offline tests for the Mac controller/probe and Windows protocol implementation.
+
+The upstream KEMOVE QMK source and compiled firmware artifacts are not bundled. See the official repository at https://github.com/KEMOVE-Official/KEMOVE-QMK-Firmware. The small K94 patch is included for review, with its own recovery warnings.
+
+## Mouse protocol and safety
+
+The M585/M590 exposes a vendor collection with VID/PID `046d:b01b`, usage page `0xff43`, usage `0x0202`, and a 20-byte HID++ long report. On this installation, `CHANGE_HOST 0x1814` is feature index 9 and `HOSTS_INFO 0x1815` is feature index 10. `HOSTS_INFO` identifies the paired host names.
+
+Before switching, the tools verify the device, feature indices, host count, current slot, pairing state, and host names. A write is attempted once, without retrying or assuming the target accepted input. Report submission is only a transport result, not proof of cursor usability.
+
+Read-only and dry-run modes are available. Automatic switching also requires a fresh peer-health response, a stable current slot, and an interactive desktop. Recovery remains available through the mouse's physical Easy-Switch button and the explicit one-shot commands.
+
+## Requirements
+
+- macOS with Python 3 and `hidapi` (`python3 -m pip install hidapi`) for Mac HID tools.
+- Windows PowerShell 5.1 with the built-in .NET C# compiler.
+- An already paired M585/M590 on both computers.
+- A configured SSH alias for the Windows computer, if using the remote task controller.
+
+Set `M585_SSH_ALIAS` and `M585_EDGE_MAC_HOST` for your installation. Windows temporary files default to `$env:TEMP` when available.
+
+## Checks and dry runs
+
+```sh
+python3 scripts/m585_readonly_probe.py --query
+python3 scripts/m585_edge_controller.py --check-environment --check-peer
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+```
+
+The Windows script's default mode performs metadata enumeration only. Its test mode uses controlled transports, not physical switching.
+
+```sh
+scripts/run_windows_hid_protocol_probe.sh metadata-only
+scripts/run_windows_hid_protocol_probe.sh test-only
+```
+
+## Supervised edge test
+
+Pause Deskflow's edge handling before starting the two controllers. The Windows controller must run in the logged-in user's interactive session. A normal SSH session cannot host the hotkeys, so the supplied reversible task helper uses an Interactive principal.
+
+```sh
+scripts/start_windows_m585_edge_from_ssh.sh register-start dry-run
+python3 scripts/m585_edge_controller.py --dry-run
+```
+
+Inspect the logs and health responses first. Then use `watch` mode for a supervised hardware test. Windows hotkeys are `Ctrl+Alt+Shift+M` to return to Mac and `Ctrl+Alt+Shift+X` to stop the controller. Stop the Mac controller with `Ctrl+C`.
+
+```sh
+scripts/start_windows_m585_edge_from_ssh.sh register-start watch
+python3 scripts/m585_edge_controller.py --watch
+```
+
+Restore Deskflow after testing and remove the temporary Windows task when finished.
+
+```sh
+scripts/start_windows_m585_edge_from_ssh.sh remove
+```
+
+## Current limitations
+
+The controller has not passed its full acceptance matrix. It does not claim UAC or Windows login-screen support. Bluetooth disconnects, Wi-Fi changes, Windows sleep, and stale peer health require explicit recovery behavior. Do not deploy it as an unattended daily service yet.
+
+The K94 factory BLE handler requires BLE source mode, while the observed raw VIA interface was found in USB mode. A VIA response from the 2.4 GHz receiver also needs a same-shape online positive control before its responder and control capabilities can be identified.
+
+## License
+
+MIT for this project's original source and documentation. KEMOVE's QMK code and related upstream materials retain their original licenses.

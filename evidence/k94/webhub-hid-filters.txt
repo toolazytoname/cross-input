@@ -1,0 +1,121 @@
+        window.removeEventListener("drop", n, !1),
+        (d9 = !1));
+    }
+  );
+}
+const Dre = 14e3,
+  Kre = 13311;
+function J3(e, t) {
+  return e === Dre && t === Kre;
+}
+function Are(e) {
+  return !!e.collections?.some((t) => t.usagePage === 65280 && t.usage === 1);
+}
+async function hv() {
+  if (typeof navigator > "u" || !("hid" in navigator)) return null;
+  const t = (await navigator.hid.getDevices()).filter((n) =>
+    J3(n.vendorId, n.productId),
+  );
+  return t.length ? (t.find((n) => Are(n)) ?? t[0]) : null;
+}
+const wo = {},
+  Bs = {},
+  ju = {};
+function QL(e, t) {
+  return e
+    ? (ju[e] || (ju[e] = new Set()),
+      ju[e].add(t),
+      () => {
+        ju[e]?.delete(t);
+      })
+    : () => {};
+}
+function kre(e, t) {
+  const n = ju[e];
+  if (!n?.size) return;
+  const r = Array.from(t);
+  if (
+    !(
+      (r[0] === 170 && r[1] === 208) ||
+      (r.length > 2 && r[1] === 170 && r[2] === 208)
+    )
+  )
+    return;
+  const a = r[0] === 170 && r[1] === 208 ? r : r.slice(1);
+  n.forEach((i) => {
+    try {
+      i(a);
+    } catch (l) {
+      console.warn("[DongleRF] handler error:", l);
+    }
+  });
+}
+const Ore = (e) => () =>
+    Promise.race([
+      new Promise((t, n) => {
+        setTimeout(() => {
+          t([]);
+        }, 1e3);
+      }),
+      new Promise((t, n) => {
+        e((r, o) => {
+          r ? n(r) : t(o);
+        });
+      }),
+    ]),
+  d3 = 65376,
+  f3 = 97,
+  Z3 = new Map();
+function V7(e, t) {
+  return `${e}:${t}`;
+}
+function YL(e, t) {
+  e == null || t == null || Z3.set(V7(e, t), Date.now() + 5e3);
+}
+function jL(e, t) {
+  e == null || t == null || Z3.delete(V7(e, t));
+}
+function Vc(e, t) {
+  const n = V7(e, t),
+    r = Z3.get(n);
+  return r == null ? !1 : Date.now() >= r ? (Z3.delete(n), !1) : !0;
+}
+function mc(e) {
+  return !!e.collections?.some(
+    (t) =>
+      (t.usagePage === d3 || t.usagePage === 65376) &&
+      (t.usage === f3 || t.usage === 97),
+  );
+}
+const qs = (e) => {
+    let n = e.filter((o) => mc(o));
+    !n.length &&
+      yt() &&
+      (n = e.filter((o) => {
+        if (Vc(o.vendorId, o.productId)) return !1;
+        if (WL(o.vendorId, o.productId)) return !0;
+        const a = o.productId;
+        return (
+          (a > 12290 && a < 13615) ||
+          a === 12290 ||
+          a === 8194 ||
+          a === 12992 ||
+          a === 24640
+        );
+      }));
+    const r = new Map();
+    for (const o of n) {
+      if (Vc(o.vendorId, o.productId)) continue;
+      const a = `${o.vendorId}:${o.productId}`,
+        i = r.get(a);
+      (!i || (!mc(i) && mc(o))) && r.set(a, o);
+    }
+    return [...r.values()];
+  },
+  i5 = 12,
+  qL = 1,
+  Rre = (e) => e.filter((t) => t.collections?.some((n) => n.usagePage === i5));
+function Pre(e) {
+  return mc(e);
+}
+const f9 = new Map();

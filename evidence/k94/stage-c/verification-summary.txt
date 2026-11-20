@@ -1,0 +1,48 @@
+2026-11-19 06:38:11 -0800
+commit=c04f415f5934d6e48a76e7100a2c541116941b90
+tree=6450072e8ffe5a648c94427ca286b1e18f980e3e
+patch_apply_check=passed
+
+-- host test --
+k94_via_switch host tests passed
+
+-- build tail --
+                 from ./lib/chibios/os/rt/include/chport.h:37,
+                 from ./lib/chibios/os/rt/include/ch.h:106,
+                 from ./lib/chibios/os/hal/osal/rt-nil/osal.h:32,
+                 from ./lib/chibios/os/hal/include/hal.h:30,
+                 from ./lib/chibios-contrib/os/hal/include/hal_opamp.h:21,
+                 from lib/chibios-contrib/os/hal/src/hal_opamp.c:26:
+./lib/chibios-contrib/os/common/ext/CMSIS/ES32/FS026/system_fs026.h:34: warning: header guard '__SYSTEM_FS026_H__' followed by '#define' of a different macro [-Wheader-guard]
+   34 | #ifndef __SYSTEM_FS026_H__
+./lib/chibios-contrib/os/common/ext/CMSIS/ES32/FS026/system_fs026.h:35: note: '__SYSTEM_ES32F0283_H__' is defined here; did you mean '__SYSTEM_FS026_H__'?
+   35 | #define __SYSTEM_ES32F0283_H__
+ [32;01m[OK][0m
+Linking: .build/8r101_k94_via.elf                                                                   [32;01m[OK][0m
+Creating binary load file for flashing: .build/8r101_k94_via.bin                                    [32;01m[OK][0m
+Creating load file for flashing: .build/8r101_k94_via.hex                                           [32;01m[OK][0m
+
+Size after:
+   text	   data	    bss	    dec	    hex	filename
+      0	  80546	      0	  80546	  13aa2	8r101_k94_via.bin
+
+Copying 8r101_k94_via.bin to qmk_firmware folder                                                    [32;01m[OK][0m
+
+-- production boundary symbols --
+00005f90 T raw_hid_receive
+00005eac W via_command_kb
+00005f7c W via_custom_value_command
+00000a0c T via_custom_value_command_kb
+
+-- task press/release calls --
+37:     8a6:	2101      	movs	r1, #1
+40:     8ac:	4798      	blx	r3
+44:     8b4:	4798      	blx	r3
+
+-- process_record_user call --
+27:     9f8:	f7ff ffb8 	bl	96c <process_record_user>
+
+-- hashes --
+1bdd2c85591c8be1696d9a3e3b78e82a92a322893b146ef767c8590c6ccd0cef  evidence/k94/stage-c/k94-stage-c.patch
+fb45c9c74bf5ca89d7d11351c392e4d0c38dc7201db1129fe869beca6dc9100c  evidence/k94/stage-c/build/8r101_k94_via.bin
+69862d51267961043b580985d3b3fd1f620258e5198f34eb033947759e8c3ce6  evidence/k94/stage-c/build/8r101_k94_via.elf

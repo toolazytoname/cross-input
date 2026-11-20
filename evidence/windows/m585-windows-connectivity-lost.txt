@@ -1,0 +1,15 @@
+2026-11-20 post-test connectivity note
+
+After the supervised dry-run task was stopped and unregistered, lazy-windows-ts
+stopped accepting SSH and 192.168.1.8 stopped answering ping. No wake-on-LAN packet
+was sent and no further Windows command was attempted.
+
+The exact failing checks were:
+- ssh lazy-windows-ts hostname: connect timed out.
+- ping 192.168.1.8: host down / 100% loss.
+- ssh lazy@192.168.1.8 hostname: host down.
+
+Consequently, the final post-change Windows Add-Type compile could not be repeated after
+the small controller-ready/unused-cleanup edits. The immediately preceding Windows
+compile and 15 controlled-transport tests passed, and the final source passed the local
+27-test static audit. The coordinator should rerun test-only when Windows is reachable.

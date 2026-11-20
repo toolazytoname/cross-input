@@ -1,0 +1,12 @@
+
+	disabled services = {
+		"com.apple.ManagedClientAgent.enrollagent" => disabled
+		"com.apple.Siri.agent" => enabled
+		"sh.brew.mihomo" => enabled
+		"com.apple.FolderActionsDispatcher" => disabled
+		"com.netease.uuremote.agent" => enabled
+		"ai.kimi.cu.service" => enabled
+		"com.apple.appleseed.seedusaged.postinstall" => disabled
+		"com.apple.ScriptMenuApp" => disabled
+		"com.logi.cp-dev-mgr" => disabled
+	}

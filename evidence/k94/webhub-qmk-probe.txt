@@ -1,0 +1,61 @@
+    "DYNAMIC_KEYMAP_GET_LAYER_COUNT"),
+  (e[(e.DYNAMIC_KEYMAP_GET_BUFFER = 18)] = "DYNAMIC_KEYMAP_GET_BUFFER"),
+  (e[(e.DYNAMIC_KEYMAP_SET_BUFFER = 19)] = "DYNAMIC_KEYMAP_SET_BUFFER"),
+  (e[(e.DYNAMIC_KEYMAP_GET_ENCODER = 20)] = "DYNAMIC_KEYMAP_GET_ENCODER"),
+  (e[(e.DYNAMIC_KEYMAP_SET_ENCODER = 21)] = "DYNAMIC_KEYMAP_SET_ENCODER"),
+  (e[(e.BACKLIGHT_CONFIG_SET_VALUE = 7)] = "BACKLIGHT_CONFIG_SET_VALUE"),
+  (e[(e.BACKLIGHT_CONFIG_GET_VALUE = 8)] = "BACKLIGHT_CONFIG_GET_VALUE"),
+  (e[(e.BACKLIGHT_CONFIG_SAVE = 9)] = "BACKLIGHT_CONFIG_SAVE"),
+  e
+))(oM || {});
+Object.entries(oM).reduce((e, [t, n]) => ({ ...e, [n]: t }), {});
+function ade(e) {
+  return 2;
+}
+const w9 = async (e = "demo", t, n) => {
+    if (!xs()) return;
+    const r = eu();
+    if (!r.isSupported)
+      throw new Error(
+        qn.global.t("2050", {
+          browser: r.browserName,
+          browsers: qn.global.t("2052"),
+        }),
+      );
+    try {
+      let o = n ?? [];
+      if (!n) {
+        const a = await xn.devices(t);
+        if (a && !Array.isArray(a)) return;
+        o = Array.isArray(a) ? a : [];
+      }
+      if (o.length > 0) {
+        const a = o[0],
+          i = ade(a.productId),
+          l = new c1(new Vo(a.address, i)),
+          c = await l.getProtocolVersion();
+        if (c !== -1 && c !== 0)
+          return (
+            console.log(`当前键盘为QMK键盘,协议版本为V${c}`),
+            (l.version = c),
+            l
+          );
+      }
+    } catch (o) {
+      console.warn("[QMK] 探测/连接失败，将回退到普通键盘连接流程:", o);
+      return;
+    }
+  },
+  $v = 7,
+  b9 = 8,
+  j1 = ([e, t]) => (e << 8) | t,
+  Ei = (e) => [e >> 8, e & 255];
+function Vv(e, t) {
+  if (!e?.length) return -1;
+  if (e[0] === t) return 0;
+  if (e[0] === 0 && e[1] === t) return 1;
+  if (e[0] === 170) {
+    if (e[1] === t) return 1;
+    if (e.length > 2 && e[2] === t) return 2;
+  }
+  return e[1] === 170 && e.length > 2 && e[2] === t ? 2 : -1;

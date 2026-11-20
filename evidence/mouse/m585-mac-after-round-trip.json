@@ -1,0 +1,93 @@
+{
+  "devices": [
+    {
+      "path": "DevSrvsID:4298347884",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 6,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4298347884",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 2,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4298347884",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 1,
+      "usage": 1,
+      "interface_number": -1
+    },
+    {
+      "path": "DevSrvsID:4298347884",
+      "vendor_id": 1133,
+      "product_id": 45083,
+      "serial_number": "7A09C04B5120EA18",
+      "manufacturer_string": "Logitech",
+      "product_string": "M585/M590",
+      "usage_page": 65347,
+      "usage": 514,
+      "interface_number": -1
+    }
+  ],
+  "selected_collection": {
+    "path": "DevSrvsID:4298347884",
+    "vendor_id": 1133,
+    "product_id": 45083,
+    "serial_number": "7A09C04B5120EA18",
+    "manufacturer_string": "Logitech",
+    "product_string": "M585/M590",
+    "usage_page": 65347,
+    "usage": 514,
+    "interface_number": -1
+  },
+  "non_exclusive_open": {
+    "enabled": true
+  },
+  "hid_listen_access": {
+    "function": "IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)",
+    "raw_result": 0,
+    "result": "granted",
+    "request_type": "listen-event"
+  },
+  "queries": [
+    {
+      "name": "root-get-change-host",
+      "feature_id": 6164,
+      "function": 0,
+      "request_hex": "11ff000118140000000000000000000000000000",
+      "response_hex": "11ff000109000100000000000000000000000000",
+      "feature_index": 9
+    },
+    {
+      "name": "change-host-get-status",
+      "feature_id": 6164,
+      "function": 0,
+      "request_hex": "11ff090100000000000000000000000000000000",
+      "response_hex": "11ff090102010000000000000000000000000000",
+      "decoded": {
+        "host_count": 2,
+        "current_host_index": 1
+      }
+    }
+  ],
+  "change_host_status": {
+    "host_count": 2,
+    "current_host_index": 1
+  }
+}

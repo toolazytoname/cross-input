@@ -1,0 +1,12 @@
+mode metadata-only output_sent False
+candidate_count 7
+m585_count 0
+k94_raw_count 1
+selected HID\VID_36B0&PID_3002&MI_01\7&3E9FBB4&0&0000
+selected_usage FF60:0061
+selected_input_report_byte_length 33
+selected_output_report_byte_length 33
+protocol_output_reports_sent 0
+
+The prior k94 request line in this summary referred to the early implementation
+and has been removed. See k94-receiver-via-negative-control.early-implementation-note.txt.

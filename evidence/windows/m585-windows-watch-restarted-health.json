@@ -1,0 +1,37 @@
+{
+    "TaskName":  "MiniOpsM585EdgeWatch",
+    "State":  4
+}
+[
+    {
+        "ProcessId":  14676,
+        "ParentProcessId":  3032,
+        "SessionId":  1,
+        "CommandLine":  "\"powershell.exe\" -NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_m585_edge_bootstrap.ps1 -Mode watch"
+    },
+    {
+        "ProcessId":  33416,
+        "ParentProcessId":  14676,
+        "SessionId":  1,
+        "CommandLine":  "\"cmd.exe\" /c powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_hid_protocol_probe.ps1 -WindowsEdgeWatch 1\u003e C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\probe-stdout-bfd236d90c6d44de81498004ceda6b2a.log 2\u003e C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\probe-stderr-4301b02dfcbd4143b021caf367a9a903.log"
+    },
+    {
+        "ProcessId":  34624,
+        "ParentProcessId":  33416,
+        "SessionId":  1,
+        "CommandLine":  "powershell.exe  -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\windows_hid_protocol_probe.ps1 -WindowsEdgeWatch "
+    }
+]
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":true,"ready":true,"return_ready":false,"reason":"mouse-not-windows-slot-0","desktop":{"available":true,"state":"INTERACTIVE_DESKTOP_ACCESSIBLE"},"mouse":{"present":false,"current_host_index":-1,"host_count":-1,"slot_evidence_verified":false,"readonly_result":"AWAITING_WINDOWS_DEVICE"},"generated_at_utc":"2026-11-20T12:47:34.3780147Z","expires_at_utc":"2026-11-20T12:47:49.3780147Z","hid_output_report_sent":false}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:50:59.3027403Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T11:51:00.0480319Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T11:51:00.0540245Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:51.9069172Z","dry_run":false,"state":"READY_WINDOWS","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"peer-not-ready","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":"auto-edge-e633d20af4644f0bafc524d83a910023","peer_health":"{\"schema\":1,\"host\":\"mac\",\"state\":\"RECOVERY_REQUIRED\",\"mouse_current_slot\":null,\"ready\":false,\"controller_running\":true,\"mouse_present\":false,\"poll_outcome\":\"device-absent\",\"return_confirmations\":0,\"query_failure_count\":0,\"recovery_started_at\":null,\"started_at\":\"2026-11-20T12:00:34.301677+00:00\",\"last_slot_evidence\":{\"ok\":false,\"returncode\":1,\"stderr_tail\":\"M585/M590 is not connected\\n\",\"stdout_tail\":\"\",\"device_present\":false,\"outcome\":\"device-absent\"},\"last_peer_health\":{\"ok\":true,\"returncode\":0,\"response\":{\"schema\":1,\"controller\":\"windows-peer-health-v1\",\"controller_ready\":true,\"ready\":false,\"reason\":\"mouse-not-slot-0\",\"desktop\":{\"available\":true,\"state\":\"INTERACTIVE_DESKTOP_ACCESSIBLE\"},\"mouse\":{\"present\":false,\"current_host_index\":-1,\"host_count\":-1,\"slot_evidence_verified\":false,\"readonly_result\":\"AWAITING_WINDOWS_DEVICE\"},\"generated_at_utc\":\"2026-11-20T12:15:48.7952420Z\",\"expires_at_utc\":\"2026-11-20T12:16:03.7952420Z\",\"hid_output_report_sent\":false},\"validation\":{\"ok\":true,\"return_ready\":false,\"checks\":{\"schema\":true,\"controller\":true,\"controller_ready\":true,\"desktop\":true,\"no_hid_write\":true},\"hid_output_report_sent\":false},\"hid_output_report_sent\":false}}","result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T12:36:54.5589755Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T12:36:55.8179677Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:36:55.8189740Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T12:47:20.9856710Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T12:47:21.7332405Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:47:21.7412749Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}

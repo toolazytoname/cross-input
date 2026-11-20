@@ -1,0 +1,52 @@
+2026-11-19 corrected Windows HID protocol probe summary
+
+Script under review:
+- scripts/windows_hid_protocol_probe.ps1
+- Windows PowerShell 5.1 Add-Type compilation succeeded through lazy-windows-ts.
+- Fifteen built-in controlled-transport tests passed. They cover metadata no-op,
+  exact K94 MI_01 selection, HID++ SWID/function whitelist and protocol errors,
+  an independent K94 reply fixture, distinct input/output caps, short reads,
+  bounded pending-write cancellation, ERROR_NOT_FOUND completion race, and an
+  unconfirmed cancellation that remains retained instead of being freed, and a
+  Windows-to-Mac switch only after the full mouse preflight.
+- Twenty-seven Mac-side static audit tests passed, including explicit native buffers,
+  per-operation manual-reset events, exact CancelIoEx OVERLAPPED pointers,
+  copy-before-free for completed reads, full stage/native error fields, and real
+  elapsed/cancel-wait fields.
+- The additional edge tests check live virtual-screen geometry, dwell/cooldown and
+  interaction suppression, peer plus slot fail-closed behavior, input-desktop
+  availability, and the explicit Ctrl+Alt+Shift+M return hot key.
+- The newest checks cover versioned/expiring peer-health, the watcher-written TEMP
+  health file, the combined Ctrl+Alt+Shift+M return and Ctrl+Alt+Shift+X stop hotkeys,
+  the visible TEMP launcher/deploy-only script, and the reversible SSH Interactive
+  Scheduled Task controller.
+- Both platform controllers require the pointer to leave the trigger edge before
+  rearming after a submitted or simulated edge transition. The Windows script also has
+  direct interactive foreground parameters for use by the logged-in desktop user.
+- The 2026-11-20 supervised-launch diagnosis and Session 1 Interactive-task validation
+  are recorded in m585-windows-supervised-launch-diagnosis.txt. The temporary test task
+  was stopped/unregistered; connectivity later dropped before a final remote recheck.
+
+Current Windows read-only run:
+- Default mode is metadata-only and opens enumeration handles with desiredAccess=0.
+- Evidence records Mode=metadata-only, HidOutputReportSent=false, seven receiver
+  collections, exactly one MI_01 FF60:0061 collection with 33-byte input and
+  output caps, and no M585/M590 vendor collection.
+- The earlier offline rework run sent no native HID output. A later explicitly
+  authorized run used mouse-switch-mac-once after full preflight and submitted
+  one 20-byte M585/M590 request to slot 1; see
+  m585-windows-to-mac-roundtrip.json and
+  ../mouse/m585-bidirectional-roundtrip-summary.txt.
+
+Historical K94 negative control:
+- evidence/windows/k94-receiver-via-negative-control.json is retained verbatim as
+  an early-implementation result. Its request incorrectly contained 00 01 00 0C,
+  and its old timeout evidence reported ElapsedMilliseconds=0.
+- See k94-receiver-via-negative-control.early-implementation-note.txt. It is not
+  a same-shape control and is not keyboard-end evidence.
+
+Unresolved native operations:
+- The corrected process keeps an unconfirmed buffer, OVERLAPPED, device handle
+  reference, and event reference rooted until process exit. It never attempts to
+  free that operation in managed code. Each SSH probe invocation is a separate
+  PowerShell process, providing the isolation boundary.

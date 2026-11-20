@@ -1,0 +1,23 @@
+[
+    {
+        "schema":  1,
+        "controller":  "windows-peer-health-v1",
+        "controller_ready":  false,
+        "ready":  false,
+        "reason":  "add-type: 使用“1”个参数调用“RunWindowsEdgeWatch”时发生异常:“创建窗口句柄时出错。”",
+        "desktop":  {
+                        "available":  false,
+                        "state":  "SESSION_UNAVAILABLE"
+                    },
+        "mouse":  {
+                      "present":  false,
+                      "current_host_index":  null,
+                      "host_count":  null,
+                      "slot_evidence_verified":  false,
+                      "readonly_result":  "ERROR_ADD_TYPE"
+                  },
+        "generated_at_utc":  "2026-11-20T04:52:40.0919686Z",
+        "expires_at_utc":  "2026-11-20T04:52:55.0919686Z",
+        "hid_output_report_sent":  false
+    }
+]

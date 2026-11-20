@@ -1,0 +1,127 @@
+=== health ===
+{"schema":1,"controller":"windows-peer-health-v1","controller_ready":true,"ready":true,"return_ready":false,"reason":"mouse-not-windows-slot-0","desktop":{"available":true,"state":"INTERACTIVE_DESKTOP_ACCESSIBLE"},"mouse":{"present":false,"current_host_index":-1,"host_count":-1,"slot_evidence_verified":false,"readonly_result":"AWAITING_WINDOWS_DEVICE"},"generated_at_utc":"2026-11-20T12:49:01.6938088Z","expires_at_utc":"2026-11-20T12:49:16.6938088Z","hid_output_report_sent":false}
+=== log tail ===
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T11:40:37.0999287Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:41:24.9029820Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T11:50:59.3027403Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T11:51:00.0480319Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T11:51:00.0540245Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:51.9069172Z","dry_run":false,"state":"READY_WINDOWS","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"peer-not-ready","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":"auto-edge-e633d20af4644f0bafc524d83a910023","peer_health":"{\"schema\":1,\"host\":\"mac\",\"state\":\"RECOVERY_REQUIRED\",\"mouse_current_slot\":null,\"ready\":false,\"controller_running\":true,\"mouse_present\":false,\"poll_outcome\":\"device-absent\",\"return_confirmations\":0,\"query_failure_count\":0,\"recovery_started_at\":null,\"started_at\":\"2026-11-20T12:00:34.301677+00:00\",\"last_slot_evidence\":{\"ok\":false,\"returncode\":1,\"stderr_tail\":\"M585/M590 is not connected\\n\",\"stdout_tail\":\"\",\"device_present\":false,\"outcome\":\"device-absent\"},\"last_peer_health\":{\"ok\":true,\"returncode\":0,\"response\":{\"schema\":1,\"controller\":\"windows-peer-health-v1\",\"controller_ready\":true,\"ready\":false,\"reason\":\"mouse-not-slot-0\",\"desktop\":{\"available\":true,\"state\":\"INTERACTIVE_DESKTOP_ACCESSIBLE\"},\"mouse\":{\"present\":false,\"current_host_index\":-1,\"host_count\":-1,\"slot_evidence_verified\":false,\"readonly_result\":\"AWAITING_WINDOWS_DEVICE\"},\"generated_at_utc\":\"2026-11-20T12:15:48.7952420Z\",\"expires_at_utc\":\"2026-11-20T12:16:03.7952420Z\",\"hid_output_report_sent\":false},\"validation\":{\"ok\":true,\"return_ready\":false,\"checks\":{\"schema\":true,\"controller\":true,\"controller_ready\":true,\"desktop\":true,\"no_hid_write\":true},\"hid_output_report_sent\":false},\"hid_output_report_sent\":false}}","result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:15:52.5417069Z","dry_run":false,"state":"TARGET_UNAVAILABLE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"dry-run","generated_at_utc":"2026-11-20T12:36:54.5589755Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T12:36:55.8179677Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:36:55.8189740Z","dry_run":true,"state":"READY_WINDOWS_SIMULATED","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"bootstrap-starting","mode":"watch","generated_at_utc":"2026-11-20T12:47:20.9856710Z","result":"probe-output-will-be-logged","exit_code":0,"log_file":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"watch-hotkeys-ready","utc":"2026-11-20T12:47:21.7332405Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":"Ctrl+Alt+Shift+M=return-to-Mac; Ctrl+Alt+Shift+X=stop","current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:47:21.7412749Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:48:33.3372878Z","dry_run":false,"state":"READY_WINDOWS","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+{"schema":1,"host":"windows","event":"state","utc":"2026-11-20T12:48:41.7979704Z","dry_run":false,"state":"AWAITING_WINDOWS_DEVICE","attempt_id":null,"peer_health":null,"result":null,"current_slot_evidence":null,"target":null,"recovery":"easy-switch-or-mouse-switch-mac-once","deskflow_unchanged":true}
+=== bluetooth device ===
+[
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Device Identification Service",
+        "InstanceId":  "BTHENUM\\{00001200-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\\8\u002618E11005\u00260\u002634885DD7D565_C00000000"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Service Discovery Service",
+        "InstanceId":  "BTHENUM\\{00001000-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\\8\u002618E11005\u00260\u002634885DD7D565_C00000000"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Device Information Service",
+        "InstanceId":  "BTHLEDEVICE\\{0000180A-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u0026000C"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Bluetooth LE Generic Attribute Service",
+        "InstanceId":  "BTHLEDEVICE\\{0000180F-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u0026001B"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "M585/M590",
+        "InstanceId":  "BTHLE\\DEV_FC07F2535BA3\\8\u002622BC69D\u00260\u0026FC07F2535BA3"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Generic Access Profile",
+        "InstanceId":  "BTHLEDEVICE\\{00001800-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u00260001"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Bluetooth LE Generic Attribute Service",
+        "InstanceId":  "BTHLEDEVICE\\{00010000-0000-1000-8000-011F2000046D}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u0026003E"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "Bluetooth",
+        "FriendlyName":  "Generic Attribute Profile",
+        "InstanceId":  "BTHLEDEVICE\\{00001801-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u00260008"
+    }
+]
+=== hid device ===
+[
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant consumer control device",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL02\\9\u002617E3F342\u00260\u00260001"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant vendor-defined device",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL07\\9\u002617E3F342\u00260\u00260006"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "Logitech Download Assistant",
+        "InstanceId":  "HID\\{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\u0026COL03\\A\u0026387D4D74\u00260\u00260002"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant consumer control device",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL03\\9\u002617E3F342\u00260\u00260002"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "HIDClass",
+        "FriendlyName":  "Bluetooth HID Device",
+        "InstanceId":  "BTHENUM\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\\8\u002618E11005\u00260\u002634885DD7D565_C00000000"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant system controller",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL04\\9\u002617E3F342\u00260\u00260003"
+    },
+    {
+        "Status":  "OK",
+        "Class":  "HIDClass",
+        "FriendlyName":  "Bluetooth Low Energy GATT compliant HID device",
+        "InstanceId":  "BTHLEDEVICE\\{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID\u002602046D_PID\u0026B01B_REV\u00260011_FC07F2535BA3\\9\u00261A98D952\u00260\u0026001E"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant consumer control device",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL05\\9\u002617E3F342\u00260\u00260004"
+    },
+    {
+        "Status":  "Unknown",
+        "Class":  "HIDClass",
+        "FriendlyName":  "HID-compliant vendor-defined device",
+        "InstanceId":  "HID\\{00001124-0000-1000-8000-00805F9B34FB}_VID\u00260002046D_PID\u0026B342\u0026COL06\\9\u002617E3F342\u00260\u00260005"
+    }
+]

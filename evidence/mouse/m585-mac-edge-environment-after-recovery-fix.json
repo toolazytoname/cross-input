@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "host": "mac",
+  "displays": [
+    {
+      "index": 1,
+      "display_id": 4,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1440.0,
+      "height": 900.0
+    }
+  ],
+  "selected_left_edge": 0.0,
+  "accessibility_trusted": true,
+  "listen_only_event_tap_available": true,
+  "mouse_entry_present": true,
+  "readonly_probe_present": true,
+  "mouse_vendor_collection_count": 1,
+  "mouse_serials": [
+    "7A09C04B5120EA18"
+  ],
+  "deskflow_unchanged": true
+}
