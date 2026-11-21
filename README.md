@@ -9,9 +9,9 @@ The mouse does not use Logitech Flow or software mouse forwarding. The local con
 - **Mouse, both directions:** verified on hardware. Mac slot 1 to Windows slot 0 and back.
 - **Automatic screen-edge switching:** one supervised automatic Mac to Windows to Mac round trip completed, with JSONL evidence.
 - **Stability:** disconnect recovery, duplicate suppression, dwell, cooldown, and re-arm-after-leaving-edge have offline tests. A 50-round-trip soak test and sleep/network recovery acceptance remain to be completed.
-- **Text clipboard:** bounded UTF-8 synchronization is implemented with authentication, sequence tracking, replay detection, duplicate suppression, and delivery retries. Local socket tests and the Mac clipboard adapter pass. The Windows adapter and two-host runtime test remain pending.
+- **Text clipboard:** bounded UTF-8 synchronization includes authentication, sequence tracking, replay detection, duplicate suppression, and delivery retries. The Windows Unicode adapter has passed a local Windows read/write test, and Mac-to-Windows payload application was observed. Two-host bidirectional acceptance is still pending.
 - **KEMOVE K94:** official firmware builds reproducibly. The unflashed VIA protocol patch compiles, but a control channel that is simultaneously reachable and capable of invoking a BLE transition is still unproven. No firmware was flashed.
-- **Keyboard following and a production GUI/service:** pending.
+- **Keyboard following and GUI:** an experimental software-forwarding implementation and a local control window are present. Windows key injection and the complete start/stop path have not passed runtime acceptance.
 
 Deskflow is a separate rollback path. The edge controllers must not run at the same time as Deskflow's edge handling.
 
@@ -94,6 +94,8 @@ The protocol limits text to 256 KiB. It logs only metadata, retries an unacknowl
 ## Current limitations
 
 The controller has not passed its full acceptance matrix. It does not claim UAC or Windows login-screen support. Bluetooth disconnects, Wi-Fi changes, Windows sleep, and stale peer health require explicit recovery behavior. Do not deploy it as an unattended daily service yet.
+
+The keyboard forwarder and unified control window are experimental. The Windows clipboard service has not completed its end-to-end validation. The acceptance matrix and explicit boundaries are in `docs/completion-goal.md`.
 
 The K94 factory BLE handler requires BLE source mode, while the observed raw VIA interface was found in USB mode. A VIA response from the 2.4 GHz receiver also needs a same-shape online positive control before its responder and control capabilities can be identified.
 

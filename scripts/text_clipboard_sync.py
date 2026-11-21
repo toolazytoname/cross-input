@@ -8,6 +8,7 @@ import hashlib
 import hmac
 import ipaddress
 import json
+import os
 import secrets
 import socket
 import subprocess
@@ -21,6 +22,7 @@ from typing import Dict, List, Optional, Tuple
 MAX_TEXT_BYTES = 256 * 1024
 PROTOCOL_VERSION = 1
 DEFAULT_PORT = 8791
+CLIPBOARD_SEND_RETRIES = 3
 
 
 class ClipboardSyncError(RuntimeError):
@@ -56,9 +58,10 @@ class MacClipboard:
 class WindowsClipboard:
     def get(self) -> Optional[str]:
         command = (
-            "[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new(); "
-            "$text = Get-Clipboard -Raw; "
-            "if ($null -ne $text) { [Console]::Out.Write($text) }"
+            "Add-Type -AssemblyName System.Windows.Forms; "
+            "$text = [System.Windows.Forms.Clipboard]::GetText([System.Windows.Forms.TextDataFormat]::UnicodeText); "
+            "if ($null -ne $text) { "
+            "[Console]::Out.Write([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($text))) }"
         )
         completed = subprocess.run(
             ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
@@ -68,26 +71,33 @@ class WindowsClipboard:
             check=False,
         )
         if completed.returncode != 0:
-            raise ClipboardSyncError("Get-Clipboard failed with exit code " + str(completed.returncode))
-        return completed.stdout.decode("utf-8", errors="strict")
+            detail = completed.stderr.decode("utf-8", errors="replace")[-300:]
+            raise ClipboardSyncError("Get-Clipboard failed with exit code " + str(completed.returncode) + ": " + detail)
+        try:
+            return base64.b64decode(completed.stdout, validate=True).decode("utf-8", errors="strict")
+        except (ValueError, UnicodeDecodeError) as error:
+            raise ClipboardSyncError("Get-Clipboard returned invalid UTF-8 data") from error
 
     def set(self, text: str) -> None:
         command = (
             "$encoded = [Console]::In.ReadToEnd().Trim(); "
             "$bytes = [Convert]::FromBase64String($encoded); "
             "$text = [System.Text.Encoding]::UTF8.GetString($bytes); "
-            "Set-Clipboard -Value $text"
+            "Add-Type -AssemblyName System.Windows.Forms; "
+            "[System.Windows.Forms.Clipboard]::SetText($text, [System.Windows.Forms.TextDataFormat]::UnicodeText); "
+            "[Console]::Out.Write('applied')"
         )
         completed = subprocess.run(
             ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
-            input=base64.b64encode(text.encode("utf-8")).decode("ascii"),
-            stdout=subprocess.DEVNULL,
+            input=base64.b64encode(text.encode("utf-8")),
+            stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             timeout=3,
             check=False,
         )
         if completed.returncode != 0:
-            raise ClipboardSyncError("Set-Clipboard failed with exit code " + str(completed.returncode))
+            detail = completed.stderr.decode("utf-8", errors="replace")[-300:]
+            raise ClipboardSyncError("Set-Clipboard failed with exit code " + str(completed.returncode) + ": " + detail)
 
 
 @dataclass(frozen=True)
@@ -174,9 +184,11 @@ class SyncEngine:
         sequence_file: Optional[Path] = None,
         initial_sequence: int = 0,
         expected_peer_host: Optional[str] = None,
+        receive_only: bool = False,
     ):
         self.local_host = local_host
         self.expected_peer_host = expected_peer_host
+        self.receive_only = receive_only
         self.clipboard = clipboard
         self.peer_address = peer_address
         self.peer_port = peer_port
@@ -223,6 +235,10 @@ class SyncEngine:
         text = self.clipboard.get()
         if not isinstance(text, str):
             raise ClipboardSyncError("clipboard adapter returned non-text content")
+        if not text:
+            self.last_applied_remote = None
+            self.pending_text = None
+            return False
         current_fingerprint = self.fingerprint(text)
         if text is None or current_fingerprint in (None, "__too_large__"):
             if current_fingerprint == "__too_large__":
@@ -241,7 +257,6 @@ class SyncEngine:
         if self.last_applied_remote is not None:
             remote_host, remote_sequence, applied_fingerprint = self.last_applied_remote
             if current_fingerprint == applied_fingerprint:
-                self.record("remote-change-suppressed", peer=remote_host, sequence=remote_sequence)
                 return False
         if current_fingerprint == self.last_sent_fingerprint:
             return False
@@ -296,7 +311,7 @@ class SyncEngine:
         if result.get("status") != "applied" and not duplicate_for_same_text:
             raise ClipboardSyncError("peer rejected message: " + str(result.get("reason")))
 
-    def run(self, listen_address: str) -> None:
+    def serve_and_poll(self, listen_address: str) -> None:
         try:
             self.serve_and_poll(listen_address)
         except KeyboardInterrupt:
@@ -341,6 +356,9 @@ class SyncEngine:
             self.record("apply-failed", peer=message.host, sequence=message.sequence, reason=type(error).__name__)
             return {"status": "rejected", "reason": "apply-failed"}
         self.last_applied_remote = (message.host, message.sequence, payload_fingerprint)
+        if self.local_host == "windows":
+            marker = Path(os.environ.get("M585_APPLIED_MARKER", "last-applied.sha256"))
+            marker.write_text(payload_fingerprint, encoding="ascii")
         self.record(
             "applied",
             peer=message.host,
@@ -379,7 +397,8 @@ class SyncEngine:
         try:
             while not self.stop_event.is_set():
                 try:
-                    self.poll_and_send()
+                    if not self.receive_only:
+                        self.poll_and_send()
                 except (OSError, ClipboardSyncError, subprocess.SubprocessError) as error:
                     self.record("poll-failed", reason=type(error).__name__)
                 if time.monotonic() >= next_status:
@@ -470,6 +489,32 @@ def load_sequence(path: Path) -> int:
     return value if value > 0 else 0
 
 
+def send_clipboard_text(peer: str, secret_file: str, sequence_file: str, text: str) -> None:
+    """Send one local clipboard change using the same authenticated protocol."""
+    payload = text.encode("utf-8")
+    if not payload or len(payload) > MAX_TEXT_BYTES:
+        raise ClipboardSyncError("clipboard text is empty or exceeds the size limit")
+    sequence_path = Path(sequence_file)
+    secret = load_secret(Path(secret_file))
+    sender = SyncEngine("windows", None, peer, DEFAULT_PORT, secret, sequence_file=sequence_path,
+                        initial_sequence=load_sequence(sequence_path))
+    fingerprint = hashlib.sha256(payload).hexdigest()
+    for attempt in range(CLIPBOARD_SEND_RETRIES):
+        with sender.lock:
+            sender.sequence += 1
+            save_sequence(sequence_path, sender.sequence)
+            sequence = sender.sequence
+        message = PeerMessage(PROTOCOL_VERSION, "windows", sequence, int(time.time() * 1000),
+                              secrets.token_hex(16), payload)
+        try:
+            sender.send_message(message)
+            return
+        except (OSError, ClipboardSyncError):
+            if attempt == CLIPBOARD_SEND_RETRIES - 1:
+                raise
+            time.sleep(0.25)
+
+
 def save_sequence(path: Path, sequence: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.name + ".tmp")
@@ -489,9 +534,9 @@ def validate_private_ipv4_address(value: str, label: str) -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Sync bounded UTF-8 clipboard text over an authenticated LAN channel")
-    parser.add_argument("--host", choices=("mac", "windows"), required=True)
-    parser.add_argument("--listen", required=True, help="private LAN address to bind; do not bind 0.0.0.0")
-    parser.add_argument("--peer", required=True, help="peer private LAN address")
+    parser.add_argument("--host", choices=("mac", "windows"))
+    parser.add_argument("--listen", help="private LAN address to bind; do not bind 0.0.0.0")
+    parser.add_argument("--peer", help="peer private LAN address")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--secret-file", type=Path, required=True)
     parser.add_argument(
@@ -500,12 +545,25 @@ def parse_args() -> argparse.Namespace:
         help="persistent host-local sequence file; defaults to <secret-file>.sequence",
     )
     parser.add_argument("--generate-secret", action="store_true")
+    parser.add_argument("--receive-only", action="store_true")
+    parser.add_argument("--send-text", help="base64 UTF-8 text for the Windows clipboard service")
+    parser.add_argument("--applied-marker", type=Path, help="metadata-only applied-text marker for the Windows host service")
     parser.add_argument("--status-interval", type=float, default=10.0)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    if args.applied_marker:
+        os.environ["M585_APPLIED_MARKER"] = str(args.applied_marker)
+    if args.send_text is not None:
+        text = base64.b64decode(args.send_text, validate=True).decode("utf-8")
+        send_clipboard_text(args.peer, str(args.secret_file),
+                            str(args.sequence_file or (str(args.secret_file) + ".sequence")), text)
+        print(json.dumps({"event": "sent", "size_bytes": len(text.encode("utf-8"))}), flush=True)
+        return
+    if not args.host or not args.listen or not args.peer:
+        raise ClipboardSyncError("host, listen address and peer are required")
     listen_address = validate_private_ipv4_address(args.listen, "listen address")
     peer_address = validate_private_ipv4_address(args.peer, "peer address")
     if not 1024 <= args.port <= 65535:
@@ -528,6 +586,7 @@ def main() -> None:
         sequence_file=sequence_file,
         initial_sequence=load_sequence(sequence_file),
         expected_peer_host=("windows" if args.host == "mac" else "mac"),
+        receive_only=args.receive_only,
     )
     try:
         engine.run(listen_address)

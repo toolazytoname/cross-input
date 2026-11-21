@@ -80,7 +80,11 @@ class TextClipboardSyncTests(unittest.TestCase):
         engine.send_message = lambda message: sent.append(message)
         self.assertFalse(engine.poll_and_send(now=1000))
         self.assertEqual(sent, [])
-        self.assertTrue(any(event["event"] == "remote-change-suppressed" for event in engine.event_log))
+
+    def test_empty_clipboard_is_not_sent(self):
+        engine = self.make_engine(FakeClipboard(""))
+        engine.send_message = lambda message: self.fail("empty clipboard should not be sent")
+        self.assertFalse(engine.poll_and_send())
 
     def test_local_change_sends_once_and_deduplicates_same_text(self):
         clipboard = FakeClipboard("local-change")

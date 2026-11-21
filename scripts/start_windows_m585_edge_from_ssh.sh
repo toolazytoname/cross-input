@@ -3,7 +3,7 @@ set -eu
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 remote_dir='%TEMP%\MiniOpsM585Edge'
-ssh_alias="${M585_SSH_ALIAS:?Set M585_SSH_ALIAS to the Windows SSH alias}"
+ssh_alias="${M585_SSH_ALIAS:-lazy-windows-ts}"
 operation="${1:-status}"
 mode="${2:-dry-run}"
 
