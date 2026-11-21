@@ -90,6 +90,7 @@ def run(rounds, output):
     import os
     environment = {**os.environ, "M585_SSH_ALIAS": os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")}
     records = []
+    recorded_attempts = set()
     if rounds < 1 or rounds > 50:
         raise ValueError("rounds must be between 1 and 50")
     started = time.monotonic()
@@ -115,13 +116,15 @@ def run(rounds, output):
         windows = wait_for(lambda: ((h := windows_health(environment)).get("return_ready") is True, h), 25)
         records.append({"round": index + 1, "attempt": attempt, "to_windows": windows})
         move_windows_pointer(environment, 100000, 450)
+        records[-1]["to_mac"] = None
         returned = wait_for(lambda: ((h := health()).get("state") == "READY_MAC" and h.get("mouse_current_slot") == 1, h), 30)
-        new_mac_attempts = [item for item in records[-1]["mac_attempts"] if item.get("attempt_id") not in mac_event_ids_before]
-        records[-1]["mac_attempts"] = new_mac_attempts
         records[-1]["to_mac"] = returned
         records[-1]["seconds"] = round(time.monotonic() - started, 3)
         records[-1]["mac_state"] = returned
         records[-1]["mac_attempts"] = [item for item in mac_attempts()[mac_before:] if item.get("attempt_id") not in mac_event_ids_before]
+        new_attempts = [item for item in records[-1]["mac_attempts"] if item.get("attempt_id") not in recorded_attempts]
+        recorded_attempts.update(item.get("attempt_id") for item in new_attempts)
+        records[-1]["mac_attempts"] = new_attempts
         records[-1]["windows_events"] = windows_events(environment)[windows_before:]
         if sum(1 for item in records[-1]["mac_attempts"] if item.get("result") == "submitted") != 1:
             raise RuntimeError("Round did not produce exactly one Mac-to-Windows submission")

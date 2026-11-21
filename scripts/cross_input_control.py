@@ -10,6 +10,7 @@ import secrets
 import subprocess
 import sys
 import time
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -160,6 +161,17 @@ def recover():
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
 
 
+def soak(rounds):
+    start()
+    tool = ROOT / "scripts/supervised_roundtrip.py"
+    evidence = ROOT / "evidence/mouse" / ("roundtrip-" + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S") + ".jsonl")
+    try:
+        subprocess.run([sys.executable, str(tool), "--rounds", str(rounds), "--output", str(evidence)], cwd=ROOT, check=True)
+        emit("roundtrip-passed", rounds=rounds, evidence=str(evidence))
+    finally:
+        stop()
+
+
 def status_window():
     import tkinter
     root = tkinter.Tk()
@@ -205,9 +217,13 @@ def status():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=("start", "stop", "status", "gui", "recover"))
+    parser.add_argument("action", choices=("start", "stop", "status", "gui", "recover", "soak"))
+    parser.add_argument("--rounds", type=int, default=3)
     args = parser.parse_args()
-    {"start": start, "stop": stop, "status": status, "gui": status_window, "recover": recover}[args.action]()
+    if args.action == "soak":
+        soak(args.rounds)
+    else:
+        {"start": start, "stop": stop, "status": status, "gui": status_window, "recover": recover}[args.action]()
 
 
 if __name__ == "__main__":

@@ -20,6 +20,8 @@ Deliver a usable, reversible two-computer input system for this Mac mini and the
 - Windows UAC and the login screen are reported unavailable unless separately verified.
 - Tests and runtime evidence are committed to the public repository with each working increment.
 
+`scripts/supervised_sleep_recovery.py` observes sleep and recovery. `--request-sleep` is an explicit test-only request. It does not alter hibernate, power, WOL, SSH, or RDP configuration.
+
 ## Firmware boundary
 
 The unflashed K94 patch is retained for research. Firmware flashing requires a revision-matched image, official bootloader and recovery method, and a reversible procedure. Lack of those materials does not block the software keyboard-forwarding route.
