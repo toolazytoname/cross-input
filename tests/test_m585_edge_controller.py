@@ -46,6 +46,7 @@ class M585EdgeControllerTests(unittest.TestCase):
         self.assertIn("M585_EDGE_WINDOWS_HEALTH_PATH", runner)
         self.assertIn("controller_ready", source)
         self.assertIn("expires_at_utc", source)
+        self.assertIn('ssh_alias="${M585_SSH_ALIAS:-Administrator@192.168.1.8}"', runner)
 
     def test_mac_watch_advertises_exit_and_manual_return(self):
         source = SCRIPT.read_text(encoding="utf-8")

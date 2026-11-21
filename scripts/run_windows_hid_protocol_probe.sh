@@ -4,6 +4,7 @@ set -eu
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 probe_script="$script_dir/windows_hid_protocol_probe.ps1"
 mode="${1:-metadata-only}"
+ssh_alias="${M585_SSH_ALIAS:-Administrator@192.168.1.8}"
 
 case "$mode" in
   metadata-only|mouse-readonly|mouse-switch-mac-once|mouse-edge-watch|mouse-edge-dry-run|mouse-return-hotkey|peer-health|k94-via-version|test-only)
@@ -64,8 +65,10 @@ elif mode == "peer-health":
         "$result = $null",
         "if (Test-Path -LiteralPath $healthPath) {",
         "    $candidate = Get-Content -LiteralPath $healthPath -Raw | ConvertFrom-Json",
-        "    $expires = [DateTime]::Parse($candidate.expires_at_utc, [System.Globalization.CultureInfo]::InvariantCulture, [System.Globalization.DateTimeStyles]::RoundtripKind).ToUniversalTime()",
-        "    if ($expires -gt [DateTime]::UtcNow) { $result = $candidate }",
+        "    if ($candidate.schema -eq 1 -and $candidate.controller -eq 'windows-peer-health-v1' -and $candidate.controller_ready -eq $true) {",
+        "        $expires = [DateTime]::Parse($candidate.expires_at_utc, [System.Globalization.CultureInfo]::InvariantCulture, [System.Globalization.DateTimeStyles]::RoundtripKind).ToUniversalTime()",
+        "        if ($expires -gt [DateTime]::UtcNow) { $result = $candidate }",
+        "    }",
         "}",
         "if ($null -eq $result) { $result = [WindowsHidProtocolProbe]::RunWindowsPeerHealth() }",
     ])
@@ -99,6 +102,6 @@ PY
 ssh \
   -o BatchMode=yes \
   -o StrictHostKeyChecking=yes \
-  "${M585_SSH_ALIAS:?Set M585_SSH_ALIAS to the Windows SSH alias}" \
+  "$ssh_alias" \
   powershell -NoProfile -NonInteractive -Command - \
   < "$temporary_script"

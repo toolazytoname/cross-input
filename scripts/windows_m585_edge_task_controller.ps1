@@ -9,6 +9,7 @@ $ErrorActionPreference = "Stop"
 $taskName = "MiniOpsM585EdgeWatch"
 $root = Join-Path $env:TEMP "MiniOpsM585Edge"
 $bootstrap = Join-Path $root "windows_m585_edge_bootstrap.ps1"
+$macHealthHost = if ($env:M585_EDGE_MAC_HOST) { $env:M585_EDGE_MAC_HOST } else { "192.168.1.4" }
 
 function Convert-ToJsonLine {
     param($Value)
@@ -20,7 +21,7 @@ switch ($Operation) {
         if (-not (Test-Path -LiteralPath $bootstrap)) {
             throw "Missing bootstrap: $bootstrap"
         }
-        $actionArguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File $bootstrap -Mode $Mode"
+        $actionArguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -Command `" + "& { `$env:M585_EDGE_MAC_HOST='$macHealthHost'; `$env:M585_EDGE_MAC_HEALTH_PORT='8787'; & '$bootstrap' -Mode $Mode }"
         $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $actionArguments -WorkingDirectory $root
         $principal = New-ScheduledTaskPrincipal -UserId ([Security.Principal.WindowsIdentity]::GetCurrent().Name) -LogonType Interactive
         $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Hours 2) -MultipleInstances IgnoreNew

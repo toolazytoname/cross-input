@@ -63,6 +63,9 @@ class WindowsHidProtocolProbeStaticTests(unittest.TestCase):
         self.assertIn("peer-health", self.helper)
         self.assertIn("[WindowsHidProtocolProbe]::RunWindowsPeerHealth()", self.helper)
         self.assertIn("M585_EDGE_WINDOWS_HEALTH_PATH", self.helper)
+        self.assertIn("$candidate.controller_ready -eq $true", self.helper)
+        self.assertIn('-LogonType Interactive', TASK_CONTROLLER.read_text(encoding="utf-8"))
+        self.assertIn("M585_EDGE_MAC_HOST='$macHealthHost'", TASK_CONTROLLER.read_text(encoding="utf-8"))
 
     def test_single_watch_has_return_and_stop_hotkeys(self):
         for required in (
