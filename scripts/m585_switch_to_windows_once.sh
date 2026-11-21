@@ -15,7 +15,8 @@ case "$attempt_id" in
 esac
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-python="${M585_PYTHON:-python3}"
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+python="${M585_PYTHON:-$script_dir/../../research/mouse/venv/bin/python}"
 guard="$script_dir/../evidence/mouse/m585-mac-to-windows-$attempt_id-guard.json"
 log="$script_dir/../logs/m585-mac-to-windows-$attempt_id.json"
 

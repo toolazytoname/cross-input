@@ -35,6 +35,24 @@ class ControlTests(unittest.TestCase):
         for command in control.SERVICES.values():
             self.assertTrue((ROOT / command[1]).is_file())
 
+    def test_python_environment_follows_hid_capable_interpreter(self):
+        self.assertTrue(pathlib.Path(control.PYTHON).is_file())
+        self.assertEqual(control.ENVIRONMENT["M585_PYTHON"], control.PYTHON)
+        for command in control.SERVICES.values():
+            self.assertTrue(pathlib.Path(command[1]).is_file())
+
+    def test_offline_start_does_not_pause_deskflow(self):
+        calls = []
+        def record(*args, **kwargs):
+            calls.append(args[0])
+            return subprocess.CompletedProcess(args[0], 1)
+        import subprocess
+        with mock.patch("subprocess.run", side_effect=record), mock.patch.object(control, "MAC_PLIST", pathlib.Path("/missing")):
+            with self.assertRaises(RuntimeError):
+                control.start()
+        self.assertFalse(any(call[:2] == ["launchctl", "bootout"] for call in calls))
+        self.assertTrue(any(call[:2] == ["launchctl", "bootstrap"] for call in calls))
+
 
 if __name__ == "__main__":
     unittest.main()

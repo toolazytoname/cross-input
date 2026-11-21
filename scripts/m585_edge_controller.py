@@ -33,7 +33,7 @@ class EdgeConfig:
     threshold_px: int = 8
     dwell_ms: int = 400
     cooldown_ms: int = 2500
-    poll_interval_seconds: float = 0.05
+    poll_interval_seconds: float = 0.005
     state_poll_seconds: float = 1.0
     peer_retry_seconds: float = 2.0
     switch_stability_ms: int = 5000
@@ -73,7 +73,8 @@ class EdgeArbiter:
         self.config = config
         self.clock_ms = clock_ms
         self.state = "READY_MAC"
-        self._dwell_started_at: Optional[int] = None
+        self._edge_entered_at: Optional[int] = None
+        self._last_trigger_sample_ms: Optional[int] = None
         self._last_submit_completed_ms: Optional[int] = None
         self._submit_completed_at: Optional[int] = None
         self._recovery_entered_at: Optional[int] = None
@@ -88,27 +89,36 @@ class EdgeArbiter:
             if at_edge:
                 return {"trigger": False, "reason": "rearm-requires-leave-edge", "dwell_ms": 0}
             self._rearm_requires_leave_edge = False
+            self._edge_entered_at = None
         if not at_edge or interaction or sample.event_type != 5:
-            self._dwell_started_at = None
+            self._edge_entered_at = None
             return {"trigger": False, "reason": "not-at-edge" if not at_edge else "interaction-or-drag"}
 
-        if self._dwell_started_at is None:
-            self._dwell_started_at = now
-        dwell_ms = now - self._dwell_started_at
-        if dwell_ms < self.config.dwell_ms:
+        if self._last_trigger_sample_ms is not None and sample.timestamp_ms <= self._last_trigger_sample_ms:
+            return {"trigger": False, "reason": "already-triggered-sample", "dwell_ms": 0}
+        if self.state != "READY_MAC":
+            return {"trigger": False, "reason": "state-" + self.state, "dwell_ms": 0}
+        if self._edge_entered_at is None:
+            self._edge_entered_at = now
+            dwell_ms = 0
+        else:
+            dwell_ms = now - self._edge_entered_at
+        # Real mouse events normally arrive every few milliseconds. The dwell
+        # timer is only an error bound for a stalled event stream, not latency
+        # added to an ordinary edge crossing.
+        if dwell_ms < self.config.dwell_ms and now - sample.timestamp_ms > self.config.dwell_ms:
             return {"trigger": False, "reason": "dwelling", "dwell_ms": dwell_ms}
 
-        if self.state != "READY_MAC":
-            return {"trigger": False, "reason": "state-" + self.state, "dwell_ms": dwell_ms}
         if self._last_submit_completed_ms is not None and now - self._last_submit_completed_ms < self.config.cooldown_ms:
             return {"trigger": False, "reason": "cooldown", "dwell_ms": dwell_ms}
 
+        self._last_trigger_sample_ms = sample.timestamp_ms
         self.begin_attempt()
         return {"trigger": True, "reason": "left-edge-dwell", "dwell_ms": dwell_ms}
 
     def begin_attempt(self) -> None:
         self.state = "SWITCHING_TO_WINDOWS"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._rearm_requires_leave_edge = True
 
     @property
@@ -139,14 +149,14 @@ class EdgeArbiter:
 
     def mark_target_unavailable(self) -> None:
         self.state = "TARGET_UNAVAILABLE"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def mark_target_available(self) -> None:
         if self.state != "TARGET_UNAVAILABLE":
             return
         self.state = "READY_MAC"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def note_mouse_absent(self, external: bool = False) -> None:
@@ -157,19 +167,19 @@ class EdgeArbiter:
             self.state = "MOUSE_ABSENT_AFTER_SWITCH"
         if previous_state != self.state:
             self._absent_entered_at = self.clock_ms()
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def mark_return_ready(self) -> None:
         self.state = "READY_MAC"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._recovery_entered_at = None
         self._absent_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def mark_return_target_ready(self) -> None:
         self.state = "READY_MAC_RETURN_TARGET"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._absent_entered_at = None
         self._rearm_requires_leave_edge = True
 
@@ -177,7 +187,7 @@ class EdgeArbiter:
         if self.state == "RECOVERY_REQUIRED":
             return
         self.state = "RECOVERY_REQUIRED"
-        self._dwell_started_at = None
+        self._edge_entered_at = None
         self._recovery_entered_at = self.clock_ms() if at_ms is None else at_ms
 
     def confirm_mac_slot(self, current_slot: int) -> bool:
@@ -1092,7 +1102,7 @@ def parse_args() -> argparse.Namespace:
     mode.add_argument("--check-environment", action="store_true", help="perform read-only environment checks")
     mode.add_argument("--watch", action="store_true", help="run the edge controller in the foreground")
     mode.add_argument("--dry-run", action="store_true", help="detect edges and log decisions without HID or peer commands")
-    parser.add_argument("--python", default=str(SCRIPT_DIR.parent / "research/mouse/venv/bin/python"))
+    parser.add_argument("--python", default=os.environ.get("M585_PYTHON", str(SCRIPT_DIR.parents[1] / "research/mouse/venv/bin/python")))
     parser.add_argument("--display-index", type=int, help="use a specific display from --check-environment; default is the leftmost frame")
     parser.add_argument("--threshold-px", type=int, default=EdgeConfig.threshold_px)
     parser.add_argument("--dwell-ms", type=int, default=EdgeConfig.dwell_ms)

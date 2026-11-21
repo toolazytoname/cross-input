@@ -19,7 +19,10 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = Path(os.environ.get("CROSS_INPUT_RUNTIME", str(Path.home() / ".config/miniops/cross-input-runtime")))
 MAC_PLIST = Path.home() / "Library/LaunchAgents/org.deskflow.deskflow.server.plist"
 DOMAIN = f"gui/{os.getuid()}"
-PYTHON = os.environ.get("M585_PYTHON", str(ROOT / "research/mouse/venv/bin/python"))
+PYTHON = os.environ.get("M585_PYTHON", str(ROOT.parent / "research/mouse/venv/bin/python"))
+if not Path(PYTHON).is_file():
+    PYTHON = sys.executable
+ENVIRONMENT = {**os.environ, "M585_PYTHON": PYTHON}
 SERVICES = {
     "mouse": [PYTHON, str(ROOT / "scripts/m585_edge_controller.py"), "--watch"],
     "keyboard": [PYTHON, str(ROOT / "scripts/mac_keyboard_forwarder.py"), "--host", os.environ.get("M585_WINDOWS_IP", "192.168.1.8"), "--secret-file", os.environ.get("M585_KEYBOARD_SECRET", str(Path.home() / ".config/miniops/cross-input-keyboard.secret"))],
@@ -80,6 +83,17 @@ def terminate_processes():
         pid_path(name).unlink(missing_ok=True)
 
 
+def start_windows_auxiliaries(windows_alias, secret_dir):
+    for name in REMOTE_SERVICES:
+        source = secret_dir / ("cross-input-" + name + ".secret")
+        destination = windows_alias + ":C:/Users/Administrator/AppData/Local/Temp/MiniOpsM585Edge/" + name + ".secret"
+        subprocess.run(["scp", "-q", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes", "-o", "ConnectTimeout=5", str(source), destination], check=True, timeout=12)
+    for service in REMOTE_SERVICES.values():
+        controller = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Service", service]
+        subprocess.run(controller + ["-Operation", "register"], capture_output=True, check=True, timeout=12)
+        subprocess.run(controller + ["-Operation", "start"], capture_output=True, check=True, timeout=12)
+
+
 def start():
     RUNTIME.mkdir(parents=True, exist_ok=True)
     subprocess.run(["pkill", "-f", "Deskflow.app/Contents/MacOS/deskflow-gui"], capture_output=True)
@@ -90,31 +104,19 @@ def start():
         if not secret.exists():
             secret.write_bytes(secrets.token_bytes(32))
             secret.chmod(0o600)
-    subprocess.run(["launchctl", "bootout", DOMAIN + "/org.deskflow.deskflow.server"], capture_output=True)
     windows_alias = os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")
-    windows = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "register-start", "watch"], cwd=ROOT,
-                             env={**os.environ, "M585_SSH_ALIAS": windows_alias}, capture_output=True, text=True, timeout=30)
-    if windows.returncode:
-        subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
-        raise RuntimeError("Windows controller failed to start; Deskflow restored")
-    for name in REMOTE_SERVICES:
-        source = secret_dir / ("cross-input-" + name + ".secret")
-        destination = windows_alias + ":C:/Users/Administrator/AppData/Local/Temp/MiniOpsM585Edge/" + name + ".secret"
-        subprocess.run(["scp", "-q", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes", "-o", "ConnectTimeout=5", str(source), destination], check=True, timeout=12)
-    for service in REMOTE_SERVICES.values():
-        controller = ["ssh", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Service", service]
-        subprocess.run(controller + ["-Operation", "register"], capture_output=True, check=True, timeout=12)
-        remote = subprocess.run(controller + ["-Operation", "start"], capture_output=True, timeout=10)
-        if remote.returncode:
-            terminate_processes()
-            subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
-            raise RuntimeError(service + " Windows service failed to start; Deskflow restored")
     try:
+        windows = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "register-start", "watch"], cwd=ROOT,
+                                 env={**ENVIRONMENT, "M585_SSH_ALIAS": windows_alias}, capture_output=True, text=True, timeout=30)
+        if windows.returncode:
+            raise RuntimeError("Windows controller failed to start")
+        start_windows_auxiliaries(windows_alias, secret_dir)
+        subprocess.run(["launchctl", "bootout", DOMAIN + "/org.deskflow.deskflow.server"], capture_output=True, check=True)
         for name, command in SERVICES.items():
             if running(name):
                 continue
             log = (RUNTIME / (name + ".log")).open("a")
-            process = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+            process = subprocess.Popen(command, cwd=ROOT, env=ENVIRONMENT, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
             record_process(name, process)
             time.sleep(0.4)
             if process.poll() is not None:
@@ -122,6 +124,12 @@ def start():
             emit("started", service=name, pid=process.pid)
     except Exception:
         terminate_processes()
+        try:
+            for service in REMOTE_SERVICES.values():
+                subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
+            subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT, env={**ENVIRONMENT, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
+        except (OSError, subprocess.SubprocessError) as error:
+            emit("remote-stop-unavailable", reason=type(error).__name__)
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
         raise
     status()

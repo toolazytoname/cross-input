@@ -1547,7 +1547,7 @@ public static class WindowsHidProtocolProbe
 
     private sealed class WindowsEdgeController
     {
-        private const int PollMilliseconds = 50;
+        private const int PollMilliseconds = 5;
         private const int DevicePollMilliseconds = 1000;
         private const int EdgeThresholdPixels = 8;
         private const int DwellMilliseconds = 400;

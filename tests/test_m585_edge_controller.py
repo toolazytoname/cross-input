@@ -54,15 +54,17 @@ class M585EdgeControllerTests(unittest.TestCase):
         self.assertIn('"event": "controller-stopped"', source)
         self.assertIn('"event": "health-bind-failed"', source)
 
-    def test_requires_dwell_and_rejects_interaction(self):
+    def test_live_edge_is_immediate_and_stalled_stream_uses_dwell_bound(self):
         clock = FakeClock()
         arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
-        clock.now_ms = 0
-        self.assertFalse(arbiter.observe(sample(0), 0)["trigger"])
-        clock.now_ms = 399
-        self.assertEqual(arbiter.observe(sample(399), 0)["reason"], "dwelling")
+        self.assertTrue(arbiter.observe(sample(0), 0)["trigger"])
+
+        clock = FakeClock()
+        arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
+        clock.now_ms = 401
+        self.assertEqual(arbiter.observe(sample(0), 0)["reason"], "dwelling")
         clock.now_ms = 400
-        self.assertTrue(arbiter.observe(sample(400), 0)["trigger"])
+        self.assertTrue(arbiter.observe(sample(399), 0)["trigger"])
         self.assertEqual(arbiter.state, "SWITCHING_TO_WINDOWS")
 
         arbiter2 = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), FakeClock())
@@ -183,7 +185,7 @@ class M585EdgeControllerTests(unittest.TestCase):
         self.assertTrue(status.snapshot()["ready"])
         self.assertTrue(status.snapshot()["return_target_ready"])
         self.assertEqual(arbiter.observe(sample(6000, x=100), 0)["reason"], "not-at-edge")
-        self.assertEqual(arbiter.observe(sample(6000, x=0), 0)["reason"], "dwelling")
+        self.assertEqual(arbiter.observe(sample(6000, x=0), 0)["reason"], "state-READY_MAC_RETURN_TARGET")
 
         slot = {"ok": True, "current_host_index": 1, "host_count": 2, "device_present": True, "outcome": "present-slot-1"}
         result = controller.apply_mac_slot_poll(arbiter, status, slot, config, 6100, 0, 0)
