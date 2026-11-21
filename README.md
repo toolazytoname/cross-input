@@ -9,8 +9,9 @@ The mouse does not use Logitech Flow or software mouse forwarding. The local con
 - **Mouse, both directions:** verified on hardware. Mac slot 1 to Windows slot 0 and back.
 - **Automatic screen-edge switching:** one supervised automatic Mac to Windows to Mac round trip completed, with JSONL evidence.
 - **Stability:** disconnect recovery, duplicate suppression, dwell, cooldown, and re-arm-after-leaving-edge have offline tests. A 50-round-trip soak test and sleep/network recovery acceptance remain to be completed.
+- **Text clipboard:** bounded UTF-8 synchronization is implemented with authentication, sequence tracking, replay detection, duplicate suppression, and delivery retries. Local socket tests and the Mac clipboard adapter pass. The Windows adapter and two-host runtime test remain pending.
 - **KEMOVE K94:** official firmware builds reproducibly. The unflashed VIA protocol patch compiles, but a control channel that is simultaneously reachable and capable of invoking a BLE transition is still unproven. No firmware was flashed.
-- **Keyboard following, clipboard synchronization, and a production GUI/service:** pending.
+- **Keyboard following and a production GUI/service:** pending.
 
 Deskflow is a separate rollback path. The edge controllers must not run at the same time as Deskflow's edge handling.
 
@@ -39,6 +40,8 @@ Read-only and dry-run modes are available. Automatic switching also requires a f
 - A configured SSH alias for the Windows computer, if using the remote task controller.
 
 Set `M585_SSH_ALIAS` and `M585_EDGE_MAC_HOST` for your installation. Windows temporary files default to `$env:TEMP` when available.
+
+The mouse tools also accept `M585_PYTHON`, `M585_SERIAL`, `M585_MAC_HOST_NAME`, and `M585_WINDOWS_HOST_NAME` to match a different installation.
 
 ## Checks and dry runs
 
@@ -76,6 +79,17 @@ Restore Deskflow after testing and remove the temporary Windows task when finish
 ```sh
 scripts/start_windows_m585_edge_from_ssh.sh remove
 ```
+
+## Text clipboard
+
+Create an identical random secret on both computers, stored outside the repository. The two processes bind a specific private IPv4 address and exchange authenticated UTF-8 clipboard text over TCP port 8791. Use a user-selected private port and allow it only on the trusted private network.
+
+```sh
+python3 scripts/text_clipboard_sync.py --host mac --listen <mac-private-ip> --peer <windows-private-ip> --secret-file <mac-secret-path>
+python3 scripts/text_clipboard_sync.py --host windows --listen <windows-private-ip> --peer <mac-private-ip> --secret-file <windows-secret-path>
+```
+
+The protocol limits text to 256 KiB. It logs only metadata, retries an unacknowledged clipboard change with a fresh sequence, and suppresses duplicate application and clipboard loops. It has not completed a Windows or two-host runtime test. Images and files remain outside this protocol.
 
 ## Current limitations
 

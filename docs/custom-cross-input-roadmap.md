@@ -1,10 +1,10 @@
 # Custom cross-screen input roadmap
 
-Date: 2026-11-19 America/Los_Angeles.
+Date: 2026-11-20 America/Los_Angeles.
 
 ## Goal
 
-Replace the daily Logitech Flow and Deskflow path with a small, explicit cross-screen input system for the Mac mini and the 3090 Windows PC. The first delivered capability is hardware mouse switching through the M585/M590 CHANGE_HOST feature. Automatic edge controllers are implemented and offline-validated, but their supervised runtime acceptance, keyboard following, clipboard transfer, and the status GUI remain pending.
+Replace the daily Logitech Flow and Deskflow path with a small, explicit cross-screen input system for the Mac mini and the 3090 Windows PC. The delivered capability is hardware mouse switching through the M585/M590 CHANGE_HOST feature, including one supervised automatic Mac departure and subsequent return. Three-round and fifty-round stability acceptance remain pending. Minimal UTF-8 clipboard synchronization is implemented and offline-validated. Keyboard following and the status GUI remain pending.
 
 The target topology is one local controller on each computer. Each controller owns only the HID device currently connected to that computer, exchanges compact state over the existing LAN/Tailscale path, and exposes a single requested-screen state. A switch is allowed only after the controller re-reads device identity, current slot, host count, capability flags, paired status, and both host names. The controllers must never infer successful user input from a report submission alone.
 
@@ -13,12 +13,12 @@ The target topology is one local controller on each computer. Each controller ow
 | Component | Status | Boundary |
 | --- | --- | --- |
 | Bidirectional M585/M590 hardware switching | Delivered and independently reviewed | Manual one-shot commands; no automatic service |
-| Automatic edge switching | Implementation and offline/read-only checks complete; supervised runtime acceptance pending | Mac uses a listen-only CGEventTap, actual display frames, dwell, cooldown, interaction suppression, peer health, and slot preflight; Windows uses live virtual-screen bounds and the same fail-closed sequence |
+| Automatic edge switching | One supervised automatic round trip observed; stability acceptance pending | Mac attempt ebcc1b440bda44cc95c73aa0eb30416f submitted 20/20 bytes. Windows reached READY_WINDOWS and later lost the device. Mac returned to slot 1. The copied Windows log does not contain the return switch-submitted event, so the return path is not yet independently auditable |
 | Keyboard following | Blocked pending K94 | No firmware flash and no unverified K94 command |
-| Clipboard and files | Not started | Reuse LocalSend before a new transfer path |
+| Clipboard and files | Minimal UTF-8 text sync implemented offline; live two-host test blocked | 256 KiB limit, HMAC-SHA256, persistent host sequence, nonce replay cache, duplicate fingerprint cache, loop suppression, rate limit, timeouts, and metadata-only events. Mac pbpaste/pbcopy passed. Windows and cross-host tests wait for 3090 connectivity. LocalSend remains responsible for images and files |
 | GUI and resident services | Not started | CLI only; Deskflow remains installed and running |
 
-The automatic controllers have not been installed as services or left running. Deskflow was not stopped, reconfigured, or used as proof of input arrival.
+A reversible Windows Interactive task and the Mac foreground watch were used for supervised testing. Neither is a login service. Deskflow was paused only during the authorized test and restored afterward.
 
 ## Verified capability
 
@@ -27,6 +27,7 @@ The automatic controllers have not been installed as services or left running. D
 - CHANGE_HOST feature index is 9 and HOSTS_INFO feature index is 10.
 - Mac slot 1 to Windows slot 0: one 20-byte report was submitted, no retry, and the user previously observed the Windows cursor respond.
 - Windows slot 0 to Mac slot 1: after full Windows preflight, one 20-byte report was submitted with native final error 0 and no retry. The mouse returned to Mac and Mac read back current slot 1.
+- Automatic Mac attempt ebcc1b440bda44cc95c73aa0eb30416f submitted one 20-byte report at 12:48:30 UTC. Windows reached READY_WINDOWS at 12:48:33 and reported the mouse departed at 12:48:41. Mac returned to READY_MAC around 12:48:42. The retained Windows log lacks the return switch-submitted event and cannot independently prove which return entry issued the reverse hop.
 
 This proves the bidirectional physical control channel. Offline edge-controller checks do not by themselves prove supervised runtime behavior, a stable resident service, keyboard following, or clipboard transfer.
 
@@ -43,6 +44,7 @@ This proves the bidirectional physical control channel. Offline edge-controller 
 - scripts/run_windows_hid_protocol_probe.sh mouse-edge-watch is the supervised Windows controller entry.
 - scripts/run_windows_hid_protocol_probe.sh mouse-return-hotkey registers Ctrl+Alt+Shift+M as an explicit Windows-to-Mac return entry.
 - scripts/run_windows_hid_protocol_probe.sh peer-health returns a versioned, expiring read-only JSON health object. It prefers a fresh health file written by the interactive Windows watcher and falls back to a direct read-only probe; it never substitutes test-only results for device or desktop readiness.
+- scripts/text_clipboard_sync.py synchronizes bounded UTF-8 text over an authenticated private-LAN TCP channel. It must bind a specific loopback or private IPv4 address and never logs clipboard content.
 
 ### Supervised Windows foreground plan
 
@@ -105,7 +107,7 @@ The corrected Mac post-submit sequence is explicit:
 5. A distinct device-absent poll result changes the state to MOUSE_ABSENT_AFTER_SWITCH. Polling continues at low frequency and sends no write.
 6. Return to READY_MAC requires the five-second post-submit stability window plus two consecutive read-only slot-1 results after absence. The leave-edge requirement remains active.
 7. If slot 1 persists through the stability window without departure, the state becomes RECOVERY_REQUIRED. Query failures are tolerated only up to three consecutive polls before RECOVERY_REQUIRED; duplicate-device and absent-device diagnostics are not treated as the same condition.
-8. TARGET_UNAVAILABLE, submit failure, no-departure, and wrong-slot recovery do not auto-recover from a later poll. A supervisor must inspect the log and explicitly restart or use the manual recovery path.
+8. TARGET_UNAVAILABLE retries the read-only Windows peer at low frequency. Recovery additionally re-reads Mac slot 1 after the peer becomes ready and retains the leave-edge requirement. Submit failure, no-departure, and wrong-slot still require the explicit recovery paths.
 
 Startup/query-failure recovery is separately bounded:
 
@@ -121,7 +123,7 @@ The Windows watcher applies the same leave-edge rule after a submitted or simula
 
 ### Stage 1: mouse switching and supervised edge automation
 
-Both one-shot tools and the bidirectional runtime sequence are complete. The edge controllers now implement display-boundary detection, interaction suppression, dwell, cooldown, peer health, state logging, locks, and recovery states. Remaining work is the supervised runtime acceptance below; no service is enabled until that review is approved.
+Both one-shot tools and the bidirectional runtime sequence are complete. One supervised automatic round trip has been observed. The edge controllers implement display-boundary detection, interaction suppression, dwell, cooldown, peer health, state logging, locks, and recovery states. Remaining work is a three-round supervised run followed by the fifty-round acceptance below. No permanent service is enabled.
 
 ### Stage 1 acceptance gate
 
@@ -146,7 +148,23 @@ Use mouse screen state as the desired keyboard target. K94 firmware will remain 
 
 ### Stage 3: clipboard and files
 
-Start with bounded text synchronization between the two controllers, with size limits and explicit conflict metadata. Reuse LocalSend for images and files before designing a new transfer protocol. Clipboard history and paste-loop prevention require per-host sequence numbers and local user intent checks.
+The minimal text implementation is present. Each frame carries a host identity, persistent host-local sequence, timestamp, nonce, UTF-8 payload, and HMAC-SHA256. Receivers enforce the timestamp window, sequence, nonce, payload-size limit, duplicate fingerprints, and strict UTF-8. Senders use a response timeout, per-minute rate limit, persistent sequence, and duplicate-for-same-text handling after a lost response. An unacknowledged local change is retried with a fresh sequence, and duplicate-sequence responses identify their payload fingerprint. Events contain sizes, hashes, sequences, and error types only.
+
+Planned live commands, after Windows is reachable and the coordinator reviews the port boundary:
+
+~~~sh
+# Mac, after placing the shared 32-plus-byte secret outside the repository:
+scripts/text_clipboard_sync.py --host mac --listen 192.168.1.4 --peer 192.168.1.8 \
+  --secret-file "$HOME/.config/miniops/cross-input-clipboard.secret"
+~~~
+
+~~~powershell
+# Windows, with byte-for-byte the same secret outside the repository:
+python scripts/text_clipboard_sync.py --host windows --listen 192.168.1.8 --peer 192.168.1.4 `
+  --secret-file "$env:USERPROFILE\.miniops\cross-input-clipboard.secret"
+~~~
+
+The channel uses TCP 8791 on the private LAN. No firewall rule has been created. The live test must use benign distinct text, record only hashes and sizes, and restore or replace the probe text. Reuse LocalSend for images and files.
 
 ### Stage 4: service and GUI
 

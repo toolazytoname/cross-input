@@ -1,6 +1,6 @@
 # K94/M585 自研跨屏输入实施状态与证据
 
-更新时间：2026-11-19 America/Los_Angeles。本文对应 K94-CUSTOM-FLOW-PLAN.md 的阶段 A/B/C，以及 M585/M590 阶段 D 的只读调查与双向硬件闭环。所有“运行时已验证”只用于实际设备返回或用户实测；未发送写命令或仅有离线验证的项目一律保持对应限定。
+更新时间：2026-11-20 America/Los_Angeles。本文对应 K94-CUSTOM-FLOW-PLAN.md 的阶段 A/B/C，以及 M585/M590 阶段 D 的只读调查与双向硬件闭环。所有“运行时已验证”只用于实际设备返回或用户实测；未发送写命令或仅有离线验证的项目一律保持对应限定。
 
 ## 1. 当前结论
 
@@ -8,12 +8,13 @@
 | --- | --- | --- |
 | K94 原厂固件能否直接由主机切 BLE/2.4G/USB？ | **No-Go**。公开源码、Web Hub 和闭源库符号都没有主机侧切通道 API。USB raw HID 与标准 VIA 通路已于 2026-11-19 实测通过。 | 源码/Hub/静态反汇编证据 + USB 只读运行时验证 |
 | K94 项目是否继续？ | **阶段 C 离线完成，硬件双向仍 No-Go/阻塞**。补丁可独立应用、编译并通过 host mock，但 stock USB raw 与 BLE handler 模式互斥；恢复材料不齐全，不能刷写。 | 离线构建/测试 + 静态反汇编 + B1 运行时证据 |
-| M585/M590 控制路线 | **D1 双向硬件闭环已通过；自动贴边已到离线实现**。Mac→Windows 正向切换已由用户确认；Windows→Mac 单次回切后 Mac 复核 current slot 1。 | Mac/Windows 双向实际设备返回；自动贴边监督验收与完整输入体验未执行 |
+| M585/M590 控制路线 | **D1 双向硬件闭环已通过；自动贴边有一次受监督往返证据**。Mac→Windows 正向切换已由用户确认；Windows→Mac 单次回切后 Mac 复核 current slot 1。自动 attempt ebcc1b440bda44cc95c73aa0eb30416f 已提交 20/20 bytes，Windows 进入 READY_WINDOWS 后鼠标离开，Mac 回到 slot 1。 | Mac/Windows 双向实际设备返回；保留的 Windows 回切日志缺少 switch-submitted 事件，3 次与 50 次稳定性验收未执行 |
+| 文本剪贴板同步 | **最小实现完成离线验证**。UTF-8、256 KiB、HMAC-SHA256、持久 host sequence、预期 peer host、nonce/指纹去重、回环抑制、限频和超时已覆盖。Mac pbpaste/pbcopy 实测通过。 | 本地 socket/单元测试与 Mac 适配器实测；3090 失联导致 Windows 适配器和两端实测未运行 |
 | M585/M590 备选路线 | D2 作为 D1 双向失败后的回退；D3 当前 No-Go，不购买、不引入硬件。 | 决策 |
 | K94 固件能否未修改编译？ | **能**。两次干净构建产物 SHA-256 一致。 | 实际编译证据 |
 | 固件恢复/刷写材料是否齐全？ | **不齐全**。无 revision 匹配的 custom bootloader 刷写工具、PCB 版本确认和当前固件备份；不能刷写。 | 官方 README 与材料盘点 |
 
-本 worker 没有停止或重启 Deskflow/Flow，没有改变 K94/M585 配对，没有刷固件，没有拆机，没有修改 Windows 网络/WOL/SSH/RDP。协调者按用户授权执行过一次 M585/M590 通道切换，随后只读复查 current index 回到 Mac；配对关系未改变。只读快照显示 Mac Deskflow server 进程仍在运行，com.logi.cp-dev-mgr 仍为 disabled；Logi Options+ updater 进程存在，这是未由本轮改动的既有状态。
+2026-11-20 本 worker 未发送 HID 输出、未切换 M585/M590、未刷 K94 固件、未改 Windows 网络或 WOL。Mac 剪贴板适配器测试只使用良性唯一文本并在结束时恢复原剪贴板。Deskflow 已由协调者恢复后，本 worker 停止了仍在运行旧代码的 Mac foreground watch，使 8787 health 下线，避免两条边缘路径长期并行。Windows watch 状态因 3090 SSH 超时无法复核。本页仍保留协调者此前授权实测的历史记录。
 
 ## 2. 版本与关键哈希
 
@@ -34,7 +35,9 @@
 | 阶段 C built ELF | text 78,598、data 1,948、bss 14,432 | 69862d51267961043b580985d3b3fd1f620258e5198f34eb033947759e8c3ce6 |
 | M585 一次性实验脚本 | 12,090 bytes；默认 plan-only，本轮未接触硬件 | 0364d2229d59373283cfdbabcc796b222abdf0955e0fce254f2272058f0e8f8a |
 | M585 Mac→Windows 日常入口 | 714 bytes；显式 attempt-id、guard 与日志 | 3c543fa981022d2335f6bdc58d2a47c1946605bc55aec2c4dd7c58a508570ea0 |
-| M585 Mac 自动贴边 controller | 43,231 bytes；21 项单元/集成测试通过，只读环境检查通过 | 8b31b63bc0d34c1106d3a700b527c214bc93591cd3e2afccb2caacac58cb7bb8 |
+| M585 Mac 自动贴边 controller | 49,038 bytes；24 项 edge 单元/集成测试通过，TARGET_UNAVAILABLE 低频 peer 恢复已覆盖 | c973363ca7109ca4cf0d5948b40c68b2954edf64eabec99be516edf29c99d8bf |
+| 文本剪贴板同步工具 | 20,651 bytes；12 项单元/socket 测试通过，另与 M585 模块合计 57/57 通过 | 3e13fbb6ccb8dceb61db6eec5530d9efa6bd217b352d4814f64b713f928593de |
+| 文本剪贴板同步测试 | 8,765 bytes；覆盖 HMAC、UTF-8、重放、响应丢失重试、限频、持久 sequence、预期 host 与私网绑定 | ffcf155eee105d9725ee2007adaf2767066ced2089e563f259f653b85f25cfa6 |
 | Windows HID 只读查询脚本 | 15,489 bytes；12 项静态审计通过，并已在 Windows 只读运行 | 4b875c31604e336e2047edeba7123a464104f36c483022c999f18a1badd29d90 |
 | Windows 协议 probe | 110,680 bytes；Windows 内置编译 + 15 项可控 transport 测试、27 项静态审计通过 | 8fa534621e3db6a08ac7688c3869485cfda39760266e369b08c1456b1ed8f4d1 |
 | Windows 协议 probe SSH 入口 | 4,236 bytes；固定 metadata/只读/回切/edge/hotkey/peer-health/K94/test 入口 | 5d78010da613a678d021a29b0c347c4435230b6f4b66dd5a061fd773bca499b8 |
@@ -590,6 +593,17 @@ scripts/run_windows_hid_protocol_probe.sh k94-via-version \
 
 [结论] 现阶段唯一已有设备级双向映射和公开控制特性的是 M585/M590 D1。K94 仍缺“同时可达且可执行”的控制通道；接收器 vendor collection 或 QMK VIA 配置本身不能补足这个结论。
 
+### 5.14 自动状态恢复与最小文本剪贴板（2026-11-20）
+
+Mac controller 的 TARGET_UNAVAILABLE 不再永久等待下一次贴边。状态轮询每 2 秒低频复查真实 Windows peer-health，只有 peer 校验通过后才重新读取本机 HID++。恢复还要求 controller_running=true、最新 current slot=1，随后回到 READY_MAC 并保留先离开左边缘的重新武装条件。READY_MAC_RETURN_TARGET 继续表示鼠标不在 Mac 但 Mac 已准备好接收 Windows 回切，health 的 return_target_ready 由状态统一派生，避免旧字段残留。
+
+新增 text_clipboard_sync.py。两端各绑定指定 loopback/private IPv4 地址，默认端口 8791，仅同步不超过 256 KiB 的 UTF-8 文本。帧含 host、持久 host-local sequence、timestamp、nonce、payload 和 HMAC-SHA256。接收端校验时间窗、sequence、nonce、payload 上限、strict UTF-8 和重复指纹。发送端有 2 秒连接/响应超时、默认每分钟 8 次限频、持久 sequence 文件、同文本去重和对端同文本 duplicate 响应收敛。所有事件只记录长度、哈希、sequence 和错误类型，不记录剪贴板内容。
+
+验证结果：text-clipboard-and-edge-offline-tests.txt 中 Mac 相关 57/57 通过，windows-hid-protocol-static-recheck-20261120.txt 中 Windows 静态 27/27 通过。Mac pbpaste/pbcopy 使用 64 字节中文混合 benign probe 往返一致并恢复原剪贴板，见 text-clipboard-mac-adapter-test.json。
+
+3090 在 2026-11-20T16:29:14Z 仍无法通过 lazy-windows-ts SSH 连接，见 m585-windows-connectivity-recheck-20261120.txt。因此 3 次自动往返、Windows Get/Set-Clipboard 适配器实测和两端跨机文本同步均未执行，也未复核或停止 Windows Interactive watch。Mac 旧 watch 已按 m585-mac-watch-stopped-20261120.txt 停止。
+
+
 ## 6. 事实 / 推断 / 未知汇总
 
 [事实]
@@ -606,7 +620,9 @@ scripts/run_windows_hid_protocol_probe.sh k94-via-version \
 - M585/M590 本机只读 HID++ 查询成功：CHANGE_HOST feature index 9、host count 2、current slot 1；HOSTS_INFO feature index 10 且 slot 0=LAZY-WINDOWS、slot 1=lazy的Mac Mini。
 - 协调者已执行一次用户授权的 CHANGE_HOST function 0x10：20/20 bytes 提交一次，Mac BLE 06:44:27.719 断链，用户看到 Windows 硬件通道光标，后续只读复查 current index 回到 1。
 - 本轮完成 M585/M590 双向闭环：Mac current slot 1 时单次切到 slot 0；Windows current slot 0 时单次切回 slot 1；最终 Mac 只读复核 current slot 1。两次写入各 20/20 bytes、无重试。
-- 自动贴边离线实现完成：Mac listen-only CGEventTap、实际 display frame、驻留/提交完成冷却/交互抑制/离开边缘重武装、独立只读状态轮询、进程锁、slot 证据、peer health 与 JSONL 记录已实现；Windows live virtual screen、同样防抖与 fail-closed 状态、peer health 与单一 watch 双热键已实现。Mac 18 项 edge 单元测试与 Windows 27 项静态审计通过。
+- 自动贴边离线实现完成：Mac listen-only CGEventTap、实际 display frame、驻留/提交完成冷却/交互抑制/离开边缘重武装、独立只读状态轮询、进程锁、slot 证据、peer health 与 JSONL 记录已实现。Windows live virtual screen、同样防抖与 fail-closed 状态、peer health 与单一 watch 双热键已实现。Mac 24 项 edge 单元测试与 Windows 27 项静态审计通过。
+- 自动 attempt ebcc1b440bda44cc95c73aa0eb30416f 提交一次 20/20 bytes 后 Windows 进入 READY_WINDOWS，随后鼠标离开 Windows，Mac 回到 slot 1。保留的 Windows 回切日志没有 switch-submitted 事件，因此不能独立归因回切发起入口。
+- 最小 UTF-8 文本剪贴板同步已完成 HMAC、持久 sequence、nonce replay、重复指纹、strict UTF-8、256 KiB 上限、回环抑制、限频、超时、私网地址限制和 metadata-only 日志的离线验证。Mac pbpaste/pbcopy 实测通过。
 - 一次性 M585 实验脚本 21 项 fake/CLI 测试通过；Windows HID 只读查询脚本 12 项静态审计通过。本轮 worker 未向实际鼠标发送数据包。
 - Windows 只读 PnP 与 metadata-only HID 查询成功：K94 接收器 MI_01 为 FF60:0061，input/output report length 均 33 bytes；MI_02 COL05 为 FF00:0001，input/output 均 64 bytes。
 - 更正：前一条“未发送数据包”仅限定 5.6 的离线准备阶段；5.8 已完成实际双向闭环。
@@ -617,7 +633,7 @@ scripts/run_windows_hid_protocol_probe.sh k94-via-version \
 
 - K94 原厂固件无现成主机切通道 API；当前窄补丁只是 fail-closed 离线 proof，尚未解决控制通道可达性。
 - Web Hub 的 MD_* 是写入键位让用户按键触发，不是主机直接切换。
-- M585/M590 的双向硬件通道已经可用；自动贴边已具备监督实测条件，但 50 次验收、实际输入体验、键盘跟随、剪贴板和稳定 GUI 仍未完成。
+- M585/M590 的双向硬件通道已经可用。一次受监督自动往返有硬件状态证据，但回切提交日志缺失。3 次与 50 次验收、实际输入体验、键盘跟随、两端剪贴板实测和稳定 GUI 仍未完成。
 
 [未知]
 
@@ -626,6 +642,7 @@ scripts/run_windows_hid_protocol_probe.sh k94-via-version \
 - K94 当前 PCB revision 与工厂参考 BIN 是否匹配。
 - FS026 custom bootloader 的官方刷写/恢复流程。
 - M585/M590 连续自动切换时的防抖窗口、目标屏幕输入确认方式和快速 Deskflow 屏幕跳动的准确事件归因。
+- Windows Interactive watch 在 3090 恢复后的实际进程/任务状态，以及文本剪贴板 Windows PowerShell 适配器在真实桌面的 UTF-8 行为。
 - 自动贴边在真实用户桌面、多显示器/DPI 变化、Windows 睡眠恢复和 Deskflow 并行运行时的行为。
 
 ## 7. 本轮产物
@@ -644,6 +661,12 @@ scripts/run_windows_hid_protocol_probe.sh k94-via-version \
 - M585/M590 首次正向切换摘要：[m585-first-switch-summary.txt](../evidence/mouse/m585-first-switch-summary.txt)。
 - M585/M590 双向闭环摘要：[m585-bidirectional-roundtrip-summary.txt](../evidence/mouse/m585-bidirectional-roundtrip-summary.txt)。
 - 自动贴边离线摘要：[m585-automatic-edge-offline-summary.txt](../evidence/mouse/m585-automatic-edge-offline-summary.txt)。
+- 自动往返边界摘要：[m585-automatic-roundtrip-ebcc-summary.txt](../evidence/mouse/m585-automatic-roundtrip-ebcc-summary.txt)。
+- 文本剪贴板同步：[scripts/text_clipboard_sync.py](../scripts/text_clipboard_sync.py)。
+- 文本剪贴板测试：[test_text_clipboard_sync.py](../evidence/mouse/test_text_clipboard_sync.py)。
+- 文本剪贴板离线结果：[text-clipboard-and-edge-offline-tests.txt](../evidence/mouse/text-clipboard-and-edge-offline-tests.txt)。
+- Mac 剪贴板适配器实测：[text-clipboard-mac-adapter-test.json](../evidence/mouse/text-clipboard-mac-adapter-test.json)。
+- Mac watch 停止审计：[m585-mac-watch-stopped-20261120.txt](../evidence/mouse/m585-mac-watch-stopped-20261120.txt)。
 - Windows HID 查询静态摘要：[windows-hid-query-static-summary.txt](../evidence/windows/windows-hid-query-static-summary.txt)。
 - Windows PnP 只读 baseline：[windows-pnp-readonly-baseline.json](../evidence/windows/windows-pnp-readonly-baseline.json)。
 - Windows HID metadata-only 实测：[windows-hid-readonly-query.json](../evidence/windows/windows-hid-readonly-query.json)。
