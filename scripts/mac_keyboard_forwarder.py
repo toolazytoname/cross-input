@@ -151,6 +151,7 @@ class MacKeyTap:
         try:
             self.cf.CFRunLoopRun()
         finally:
+            self.cg.CGEventTapEnable(tap, False)
             self.release_all()
 
 

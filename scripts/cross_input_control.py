@@ -201,7 +201,7 @@ def status_window():
     tkinter.Button(controls, text="Start", command=start).pack(side="left", expand=True)
     tkinter.Button(controls, text="Stop & Restore Deskflow", command=shutdown).pack(side="right", expand=True)
     tkinter.Button(root, text="Recover mouse to Mac", command=recover).pack(fill="x", padx=16, pady=4)
-    root.protocol("WM_DELETE_WINDOW", root.destroy)
+    root.protocol("WM_DELETE_WINDOW", shutdown)
     root.mainloop()
 
 

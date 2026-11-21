@@ -14,6 +14,12 @@ spec.loader.exec_module(control)
 
 
 class ControlTests(unittest.TestCase):
+    def test_window_close_and_buttons_restore_input(self):
+        source = (ROOT / "scripts/cross_input_control.py").read_text()
+        self.assertIn('root.protocol("WM_DELETE_WINDOW", shutdown)', source)
+        self.assertIn('text="Recover mouse to Mac", command=recover', source)
+        self.assertIn('command=shutdown', source)
+
     def test_stop_restores_deskflow_and_clears_all_pid_files(self):
         with tempfile.TemporaryDirectory() as directory:
             runtime = pathlib.Path(directory)
