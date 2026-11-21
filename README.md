@@ -99,6 +99,16 @@ The keyboard forwarder and unified control window are experimental. The Windows 
 
 The K94 factory BLE handler requires BLE source mode, while the observed raw VIA interface was found in USB mode. A VIA response from the 2.4 GHz receiver also needs a same-shape online positive control before its responder and control capabilities can be identified.
 
+## Supervised input and clipboard acceptance
+
+With both controllers running, `scripts/supervised_input_acceptance.py` opens a temporary visible Windows text editor, sends a fixed benign typing sequence through the real Mac event tap, checks left/right modifier release, and verifies Chinese, English, multiline and maximum-size text in both directions. Only sizes and content hashes are written to the evidence file. The original clipboard contents are restored after the test, the temporary Windows editor task is removed, and Deskflow is restored. The Windows interactive desktop must already be unlocked.
+
+```sh
+python3 scripts/supervised_input_acceptance.py --output evidence/mouse/input-acceptance.json
+```
+
+The command needs the same configured Windows SSH alias, Python interpreter and shared secrets as the unified controls. It has not passed live acceptance while the Windows host is offline.
+
 ## License
 
 MIT for this project's original source and documentation. KEMOVE's QMK code and related upstream materials retain their original licenses.

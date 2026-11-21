@@ -94,6 +94,16 @@ def start_windows_auxiliaries(windows_alias, secret_dir):
         subprocess.run(controller + ["-Operation", "start"], capture_output=True, check=True, timeout=12)
 
 
+def local_health():
+    try:
+        with socket.create_connection(("127.0.0.1", 8787), 0.5) as connection:
+            connection.settimeout(0.5)
+            connection.sendall(b"\n")
+            return json.loads(connection.recv(8192))
+    except (OSError, ValueError):
+        return {}
+
+
 def remote_stop(windows_alias):
     for service in REMOTE_SERVICES.values():
         subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
@@ -131,6 +141,14 @@ def start():
             if process.poll() is not None:
                 raise RuntimeError(name + " exited at startup; inspect " + str(RUNTIME / (name + ".log")))
             emit("started", service=name, pid=process.pid)
+        deadline = time.monotonic() + 12
+        while time.monotonic() < deadline:
+            health = local_health()
+            if health.get("ready") is True:
+                break
+            time.sleep(0.25)
+        else:
+            raise RuntimeError("Mac mouse controller is not ready")
     except Exception:
         terminate_processes()
         try:
@@ -188,21 +206,26 @@ def status_window():
     import tkinter
     root = tkinter.Tk()
     root.title("Cross Input")
-    root.geometry("360x210")
+    root.geometry("480x310")
     root.resizable(False, False)
     label = tkinter.Label(root, font=("Helvetica", 13), justify="left", padx=24, pady=18)
     label.pack(fill="both", expand=True)
     def refresh():
-        active = "Unknown"
-        try:
-            with socket.create_connection(("127.0.0.1", 8787), 0.2) as connection:
-                connection.settimeout(0.2)
-                connection.sendall(b"\n")
-                mouse = json.loads(connection.recv(8192))
-            active = "Windows" if mouse.get("return_target_ready") else "Mac"
-        except (OSError, ValueError):
-            pass
-        label["text"] = f"Active computer: {active}\n" + "\n".join(f"{name.title()}: {'Running' if running(name) else 'Stopped'}" for name in SERVICES)
+        mouse = local_health()
+        active = "Windows" if mouse.get("return_target_ready") else "Mac"
+        state = mouse.get("state", "Stopped")
+        peer = mouse.get("last_peer_health") or {}
+        peer_state = "Ready" if peer.get("ok") else "Unavailable"
+        recent = "None"
+        for name in SERVICES:
+            try:
+                line = (RUNTIME / (name + ".log")).read_text(errors="replace").splitlines()[-1]
+                event = json.loads(line)
+                if "error" in event.get("event", "") or "failed" in event.get("event", ""):
+                    recent = name + ": " + event["event"]
+            except (OSError, ValueError):
+                pass
+        label["text"] = f"Active computer: {active}\nState: {state}\nWindows: {peer_state}\nRecent failure: {recent}\n" + "\n".join(f"{name.title()}: {'Running' if running(name) else 'Stopped'}" for name in SERVICES)
         root.after(1500, refresh)
     def shutdown():
         stop()
