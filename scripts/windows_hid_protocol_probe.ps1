@@ -1965,7 +1965,7 @@ public static class WindowsHidProtocolProbe
 
         private static string MacPeerHealth()
         {
-            string host = Environment.GetEnvironmentVariable("M585_EDGE_MAC_HOST") ?? "mac-host.local";
+            string host = Environment.GetEnvironmentVariable("M585_EDGE_MAC_HOST") ?? "192.168.1.4";
             string portText = Environment.GetEnvironmentVariable("M585_EDGE_MAC_HEALTH_PORT") ?? "8787";
             int port;
             if (!int.TryParse(portText, out port))
@@ -2008,6 +2008,7 @@ public static class WindowsHidProtocolProbe
             return health != null &&
                 health.Contains("\"ready\":true") &&
                 health.Contains("\"return_target_ready\":true");
+                // Both flags are required: an unavailable Mac never authorizes a return hop.
         }
 
         private static string SlotEvidence(ProbeOutput output)

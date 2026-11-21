@@ -35,6 +35,7 @@ class EdgeConfig:
     cooldown_ms: int = 2500
     poll_interval_seconds: float = 0.05
     state_poll_seconds: float = 1.0
+    peer_retry_seconds: float = 2.0
     switch_stability_ms: int = 5000
     return_confirmations_required: int = 2
     query_failure_limit: int = 3
@@ -76,6 +77,7 @@ class EdgeArbiter:
         self._last_submit_completed_ms: Optional[int] = None
         self._submit_completed_at: Optional[int] = None
         self._recovery_entered_at: Optional[int] = None
+        self._absent_entered_at: Optional[int] = None
         self._rearm_requires_leave_edge = False
 
     def observe(self, sample: EdgeSample, edge_x: float) -> Dict[str, Any]:
@@ -121,6 +123,10 @@ class EdgeArbiter:
     def recovery_entered_at(self) -> Optional[int]:
         return self._recovery_entered_at
 
+    @property
+    def absent_entered_at(self) -> Optional[int]:
+        return self._absent_entered_at
+
     def mark_submit_completed(self) -> None:
         self._last_submit_completed_ms = self.clock_ms()
         self._submit_completed_at = self._last_submit_completed_ms
@@ -134,12 +140,23 @@ class EdgeArbiter:
     def mark_target_unavailable(self) -> None:
         self.state = "TARGET_UNAVAILABLE"
         self._dwell_started_at = None
+        self._rearm_requires_leave_edge = True
+
+    def mark_target_available(self) -> None:
+        if self.state != "TARGET_UNAVAILABLE":
+            return
+        self.state = "READY_MAC"
+        self._dwell_started_at = None
+        self._rearm_requires_leave_edge = True
 
     def note_mouse_absent(self, external: bool = False) -> None:
+        previous_state = self.state
         if self.state == "READY_MAC":
             self.state = "MOUSE_ABSENT_EXTERNAL"
         elif self.state == "SWITCHING_TO_WINDOWS":
             self.state = "MOUSE_ABSENT_AFTER_SWITCH"
+        if previous_state != self.state:
+            self._absent_entered_at = self.clock_ms()
         self._dwell_started_at = None
         self._rearm_requires_leave_edge = True
 
@@ -147,11 +164,13 @@ class EdgeArbiter:
         self.state = "READY_MAC"
         self._dwell_started_at = None
         self._recovery_entered_at = None
+        self._absent_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def mark_return_target_ready(self) -> None:
         self.state = "READY_MAC_RETURN_TARGET"
         self._dwell_started_at = None
+        self._absent_entered_at = None
         self._rearm_requires_leave_edge = True
 
     def mark_recovery_required(self, at_ms: Optional[int] = None) -> None:
@@ -207,10 +226,13 @@ class ControllerStatus:
             "started_at": utc_now(),
             "last_slot_evidence": None,
             "last_peer_health": None,
+        "last_transition_seconds": None,
         }
 
     def update(self, **values):
         with self._lock:
+            if "state" in values:
+                values["return_target_ready"] = values["state"] == "READY_MAC_RETURN_TARGET"
             if values.get("ready"):
                 running = values.get("controller_running", self._values.get("controller_running", False))
                 state = values.get("state", self._values.get("state"))
@@ -632,6 +654,7 @@ def evaluate_windows_peer_health(payload: Dict[str, Any], now: Optional[Any] = N
         "schema": payload.get("schema") == 1,
         "controller": payload.get("controller") == "windows-peer-health-v1",
         "controller_ready": payload.get("controller_ready") is True,
+        "ready": payload.get("ready") is True,
         "desktop": desktop.get("available") is True and desktop.get("state") == "INTERACTIVE_DESKTOP_ACCESSIBLE",
         "no_hid_write": payload.get("hid_output_report_sent") is False,
     }
@@ -713,15 +736,20 @@ def apply_mac_slot_poll(
         return_confirmations += 1
         completed_at = arbiter.submit_completed_at
         if (
-            arbiter.state == "MOUSE_ABSENT_AFTER_SWITCH"
+            arbiter.state in ("MOUSE_ABSENT_AFTER_SWITCH", "MOUSE_ABSENT_EXTERNAL")
             and return_confirmations >= config.return_confirmations_required
-            and completed_at is not None
-            and now_ms - completed_at >= config.switch_stability_ms
+            and (
+                (completed_at is not None and now_ms - completed_at >= config.switch_stability_ms)
+                or (
+                    arbiter.absent_entered_at is not None
+                    and now_ms - arbiter.absent_entered_at >= config.switch_stability_ms
+                )
+            )
         ):
             arbiter.mark_return_target_ready()
         status.update(
             state=arbiter.state,
-            ready=False,
+            ready=arbiter.state in ("READY_MAC", "READY_MAC_RETURN_TARGET"),
             mouse_present=False,
             mouse_current_slot=None,
             poll_outcome="device-absent",
@@ -773,7 +801,7 @@ def apply_mac_slot_poll(
         completed_at = arbiter.submit_completed_at
         if completed_at is not None and now_ms - completed_at >= config.switch_stability_ms:
             arbiter.mark_recovery_required()
-    elif arbiter.state in ("MOUSE_ABSENT_AFTER_SWITCH", "MOUSE_ABSENT_EXTERNAL"):
+    elif arbiter.state in ("MOUSE_ABSENT_AFTER_SWITCH", "MOUSE_ABSENT_EXTERNAL", "READY_MAC_RETURN_TARGET"):
         return_confirmations += 1
         completed_at = arbiter.submit_completed_at
         required_delay = config.switch_stability_ms if completed_at is not None else config.cooldown_ms
@@ -822,6 +850,37 @@ def apply_mac_slot_poll(
     }
 
 
+def recover_target_unavailable(
+    arbiter: EdgeArbiter,
+    status: ControllerStatus,
+    peer: Dict[str, Any],
+    slot_reader: Callable[[], Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Recover a peer outage only after both peer and local-slot evidence pass."""
+
+    status.update(last_peer_health=peer)
+    if arbiter.state != "TARGET_UNAVAILABLE" or not peer.get("ok"):
+        return {"state": arbiter.state, "event": None}
+
+    slot = slot_reader()
+    status.update(last_slot_evidence=slot)
+    if not slot.get("ok") or slot.get("current_host_index") != 1 or not status.snapshot().get("controller_running"):
+        return {"state": arbiter.state, "event": None, "current_slot_evidence": slot}
+
+    arbiter.mark_target_available()
+    status.update(
+        state=arbiter.state,
+        ready=True,
+        mouse_present=True,
+        mouse_current_slot=1,
+        poll_outcome="present-slot-1-after-peer-recovery",
+        last_slot_evidence=slot,
+        query_failure_count=0,
+        return_confirmations=0,
+    )
+    return {"state": arbiter.state, "event": "target-available", "peer_health": peer, "current_slot_evidence": slot}
+
+
 def poll_mac_state(
     arbiter: EdgeArbiter,
     status: ControllerStatus,
@@ -829,9 +888,11 @@ def poll_mac_state(
     config: EdgeConfig,
     stop_event: threading.Event,
     hid_query_lock: threading.Lock,
+    peer_check: Optional[Callable[[], Dict[str, Any]]] = None,
 ) -> None:
     return_confirmations = 0
     query_failures = 0
+    next_peer_retry_ms = 0
     while not stop_event.is_set():
         if not config.state_poll_seconds or stop_event.wait(config.state_poll_seconds):
             break
@@ -857,6 +918,19 @@ def poll_mac_state(
         )
         return_confirmations = result["return_confirmations"]
         query_failures = result["query_failures"]
+        recovery_result: Optional[Dict[str, Any]] = None
+        if (
+            arbiter.state == "TARGET_UNAVAILABLE"
+            and peer_check is not None
+            and now_ms >= next_peer_retry_ms
+        ):
+            next_peer_retry_ms = now_ms + int(config.peer_retry_seconds * 1000)
+            recovery_result = recover_target_unavailable(
+                arbiter,
+                status,
+                peer_check(),
+                lambda: _read_mac_slot_locked(python, hid_query_lock),
+            )
         if result.get("event"):
             print(json.dumps({
                 "schema": 1,
@@ -864,6 +938,16 @@ def poll_mac_state(
                 "utc": utc_now(),
                 "state": arbiter.state,
                 "poll_outcome": status.snapshot().get("poll_outcome"),
+                "hid_write": False,
+            }, ensure_ascii=False, separators=(",", ":")), flush=True)
+        if recovery_result is not None and recovery_result.get("event"):
+            print(json.dumps({
+                "schema": 1,
+                "event": recovery_result["event"],
+                "utc": utc_now(),
+                "state": arbiter.state,
+                "peer_validation": recovery_result.get("peer_health", {}).get("validation"),
+                "current_slot_evidence": recovery_result.get("current_slot_evidence"),
                 "hid_write": False,
             }, ensure_ascii=False, separators=(",", ":")), flush=True)
 
@@ -885,6 +969,7 @@ def process_samples(
         decision = arbiter.observe(sample, edge_x)
         if not decision.get("trigger"):
             continue
+        started_monotonic = time.monotonic()
         attempt_id = "auto-edge-" + uuid.uuid4().hex
         record = AttemptRecord(
             attempt_id=attempt_id,
@@ -937,6 +1022,7 @@ def process_samples(
         submitted = submit_mac_switch(python, attempt_id)
         record.submit_evidence = submitted
         if submitted.get("ok"):
+            status.update(last_transition_seconds=time.monotonic() - started_monotonic)
             arbiter.mark_submit_completed()
         elif submitted.get("attempt_reached"):
             arbiter.mark_submit_completed()
@@ -1006,12 +1092,13 @@ def parse_args() -> argparse.Namespace:
     mode.add_argument("--check-environment", action="store_true", help="perform read-only environment checks")
     mode.add_argument("--watch", action="store_true", help="run the edge controller in the foreground")
     mode.add_argument("--dry-run", action="store_true", help="detect edges and log decisions without HID or peer commands")
-    parser.add_argument("--python", default=str(os.environ.get("M585_PYTHON", "python3")))
+    parser.add_argument("--python", default=str(SCRIPT_DIR.parent / "research/mouse/venv/bin/python"))
     parser.add_argument("--display-index", type=int, help="use a specific display from --check-environment; default is the leftmost frame")
     parser.add_argument("--threshold-px", type=int, default=EdgeConfig.threshold_px)
     parser.add_argument("--dwell-ms", type=int, default=EdgeConfig.dwell_ms)
     parser.add_argument("--cooldown-ms", type=int, default=EdgeConfig.cooldown_ms)
     parser.add_argument("--state-poll-seconds", type=float, default=EdgeConfig.state_poll_seconds)
+    parser.add_argument("--peer-retry-seconds", type=float, default=EdgeConfig.peer_retry_seconds)
     parser.add_argument("--switch-stability-ms", type=int, default=EdgeConfig.switch_stability_ms)
     parser.add_argument("--log-path", type=Path, default=DEFAULT_LOG_PATH)
     parser.add_argument("--lock-path", type=Path, default=DEFAULT_LOCK_PATH)
@@ -1035,6 +1122,7 @@ def main() -> None:
         dwell_ms=args.dwell_ms,
         cooldown_ms=args.cooldown_ms,
         state_poll_seconds=args.state_poll_seconds,
+        peer_retry_seconds=args.peer_retry_seconds,
         switch_stability_ms=args.switch_stability_ms,
         peer_check_timeout_seconds=args.peer_timeout,
     )
@@ -1078,7 +1166,7 @@ def main() -> None:
         if not args.dry_run:
             state_poll_thread = threading.Thread(
                 target=poll_mac_state,
-                args=(arbiter, status, args.python, config, stop_event, hid_query_lock),
+                args=(arbiter, status, args.python, config, stop_event, hid_query_lock, lambda: check_windows_peer(config.peer_check_timeout_seconds)),
                 daemon=True,
             )
             state_poll_thread.start()

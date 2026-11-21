@@ -168,7 +168,7 @@ The channel uses TCP 8791 on the private LAN. No firewall rule has been created.
 
 ### Stage 4: service and GUI
 
-Package each controller as a user-level service with health state, event log, current slot, last transition latency, rollback buttons, and a single emergency command that stops automatic switching. Network changes and Windows sleep/wake should degrade to manual tool mode rather than guessing device state.
+Package each controller as a user-level service with health state, event log, current slot, last transition latency, rollback buttons, and a single emergency command that stops automatic switching. The current implementation includes an optional local Tk status window and reversible `.command` controls, but the start/stop and runtime acceptance have not completed a live Windows run. Network changes and Windows sleep/wake should degrade to manual tool mode rather than guessing device state.
 
 ## Non-goals and current boundaries
 

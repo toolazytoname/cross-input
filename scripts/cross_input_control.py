@@ -212,7 +212,8 @@ def status():
             recent[name] = (RUNTIME / (name + ".log")).read_text(errors="replace").splitlines()[-1][:600]
         except OSError:
             recent[name] = None
-    emit("status", services={name: running(name) for name in SERVICES}, recent_status=recent, runtime=str(RUNTIME))
+    peer = {"online": False, "checked": False}
+    emit("status", services={name: running(name) for name in SERVICES}, peer=peer, recent_status=recent, runtime=str(RUNTIME))
 
 
 def main():
