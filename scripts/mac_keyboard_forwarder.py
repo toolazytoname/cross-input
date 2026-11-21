@@ -50,6 +50,13 @@ class KeyboardState:
             self.last_error = "peer-unavailable"
         return self.remote
 
+    def release_if_returned(self) -> bool:
+        if self.remote and not self.update(time.monotonic()):
+            self.remote = False
+            self.last_check = 0
+            return True
+        return False
+
 
 class MacKeyTap:
     def __init__(self, sender: KeySender, state: KeyboardState):
@@ -71,6 +78,11 @@ class MacKeyTap:
         self.cf.CFRunLoopGetCurrent.restype = ctypes.c_void_p
         self.cf.CFRunLoopGetCurrent.argtypes = []
         self.cf.CFRunLoopAddSource.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
+        self.cf.CFRunLoopAddTimer.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
+        self.cf.CFRunLoopTimerCreate.restype = ctypes.c_void_p
+        self.cf.CFRunLoopTimerCreate.argtypes = [ctypes.c_void_p, ctypes.c_double, ctypes.c_double, ctypes.c_uint64, ctypes.c_uint64, ctypes.c_void_p, ctypes.c_void_p]
+        self.cf.CFAbsoluteTimeGetCurrent.restype = ctypes.c_double
+        self.cf.CFAbsoluteTimeGetCurrent.argtypes = []
         self.cf.CFRunLoopRun.argtypes = []
 
     def release_all(self):
@@ -104,6 +116,10 @@ class MacKeyTap:
             return event
         code = self.cg.CGEventGetIntegerValueField(event, 9)
         flags = self.cg.CGEventGetFlags(event)
+        if event_type in (12, 0xFFFFFFFE, 0xFFFFFFFF):
+            if self.state.release_if_returned():
+                self.release_all()
+            return event
         if flags & 0x00000010:
             return event
         key = MAC_TO_KEY.get(code)
@@ -127,6 +143,9 @@ class MacKeyTap:
         source = self.cf.CFMachPortCreateRunLoopSource(None, tap, 0)
         self.cg.CGEventTapEnable.argtypes = [ctypes.c_void_p, ctypes.c_bool]
         self.cg.CGEventTapEnable(tap, True)
+        timer_callback = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p)(lambda timer, info: self.release_all() if self.state.release_if_returned() else None)
+        timer = self.cf.CFRunLoopTimerCreate(None, self.cf.CFAbsoluteTimeGetCurrent() + 0.2, 0.2, 0, 0, timer_callback, None)
+        self.cf.CFRunLoopAddTimer(self.cf.CFRunLoopGetCurrent(), timer, ctypes.c_void_p.in_dll(self.cf, "kCFRunLoopCommonModes"))
         self.cf.CFRunLoopAddSource(self.cf.CFRunLoopGetCurrent(), source, ctypes.c_void_p.in_dll(self.cf, "kCFRunLoopCommonModes"))
         print(json.dumps({"event": "keyboard-forwarder-started", "keys_logged": False}), flush=True)
         try:

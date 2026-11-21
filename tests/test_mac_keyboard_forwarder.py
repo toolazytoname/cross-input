@@ -49,6 +49,17 @@ class KeyboardForwarderTests(unittest.TestCase):
         self.assertFalse(tap.forward("b", True))
         self.assertEqual(sender.events[-1], ("release_all",))
 
+    def test_timer_releases_when_mouse_returns_without_key_event(self):
+        sender = FakeSender()
+        state = mock.Mock()
+        state.release_if_returned.return_value = True
+        with mock.patch("ctypes.cdll.LoadLibrary"):
+            tap = forwarder.MacKeyTap(sender, state)
+        tap.remote_keys_down = True
+        self.assertTrue(state.release_if_returned())
+        tap.release_all()
+        self.assertEqual(sender.events, [("release_all",)])
+
     def test_all_mapped_keys_are_supported_by_protocol(self):
         from keyboard_protocol import KEY_NAMES
         self.assertEqual(set(forwarder.MAC_TO_KEY.values()) - KEY_NAMES, set())

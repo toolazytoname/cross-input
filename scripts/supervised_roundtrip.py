@@ -21,6 +21,17 @@ def health():
         return json.loads(connection.recv(8192))
 
 
+def mac_attempts():
+    path = ROOT / "logs/m585-edge-events.jsonl"
+    if not path.exists(): return []
+    return [json.loads(line) for line in path.read_text().splitlines() if "attempt_id" in line]
+
+
+def windows_events(environment):
+    result = subprocess.run(["ssh", "-o", "ConnectTimeout=5", environment["M585_SSH_ALIAS"], "powershell", "-NoProfile", "-NonInteractive", "-Command", "Get-Content ($env:TEMP + '\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl') -Tail 30"], capture_output=True, text=True, timeout=10)
+    return [line for line in result.stdout.splitlines() if '"event"' in line]
+
+
 def windows_health(environment):
     result = subprocess.run([str(ROOT / "scripts/run_windows_hid_protocol_probe.sh"), "peer-health"], env=environment, capture_output=True, text=True, timeout=15)
     data = json.loads(result.stdout)
@@ -31,6 +42,12 @@ def move_windows_pointer(environment, x, y):
     result = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "start", "pointer-test"], env=environment, capture_output=True, timeout=12)
     if result.returncode:
         raise RuntimeError("Windows pointer injection failed")
+
+
+def drain_pointer_events(seconds):
+    deadline = time.monotonic() + seconds
+    while time.monotonic() < deadline:
+        time.sleep(min(0.2, deadline - time.monotonic()))
 
 
 def post_pointer(x, y):
@@ -63,23 +80,28 @@ def run(rounds, output):
     records = []
     started = time.monotonic()
     for index in range(rounds):
+        mac_before = len(mac_attempts())
+        windows_before = len(windows_events(environment))
         attempt = "acceptance-" + uuid.uuid4().hex
         wait_for(lambda: ((h := health()).get("state") == "READY_MAC" and h.get("mouse_current_slot") == 1, h), 25)
         post_pointer(100, 450)
+        drain_pointer_events(0.1)
         time.sleep(0.3)
         post_pointer(0, 450)
+        drain_pointer_events(0.1)
         time.sleep(1)
         post_pointer(0, 450)
+        drain_pointer_events(0.1)
         windows = wait_for(lambda: ((h := windows_health(environment)).get("return_ready") is True, h), 25)
         records.append({"round": index + 1, "attempt": attempt, "to_windows": windows})
         move_windows_pointer(environment, 100000, 450)
         returned = wait_for(lambda: ((h := health()).get("state") == "READY_MAC" and h.get("mouse_current_slot") == 1, h), 30)
         records[-1]["to_mac"] = returned
         records[-1]["seconds"] = round(time.monotonic() - started, 3)
-        log_path = ROOT / "logs/m585-edge-events.jsonl"
-        records[-1]["mac_attempts"] = [json.loads(line) for line in log_path.read_text().splitlines() if "auto-edge" in line][-2:]
-        remote_log = subprocess.run(["ssh", "-o", "ConnectTimeout=5", environment["M585_SSH_ALIAS"], "powershell", "-NoProfile", "-NonInteractive", "-Command", "Get-Content ($env:TEMP + '\\MiniOpsM585Edge\\logs\\m585-edge-watch.jsonl') -Tail 30"], capture_output=True, text=True, timeout=10)
-        records[-1]["windows_events"] = [line for line in remote_log.stdout.splitlines() if '"event"' in line][-8:]
+        records[-1]["mac_attempts"] = mac_attempts()[mac_before:]
+        records[-1]["windows_events"] = windows_events(environment)[windows_before:]
+        if sum(1 for item in records[-1]["mac_attempts"] if item.get("result") == "submitted") != 1:
+            raise RuntimeError("Round did not produce exactly one Mac-to-Windows submission")
         if not any('"switch-submitted"' in line and '"target":"MAC_SLOT_1"' in line for line in records[-1]["windows_events"]):
             raise RuntimeError("Mac slot returned without an auditable Windows-to-Mac submission")
         output.write(json.dumps(records[-1], ensure_ascii=False) + "\n")

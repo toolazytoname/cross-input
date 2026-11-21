@@ -38,6 +38,7 @@ public static class MiniOpsKeyboardReceiver {
     static string Session = "";
     static DateTime LastInput = DateTime.UtcNow;
     static System.Threading.Timer Watchdog;
+    static Queue<string> RecentNonces = new Queue<string>();
     static object Gate = new object();
     static void Add(string name, ushort key) { Keys[name] = key; }
     static MiniOpsKeyboardReceiver() {
@@ -96,12 +97,13 @@ public static class MiniOpsKeyboardReceiver {
                     int sequence=Convert.ToInt32(data["sequence"]);
                     string nonce=(string)data["nonce"];
                     long timestamp=Convert.ToInt64(data["timestamp_ms"]);
-                    if(session!=Session) { ReleaseAll(); Session=session; LastSequence=0; Nonces.Clear(); }
+                    if(session!=Session) { ReleaseAll(); Session=session; LastSequence=0; Nonces.Clear(); RecentNonces.Clear(); }
                     if(Math.Abs(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()-timestamp)>10000) { Nack(stream,"stale"); continue; }
                     if(sequence<=LastSequence || Nonces.Contains(nonce)) { stream.Write(Encoding.ASCII.GetBytes("ok\n"),0,3); continue; }
                     LastSequence=sequence;
                     Nonces.Add(nonce);
-                    if(Nonces.Count>2048) Nonces.Clear();
+                    RecentNonces.Enqueue(nonce);
+                    if(Nonces.Count>2048) Nonces.Remove(RecentNonces.Dequeue());
                     LastInput=DateTime.UtcNow;
                     lock(Gate) {
                         if(!DesktopAvailable()) { ReleaseAll(); Session=""; LastSequence=0; Nonces.Clear(); throw new InvalidOperationException("SESSION_UNAVAILABLE"); }

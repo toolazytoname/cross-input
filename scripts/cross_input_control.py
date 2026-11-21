@@ -81,6 +81,7 @@ def terminate_processes():
 
 def start():
     RUNTIME.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["pkill", "-f", "Deskflow.app/Contents/MacOS/deskflow-gui"], capture_output=True)
     secret_dir = Path.home() / ".config/miniops"
     secret_dir.mkdir(parents=True, exist_ok=True)
     for secret_name in ("cross-input-keyboard.secret", "cross-input-clipboard.secret"):
