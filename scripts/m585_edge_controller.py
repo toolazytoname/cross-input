@@ -40,6 +40,7 @@ class EdgeConfig:
     return_confirmations_required: int = 2
     query_failure_limit: int = 3
     peer_check_timeout_seconds: float = 8.0
+    max_sample_age_ms: int = 50
 
 
 @dataclass(frozen=True)
@@ -85,6 +86,9 @@ class EdgeArbiter:
         at_edge = sample.x <= edge_x + self.config.threshold_px
         interaction = sample.button_pressed or sample.modifier_pressed
         now = self.clock_ms()
+        if now - sample.timestamp_ms > self.config.max_sample_age_ms:
+            self._edge_entered_at = None
+            return {"trigger": False, "reason": "stale-input-sample", "dwell_ms": 0}
         if self._rearm_requires_leave_edge:
             if at_edge:
                 return {"trigger": False, "reason": "rearm-requires-leave-edge", "dwell_ms": 0}

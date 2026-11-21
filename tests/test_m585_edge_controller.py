@@ -62,9 +62,9 @@ class M585EdgeControllerTests(unittest.TestCase):
 
         clock = FakeClock()
         arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
-        clock.now_ms = 401
-        self.assertEqual(arbiter.observe(sample(0), 0)["reason"], "dwelling")
         clock.now_ms = 400
+        self.assertEqual(arbiter.observe(sample(1), 0)["reason"], "dwelling")
+        clock.now_ms = 401
         self.assertTrue(arbiter.observe(sample(399), 0)["trigger"])
         self.assertEqual(arbiter.state, "SWITCHING_TO_WINDOWS")
 
@@ -79,6 +79,13 @@ class M585EdgeControllerTests(unittest.TestCase):
         arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), FakeClock())
         arbiter.observe(sample(0, event_type=6), 0)
         arbiter.observe(sample(500, event_type=6), 0)
+        self.assertEqual(arbiter.state, "READY_MAC")
+
+    def test_stale_queued_edge_never_switches(self):
+        clock = FakeClock()
+        clock.now_ms = 1000
+        arbiter = controller.EdgeArbiter(controller.EdgeConfig(), clock)
+        self.assertEqual(arbiter.observe(sample(0), 0)["reason"], "stale-input-sample")
         self.assertEqual(arbiter.state, "READY_MAC")
 
     def test_cooldown_and_slot_based_recovery(self):

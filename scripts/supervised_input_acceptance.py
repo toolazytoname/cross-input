@@ -167,8 +167,8 @@ class LiveAcceptance:
 
     def register_keyboard_target(self):
         self.run(["scp", "-q", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", str(ROOT / "scripts/windows_keyboard_target.ps1"), self.alias + ":" + self.remote + "/"])
-        action = "-NoProfile -STA -ExecutionPolicy Bypass -File \"%TEMP%\\MiniOpsM585Edge\\windows_keyboard_target.ps1\" -ResultFile \"%TEMP%\\MiniOpsM585Edge\\keyboard-acceptance.txt\" -ReadyFile \"%TEMP%\\MiniOpsM585Edge\\keyboard-acceptance.ready\""
-        self.powershell("$a=New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '" + action + "'; $p=New-ScheduledTaskPrincipal -UserId ([Security.Principal.WindowsIdentity]::GetCurrent().Name) -LogonType Interactive; Register-ScheduledTask -TaskName MiniOpsKeyboardAcceptance -Action $a -Principal $p -Force | Out-Null")
+        script = "$root=Join-Path $env:TEMP 'MiniOpsM585Edge'; $a=New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -STA -ExecutionPolicy Bypass -File \"' + (Join-Path $root 'windows_keyboard_target.ps1') + '\" -ResultFile \"' + (Join-Path $root 'keyboard-acceptance.txt') + '\" -ReadyFile \"' + (Join-Path $root 'keyboard-acceptance.ready') + '\"'); $p=New-ScheduledTaskPrincipal -UserId ([Security.Principal.WindowsIdentity]::GetCurrent().Name) -LogonType Interactive; Register-ScheduledTask -TaskName MiniOpsKeyboardAcceptance -Action $a -Principal $p -Force | Out-Null"
+        self.powershell(script)
 
     def clipboard(self):
         self.register_keyboard_target()

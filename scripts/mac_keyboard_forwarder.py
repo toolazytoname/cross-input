@@ -113,20 +113,20 @@ class MacKeyTap:
 
     def callback(self, proxy, event_type, event, refcon):
         if event_type in (0xFFFFFFFE, 0xFFFFFFFF):
+            self.release_all()
+            self.state.last_check = 0
             return event
         code = self.cg.CGEventGetIntegerValueField(event, 9)
         flags = self.cg.CGEventGetFlags(event)
-        if event_type in (12, 0xFFFFFFFE, 0xFFFFFFFF):
-            if self.state.release_if_returned():
-                self.release_all()
-            return event
         if flags & 0x00000010:
             return event
         key = MAC_TO_KEY.get(code)
         is_modifier = code in (54, 55, 56, 58, 59, 60, 61, 62)
         if is_modifier:
             key = {54: "rightcommand", 55: "leftcommand", 56: "leftshift", 58: "leftoption", 59: "leftcontrol", 60: "rightshift", 61: "rightoption", 62: "rightcontrol"}[code]
-            pressed = bool(flags & {54: 0x100000, 55: 0x100000, 56: 0x20000, 58: 0x80000, 59: 0x40000, 60: 0x20000, 61: 0x80000, 62: 0x40000}[code])
+            # NX device-specific flags distinguish both sides even when the
+            # generic Shift/Command flag changes because another side moved.
+            pressed = bool(flags & {54: 0x10, 55: 0x08, 56: 0x02, 58: 0x20, 59: 0x01, 60: 0x04, 61: 0x40, 62: 0x2000}[code])
         else:
             pressed = event_type in (10, 12)
         if not key:

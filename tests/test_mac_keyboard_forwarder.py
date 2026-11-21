@@ -73,6 +73,26 @@ class KeyboardForwarderTests(unittest.TestCase):
         self.assertIn('Add("rightshift",0xA1)', receiver)
         self.assertIn('Add("rightcommand",0x5C)', receiver)
 
+    def test_modifier_flags_changed_event_is_forwarded(self):
+        sender = FakeSender()
+        tap = self.make_tap(sender)
+        tap.cg.CGEventGetIntegerValueField.return_value = 56
+        tap.cg.CGEventGetFlags.return_value = 0x20002
+        self.assertIsNone(tap.callback(None, 12, object(), None))
+        self.assertEqual(sender.events[-1], ("key", "leftshift", True, 0x20000))
+        tap.cg.CGEventGetFlags.return_value = 0
+        self.assertIsNone(tap.callback(None, 12, object(), None))
+        self.assertEqual(sender.events[-1], ("key", "leftshift", False, 0))
+
+    def test_tap_disable_releases_remote_keys(self):
+        sender = FakeSender()
+        tap = self.make_tap(sender)
+        tap.down.add("a")
+        event = object()
+        self.assertIs(tap.callback(None, 0xFFFFFFFE, event, None), event)
+        self.assertEqual(sender.events[-1], ("release_all",))
+        self.assertEqual(tap.down, set())
+
 
 if __name__ == "__main__":
     unittest.main()
