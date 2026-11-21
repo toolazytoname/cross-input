@@ -33,6 +33,12 @@ class RoundTripTests(unittest.TestCase):
         self.assertIn("exactly one Mac-to-Windows", source)
         self.assertIn("auditable Windows-to-Mac", source)
 
+    def test_pointer_probe_uses_interactive_task_and_checks_result(self):
+        source = (ROOT / "scripts/supervised_roundtrip.py").read_text()
+        self.assertIn('"register-start", "pointer-test"', source)
+        self.assertIn('"LastTaskResult"', source)
+        self.assertIn('"status", "pointer-test"', source)
+
 
 if __name__ == "__main__":
     unittest.main()

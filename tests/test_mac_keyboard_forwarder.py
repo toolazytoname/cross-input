@@ -64,6 +64,15 @@ class KeyboardForwarderTests(unittest.TestCase):
         from keyboard_protocol import KEY_NAMES
         self.assertEqual(set(forwarder.MAC_TO_KEY.values()) - KEY_NAMES, set())
 
+    def test_left_and_right_modifiers_have_independent_windows_keys(self):
+        source = (ROOT / "scripts/mac_keyboard_forwarder.py").read_text()
+        receiver = (ROOT / "scripts/windows_input_service.ps1").read_text()
+        self.assertIn('56: "leftshift"', source)
+        self.assertIn('60: "rightshift"', source)
+        self.assertIn('Add("leftshift",0xA0)', receiver)
+        self.assertIn('Add("rightshift",0xA1)', receiver)
+        self.assertIn('Add("rightcommand",0x5C)', receiver)
+
 
 if __name__ == "__main__":
     unittest.main()

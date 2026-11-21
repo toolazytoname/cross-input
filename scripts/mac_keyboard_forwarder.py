@@ -125,7 +125,7 @@ class MacKeyTap:
         key = MAC_TO_KEY.get(code)
         is_modifier = code in (54, 55, 56, 58, 59, 60, 61, 62)
         if is_modifier:
-            key = {54: "command", 55: "command", 56: "shift", 58: "option", 59: "control", 60: "shift", 61: "option", 62: "control"}[code]
+            key = {54: "rightcommand", 55: "leftcommand", 56: "leftshift", 58: "leftoption", 59: "leftcontrol", 60: "rightshift", 61: "rightoption", 62: "rightcontrol"}[code]
             pressed = bool(flags & {54: 0x100000, 55: 0x100000, 56: 0x20000, 58: 0x80000, 59: 0x40000, 60: 0x20000, 61: 0x80000, 62: 0x40000}[code])
         else:
             pressed = event_type in (10, 12)

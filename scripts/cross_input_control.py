@@ -94,8 +94,17 @@ def start_windows_auxiliaries(windows_alias, secret_dir):
         subprocess.run(controller + ["-Operation", "start"], capture_output=True, check=True, timeout=12)
 
 
+def remote_stop(windows_alias):
+    for service in REMOTE_SERVICES.values():
+        subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
+    subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT, env={**ENVIRONMENT, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
+
+
 def start():
     RUNTIME.mkdir(parents=True, exist_ok=True)
+    if any(running(name) for name in SERVICES):
+        status()
+        return
     subprocess.run(["pkill", "-f", "Deskflow.app/Contents/MacOS/deskflow-gui"], capture_output=True)
     secret_dir = Path.home() / ".config/miniops"
     secret_dir.mkdir(parents=True, exist_ok=True)
@@ -125,9 +134,7 @@ def start():
     except Exception:
         terminate_processes()
         try:
-            for service in REMOTE_SERVICES.values():
-                subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
-            subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT, env={**ENVIRONMENT, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
+            remote_stop(windows_alias)
         except (OSError, subprocess.SubprocessError) as error:
             emit("remote-stop-unavailable", reason=type(error).__name__)
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
@@ -143,10 +150,7 @@ def stop():
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
     windows_alias = os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")
     try:
-        subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT,
-                       env={**os.environ, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
-        for service in REMOTE_SERVICES.values():
-            subprocess.run(["ssh", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
+        remote_stop(windows_alias)
     except (OSError, subprocess.SubprocessError) as error:
         emit("remote-stop-unavailable", reason=type(error).__name__)
     emit("deskflow-restore-requested")

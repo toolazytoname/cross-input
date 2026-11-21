@@ -49,6 +49,8 @@ public static class MiniOpsKeyboardReceiver {
         Add("space",0x20); Add("return",0x0D); Add("tab",0x09); Add("escape",0x1B); Add("backspace",0x08); Add("delete",0x2E);
         Add("left",0x25); Add("right",0x27); Add("up",0x26); Add("down",0x28); Add("home",0x24); Add("end",0x23); Add("pageup",0x21); Add("pagedown",0x22); Add("insert",0x2D);
         Add("shift",0x10); Add("control",0x11); Add("option",0x12); Add("command",0x5B); Add("capslock",0x14);
+        Add("leftshift",0xA0); Add("rightshift",0xA1); Add("leftcontrol",0xA2); Add("rightcontrol",0xA3);
+        Add("leftoption",0xA4); Add("rightoption",0xA5); Add("leftcommand",0x5B); Add("rightcommand",0x5C);
         Add("minus",0xBD); Add("equal",0xBB); Add("leftbracket",0xDB); Add("rightbracket",0xDD); Add("backslash",0xDC); Add("semicolon",0xBA); Add("quote",0xDE); Add("comma",0xBC); Add("period",0xBE); Add("slash",0xBF); Add("grave",0xC0);
     }
     public static string ReleaseAllForTest() {

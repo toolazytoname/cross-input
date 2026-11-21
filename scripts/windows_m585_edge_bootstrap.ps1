@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("watch", "dry-run")]
+    [ValidateSet("watch", "dry-run", "pointer-test")]
     [string]$Mode = "watch"
 )
 
@@ -63,6 +63,14 @@ function Read-NewChildOutput {
 }
 
 $exitCode = 0
+if ($Mode -eq 'pointer-test') {
+    & (Join-Path $root 'windows_pointer_probe.ps1') -X 400 -Y 450
+    Start-Sleep -Milliseconds 500
+    & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
+    Start-Sleep -Milliseconds 1000
+    & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
+    exit $LASTEXITCODE
+}
 try {
     $stdoutPath = Join-Path $logDirectory ("probe-stdout-" + [Guid]::NewGuid().ToString("N") + ".log")
     $stderrPath = Join-Path $logDirectory ("probe-stderr-" + [Guid]::NewGuid().ToString("N") + ".log")

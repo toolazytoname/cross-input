@@ -21,6 +21,7 @@ KEY_NAMES = {
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "space", "return", "tab", "escape", "backspace", "delete",
     "left", "right", "up", "down", "home", "end", "pageup", "pagedown", "insert",
     "shift", "control", "option", "command", "capslock",
+    "leftshift", "rightshift", "leftcontrol", "rightcontrol", "leftoption", "rightoption", "leftcommand", "rightcommand",
     "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12",
     "minus", "equal", "leftbracket", "rightbracket", "backslash", "semicolon", "quote", "comma", "period", "slash", "grave",
 }

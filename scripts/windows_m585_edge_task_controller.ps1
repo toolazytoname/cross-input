@@ -34,11 +34,7 @@ switch ($Operation) {
     }
     "start" {
         if ($Mode -eq 'pointer-test') {
-            & (Join-Path $root 'windows_pointer_probe.ps1') -X 400 -Y 450
-            Start-Sleep -Milliseconds 500
-            & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
-            Start-Sleep -Milliseconds 1000
-            & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
+            Start-ScheduledTask -TaskName $taskName
             return
         }
         Start-ScheduledTask -TaskName $taskName

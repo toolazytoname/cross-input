@@ -51,9 +51,16 @@ def windows_health(environment):
 
 
 def move_windows_pointer(environment, x, y):
-    result = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "start", "pointer-test"], env=environment, capture_output=True, timeout=12)
+    result = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "register-start", "pointer-test"], env=environment, capture_output=True, timeout=25)
     if result.returncode:
-        raise RuntimeError("Windows pointer injection failed")
+        raise RuntimeError("Windows interactive pointer task failed to start")
+    time.sleep(2.5)
+    result = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "status", "pointer-test"], env=environment, capture_output=True, text=True, timeout=15)
+    state = json.loads(result.stdout)
+    if int(state.get("task", {}).get("State") or 0) == 4:
+        raise RuntimeError("Windows pointer task did not finish")
+    if int(state.get("info", {}).get("LastTaskResult") or 0) != 0:
+        raise RuntimeError("Windows pointer task reported failure")
 
 
 def drain_pointer_events(seconds):
@@ -99,7 +106,6 @@ def run(rounds, output):
         windows_event_ids_before = {event_identity(line) for line in windows_events(environment)}
         mac_before = len(mac_attempts())
         windows_before = len(windows_events(environment))
-        attempt = "acceptance-" + uuid.uuid4().hex
         wait_for(lambda: ((h := health()).get("state") == "READY_MAC" and h.get("mouse_current_slot") == 1, h), 25)
         desktop = windows_desktop_ready(environment)
         if desktop.returncode:

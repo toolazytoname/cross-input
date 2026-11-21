@@ -236,7 +236,7 @@ class ControllerStatus:
             "started_at": utc_now(),
             "last_slot_evidence": None,
             "last_peer_health": None,
-        "last_transition_seconds": None,
+            "last_transition_seconds": None,
         }
 
     def update(self, **values):
