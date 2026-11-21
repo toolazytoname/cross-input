@@ -62,7 +62,7 @@ class M585EdgeControllerTests(unittest.TestCase):
 
         clock = FakeClock()
         arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
-        clock.now_ms = 400
+        clock.now_ms = 51
         self.assertEqual(arbiter.observe(sample(1), 0)["reason"], "dwelling")
         clock.now_ms = 401
         self.assertTrue(arbiter.observe(sample(399), 0)["trigger"])

@@ -102,6 +102,8 @@ class EdgeArbiter:
             return {"trigger": False, "reason": "already-triggered-sample", "dwell_ms": 0}
         if self.state != "READY_MAC":
             return {"trigger": False, "reason": "state-" + self.state, "dwell_ms": 0}
+        if now - sample.timestamp_ms > self.config.dwell_ms:
+            return {"trigger": False, "reason": "stale-input-sample", "dwell_ms": 0}
         if self._edge_entered_at is None:
             self._edge_entered_at = now
             dwell_ms = 0
