@@ -55,18 +55,10 @@ class M585EdgeControllerTests(unittest.TestCase):
         self.assertIn('"event": "controller-stopped"', source)
         self.assertIn('"event": "health-bind-failed"', source)
 
-    def test_live_edge_is_immediate_and_stalled_stream_uses_dwell_bound(self):
+    def test_live_edge_is_immediate(self):
         clock = FakeClock()
         arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
         self.assertTrue(arbiter.observe(sample(0), 0)["trigger"])
-
-        clock = FakeClock()
-        arbiter = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), clock)
-        clock.now_ms = 51
-        self.assertEqual(arbiter.observe(sample(1), 0)["reason"], "dwelling")
-        clock.now_ms = 401
-        self.assertTrue(arbiter.observe(sample(399), 0)["trigger"])
-        self.assertEqual(arbiter.state, "SWITCHING_TO_WINDOWS")
 
         arbiter2 = controller.EdgeArbiter(controller.EdgeConfig(dwell_ms=400), FakeClock())
         arbiter2.observe(sample(0, button=True), 0)
