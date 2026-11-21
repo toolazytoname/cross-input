@@ -36,7 +36,6 @@ if [ "$operation" = "register-start" ]; then
     "$script_dir/windows_m585_edge_task_controller.ps1" \
     "$script_dir/windows_pointer_probe.ps1" \
     "$script_dir/windows_input_service.ps1" \
-    "$script_dir/windows_text_clipboard_service.ps1" \
     "$script_dir/text_clipboard_sync.py" \
     "$script_dir/windows_auxiliary_task_controller.ps1" \
     "$ssh_alias:$remote_dir/"

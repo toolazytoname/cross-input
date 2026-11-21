@@ -44,13 +44,25 @@ class RuntimeTests(unittest.TestCase):
             self.assertFalse(thread.is_alive())
 
     def test_windows_adapter_emits_utf8_without_command_echo(self):
-        adapter = clipboard.WindowsClipboard()
-        result = mock.Mock(returncode=0, stdout=base64.b64encode("中文".encode()), stderr=b"")
-        with mock.patch("subprocess.run", return_value=result) as run:
-            self.assertEqual(adapter.get(), "中文")
-        command = run.call_args.args[0][-1]
-        self.assertIn("UnicodeText", command)
-        self.assertIn("ToBase64String", command)
+        with mock.patch.object(clipboard, "load_windows_library") as library:
+            adapter = clipboard.WindowsClipboard()
+            user32 = library.return_value
+            user32.OpenClipboard.return_value = True
+            user32.GetClipboardData.return_value = 13
+            kernel32 = mock.Mock()
+            library.side_effect = [user32, kernel32]
+            kernel32.GlobalLock.return_value = 123
+            with mock.patch("ctypes.wstring_at", return_value="中文"):
+                self.assertEqual(adapter.get(), "中文")
+        user32.CloseClipboard.assert_called_once()
+
+    def test_failed_apply_does_not_suppress_retry(self):
+        adapter = mock.Mock()
+        adapter.set.side_effect = clipboard.ClipboardSyncError("busy")
+        engine = clipboard.SyncEngine("mac", adapter, "127.0.0.1", 8791, b"x" * 32)
+        message = clipboard.PeerMessage(1, "windows", 1, int(__import__("time").time() * 1000), "a" * 32, "中文".encode())
+        self.assertEqual(engine.receive(message)["status"], "rejected")
+        self.assertIsNone(engine.last_applied_remote)
 
 
 if __name__ == "__main__":

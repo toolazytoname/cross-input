@@ -4,6 +4,7 @@
 import argparse
 import base64
 import collections
+import ctypes
 import hashlib
 import hmac
 import ipaddress
@@ -27,6 +28,10 @@ CLIPBOARD_SEND_RETRIES = 3
 
 class ClipboardSyncError(RuntimeError):
     pass
+
+
+def load_windows_library(name):
+    return ctypes.WinDLL(name, use_last_error=True)
 
 
 class MacClipboard:
@@ -56,48 +61,62 @@ class MacClipboard:
 
 
 class WindowsClipboard:
+    def __init__(self):
+        self.user32 = load_windows_library("user32")
+        self.kernel32 = load_windows_library("kernel32")
+        self.user32.OpenClipboard.argtypes = [ctypes.c_void_p]
+        self.user32.GetClipboardData.argtypes = [ctypes.c_uint]
+        self.user32.GetClipboardData.restype = ctypes.c_void_p
+        self.user32.SetClipboardData.argtypes = [ctypes.c_uint, ctypes.c_void_p]
+        self.user32.SetClipboardData.restype = ctypes.c_void_p
+        self.kernel32.GlobalAlloc.argtypes = [ctypes.c_uint, ctypes.c_size_t]
+        self.kernel32.GlobalAlloc.restype = ctypes.c_void_p
+        self.kernel32.GlobalLock.argtypes = [ctypes.c_void_p]
+        self.kernel32.GlobalLock.restype = ctypes.c_void_p
+        self.kernel32.GlobalUnlock.argtypes = [ctypes.c_void_p]
+
+    def open(self):
+        for attempt in range(20):
+            if self.user32.OpenClipboard(None):
+                return
+            time.sleep(0.025)
+        raise ClipboardSyncError("Windows clipboard is busy")
+
     def get(self) -> Optional[str]:
-        command = (
-            "Add-Type -AssemblyName System.Windows.Forms; "
-            "$text = [System.Windows.Forms.Clipboard]::GetText([System.Windows.Forms.TextDataFormat]::UnicodeText); "
-            "if ($null -ne $text) { "
-            "[Console]::Out.Write([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($text))) }"
-        )
-        completed = subprocess.run(
-            ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            timeout=3,
-            check=False,
-        )
-        if completed.returncode != 0:
-            detail = completed.stderr.decode("utf-8", errors="replace")[-300:]
-            raise ClipboardSyncError("Get-Clipboard failed with exit code " + str(completed.returncode) + ": " + detail)
+        self.open()
         try:
-            return base64.b64decode(completed.stdout, validate=True).decode("utf-8", errors="strict")
-        except (ValueError, UnicodeDecodeError) as error:
-            raise ClipboardSyncError("Get-Clipboard returned invalid UTF-8 data") from error
+            handle = self.user32.GetClipboardData(13)
+            if not handle:
+                return ""
+            pointer = self.kernel32.GlobalLock(handle)
+            if not pointer:
+                raise ClipboardSyncError("GlobalLock failed")
+            try:
+                return ctypes.wstring_at(pointer)
+            finally:
+                self.kernel32.GlobalUnlock(handle)
+        finally:
+            self.user32.CloseClipboard()
 
     def set(self, text: str) -> None:
-        command = (
-            "$encoded = [Console]::In.ReadToEnd().Trim(); "
-            "$bytes = [Convert]::FromBase64String($encoded); "
-            "$text = [System.Text.Encoding]::UTF8.GetString($bytes); "
-            "Add-Type -AssemblyName System.Windows.Forms; "
-            "[System.Windows.Forms.Clipboard]::SetText($text, [System.Windows.Forms.TextDataFormat]::UnicodeText); "
-            "[Console]::Out.Write('applied')"
-        )
-        completed = subprocess.run(
-            ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
-            input=base64.b64encode(text.encode("utf-8")),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            timeout=3,
-            check=False,
-        )
-        if completed.returncode != 0:
-            detail = completed.stderr.decode("utf-8", errors="replace")[-300:]
-            raise ClipboardSyncError("Set-Clipboard failed with exit code " + str(completed.returncode) + ": " + detail)
+        data = text.encode("utf-16-le") + b"\0\0"
+        handle = self.kernel32.GlobalAlloc(0x2002, len(data))
+        if not handle:
+            raise ClipboardSyncError("GlobalAlloc failed")
+        pointer = self.kernel32.GlobalLock(handle)
+        if not pointer:
+            self.kernel32.GlobalFree(handle)
+            raise ClipboardSyncError("GlobalLock failed")
+        ctypes.memmove(pointer, data, len(data))
+        self.kernel32.GlobalUnlock(handle)
+        self.open()
+        try:
+            self.user32.EmptyClipboard()
+            if not self.user32.SetClipboardData(13, handle):
+                self.kernel32.GlobalFree(handle)
+                raise ClipboardSyncError("SetClipboardData failed")
+        finally:
+            self.user32.CloseClipboard()
 
 
 @dataclass(frozen=True)
@@ -204,6 +223,9 @@ class SyncEngine:
         self.pending_text: Optional[str] = None
         self.last_applied_remote: Optional[Tuple[str, int, str]] = None
         self.remote_sequences: Dict[str, int] = {}
+        self.remote_sequence_file = self.sequence_file.with_name(self.sequence_file.name + ".remote") if self.sequence_file else None
+        if self.remote_sequence_file:
+            self.remote_sequences = {expected_peer_host: load_sequence(self.remote_sequence_file)} if expected_peer_host else {}
         self.remote_delivery_fingerprints: Dict[Tuple[str, int], str] = {}
         self.remote_fingerprints = collections.OrderedDict()
         self.remote_nonces = collections.OrderedDict()
@@ -338,6 +360,8 @@ class SyncEngine:
             if (message.host, payload_fingerprint) in self.remote_fingerprints:
                 return {"status": "duplicate", "fingerprint": payload_fingerprint}
             self.remote_sequences[message.host] = message.sequence
+            if self.remote_sequence_file:
+                save_sequence(self.remote_sequence_file, message.sequence)
             self.remote_delivery_fingerprints[(message.host, message.sequence)] = payload_fingerprint
             self.remote_fingerprints[(message.host, payload_fingerprint)] = message.sequence
             nonce_key = (message.host, message.nonce)
@@ -351,14 +375,14 @@ class SyncEngine:
 
         try:
             text = message.payload.decode("utf-8", errors="strict")
+            with self.lock:
+                self.last_applied_remote = (message.host, message.sequence, payload_fingerprint)
             self.clipboard.set(text)
         except (UnicodeDecodeError, ClipboardSyncError) as error:
+            with self.lock:
+                self.last_applied_remote = None
             self.record("apply-failed", peer=message.host, sequence=message.sequence, reason=type(error).__name__)
             return {"status": "rejected", "reason": "apply-failed"}
-        self.last_applied_remote = (message.host, message.sequence, payload_fingerprint)
-        if self.local_host == "windows":
-            marker = Path(os.environ.get("M585_APPLIED_MARKER", "last-applied.sha256"))
-            marker.write_text(payload_fingerprint, encoding="ascii")
         self.record(
             "applied",
             peer=message.host,
@@ -547,15 +571,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--generate-secret", action="store_true")
     parser.add_argument("--receive-only", action="store_true")
     parser.add_argument("--send-text", help="base64 UTF-8 text for the Windows clipboard service")
-    parser.add_argument("--applied-marker", type=Path, help="metadata-only applied-text marker for the Windows host service")
     parser.add_argument("--status-interval", type=float, default=10.0)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    if args.applied_marker:
-        os.environ["M585_APPLIED_MARKER"] = str(args.applied_marker)
     if args.send_text is not None:
         text = base64.b64decode(args.send_text, validate=True).decode("utf-8")
         send_clipboard_text(args.peer, str(args.secret_file),
