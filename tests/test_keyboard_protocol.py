@@ -27,7 +27,7 @@ class KeyboardProtocolTests(unittest.TestCase):
 
     def test_windows_key_table_and_release(self):
         source = (ROOT / "scripts/windows_input_service.ps1").read_text()
-        for token in ("release_all", "Down.Clear", "SESSION_UNAVAILABLE", "SendInput", "Nonces", "LastSequence"):
+        for token in ("release_all", "Down.Clear", "SESSION_UNAVAILABLE", "SendInput", "Nonces", "LastSequence", "Watchdog", "error:"):
             self.assertIn(token, source)
 
 

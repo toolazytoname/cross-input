@@ -36,9 +36,12 @@ public static class MiniOpsKeyboardReceiver {
     static HashSet<string> Nonces = new HashSet<string>();
     static int LastSequence = 0;
     static string Session = "";
+    static DateTime LastInput = DateTime.UtcNow;
+    static System.Threading.Timer Watchdog;
     static object Gate = new object();
     static void Add(string name, ushort key) { Keys[name] = key; }
     static MiniOpsKeyboardReceiver() {
+        Watchdog = new System.Threading.Timer(delegate { if (Down.Count > 0 && (DateTime.UtcNow - LastInput).TotalSeconds > 5) ReleaseAll(); }, null, 1000, 1000);
         for (int i=0; i<26; i++) Add(((char)('a'+i)).ToString(), (ushort)(0x41+i));
         for (int i=0; i<10; i++) Add(i.ToString(), (ushort)(0x30+i));
         for (int i=1; i<=12; i++) Add("f"+i, (ushort)(0x70+i-1));
@@ -66,6 +69,7 @@ public static class MiniOpsKeyboardReceiver {
     }
     static INPUT Make(ushort key, bool pressed) { INPUT input = new INPUT(); input.type=1; input.data.keyboard.key=key; input.data.keyboard.flags=pressed ? 0u : 2u; return input; }
     static bool DesktopAvailable() { IntPtr desktop=OpenInputDesktop(0,false,1); if(desktop==IntPtr.Zero) return false; CloseDesktop(desktop); return true; }
+    static void Nack(NetworkStream stream, string reason) { byte[] data=Encoding.ASCII.GetBytes("error:"+reason+"\n"); stream.Write(data,0,data.Length); }
     public static void Run(string address, int port, string secretFile, string logFile) {
         byte[] secret=File.ReadAllBytes(secretFile);
         TcpListener listener=new TcpListener(IPAddress.Parse(address),port);
@@ -93,13 +97,16 @@ public static class MiniOpsKeyboardReceiver {
                     string nonce=(string)data["nonce"];
                     long timestamp=Convert.ToInt64(data["timestamp_ms"]);
                     if(session!=Session) { ReleaseAll(); Session=session; LastSequence=0; Nonces.Clear(); }
-                    if(sequence<=LastSequence || Nonces.Contains(nonce) || Math.Abs(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()-timestamp)>10000) { stream.Write(Encoding.ASCII.GetBytes("ok\n"),0,3); continue; }
+                    if(Math.Abs(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()-timestamp)>10000) { Nack(stream,"stale"); continue; }
+                    if(sequence<=LastSequence || Nonces.Contains(nonce)) { stream.Write(Encoding.ASCII.GetBytes("ok\n"),0,3); continue; }
                     LastSequence=sequence;
                     Nonces.Add(nonce);
                     if(Nonces.Count>2048) Nonces.Clear();
+                    LastInput=DateTime.UtcNow;
                     lock(Gate) {
                         if(!DesktopAvailable()) { ReleaseAll(); Session=""; LastSequence=0; Nonces.Clear(); throw new InvalidOperationException("SESSION_UNAVAILABLE"); }
                         if(kind=="release_all") ReleaseAll();
+                        else if(kind=="ping") { }
                         else if(kind=="key") {
                             string name=(string)data["key"]; bool pressed=(bool)data["pressed"];
                             ushort key=Keys[name];
@@ -108,7 +115,7 @@ public static class MiniOpsKeyboardReceiver {
                         }
                     }
                     stream.Write(Encoding.ASCII.GetBytes("ok\n"),0,3);
-                } catch(Exception error) { ReleaseAll(); File.AppendAllText(logFile,"{\"event\":\"key-rejected\",\"type\":\""+error.GetType().Name+"\"}\n"); }
+                } catch(Exception error) { ReleaseAll(); Nack(stream,"rejected"); File.AppendAllText(logFile,"{\"event\":\"key-rejected\",\"type\":\""+error.GetType().Name+"\"}\n"); }
             }
         }
     }

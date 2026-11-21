@@ -6,6 +6,7 @@ import json
 import os
 import signal
 import socket
+import secrets
 import subprocess
 import sys
 import time
@@ -22,6 +23,10 @@ SERVICES = {
     "mouse": [PYTHON, str(ROOT / "scripts/m585_edge_controller.py"), "--watch"],
     "keyboard": [PYTHON, str(ROOT / "scripts/mac_keyboard_forwarder.py"), "--host", os.environ.get("M585_WINDOWS_IP", "192.168.1.8"), "--secret-file", os.environ.get("M585_KEYBOARD_SECRET", str(Path.home() / ".config/miniops/cross-input-keyboard.secret"))],
     "clipboard": [sys.executable, str(ROOT / "scripts/text_clipboard_sync.py"), "--host", "mac", "--listen", os.environ.get("M585_MAC_IP", "192.168.1.4"), "--peer", os.environ.get("M585_WINDOWS_IP", "192.168.1.8"), "--secret-file", os.environ.get("M585_CLIPBOARD_SECRET", str(Path.home() / ".config/miniops/cross-input-clipboard.secret"))],
+}
+REMOTE_SERVICES = {
+    "keyboard": "keyboard",
+    "clipboard": "clipboard",
 }
 
 
@@ -76,6 +81,13 @@ def terminate_processes():
 
 def start():
     RUNTIME.mkdir(parents=True, exist_ok=True)
+    secret_dir = Path.home() / ".config/miniops"
+    secret_dir.mkdir(parents=True, exist_ok=True)
+    for secret_name in ("cross-input-keyboard.secret", "cross-input-clipboard.secret"):
+        secret = secret_dir / secret_name
+        if not secret.exists():
+            secret.write_bytes(secrets.token_bytes(32))
+            secret.chmod(0o600)
     subprocess.run(["launchctl", "bootout", DOMAIN + "/org.deskflow.deskflow.server"], capture_output=True)
     windows_alias = os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")
     windows = subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "register-start", "watch"], cwd=ROOT,
@@ -83,6 +95,18 @@ def start():
     if windows.returncode:
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
         raise RuntimeError("Windows controller failed to start; Deskflow restored")
+    for name in REMOTE_SERVICES:
+        source = secret_dir / ("cross-input-" + name + ".secret")
+        destination = windows_alias + ":C:/Users/Administrator/AppData/Local/Temp/MiniOpsM585Edge/" + name + ".secret"
+        subprocess.run(["scp", "-q", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes", "-o", "ConnectTimeout=5", str(source), destination], check=True, timeout=12)
+    for service in REMOTE_SERVICES.values():
+        controller = ["ssh", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Service", service]
+        subprocess.run(controller + ["-Operation", "register"], capture_output=True, check=True, timeout=12)
+        remote = subprocess.run(controller + ["-Operation", "start"], capture_output=True, timeout=10)
+        if remote.returncode:
+            terminate_processes()
+            subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
+            raise RuntimeError(service + " Windows service failed to start; Deskflow restored")
     try:
         for name, command in SERVICES.items():
             if running(name):
@@ -108,9 +132,31 @@ def stop():
     if MAC_PLIST.exists():
         subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
     windows_alias = os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")
-    subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT,
-                   env={**os.environ, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
+    try:
+        subprocess.run([str(ROOT / "scripts/start_windows_m585_edge_from_ssh.sh"), "stop"], cwd=ROOT,
+                       env={**os.environ, "M585_SSH_ALIAS": windows_alias}, capture_output=True, timeout=10)
+        for service in REMOTE_SERVICES.values():
+            subprocess.run(["ssh", "-o", "ConnectTimeout=5", windows_alias, "powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", "%TEMP%\\MiniOpsM585Edge\\windows_auxiliary_task_controller.ps1", "-Operation", "stop", "-Service", service], capture_output=True, timeout=8)
+    except (OSError, subprocess.SubprocessError) as error:
+        emit("remote-stop-unavailable", reason=type(error).__name__)
     emit("deskflow-restore-requested")
+
+
+def recover():
+    """Force input back to Mac even when the peer is unavailable."""
+    terminate_processes()
+    script = ROOT / "scripts/run_windows_hid_protocol_probe.sh"
+    alias = os.environ.get("M585_SSH_ALIAS", "Administrator@192.168.1.8")
+    try:
+        result = subprocess.run([str(script), "mouse-switch-mac-once"], cwd=ROOT, env={**os.environ, "M585_SSH_ALIAS": alias}, capture_output=True, text=True, timeout=18)
+        if result.returncode:
+            emit("recovery-needs-easy-switch", detail="Press the mouse Easy-Switch button to select Mac")
+        else:
+            emit("recovery-requested")
+    except (OSError, subprocess.SubprocessError):
+        emit("recovery-needs-easy-switch", detail="Press the mouse Easy-Switch button to select Mac")
+    if MAC_PLIST.exists():
+        subprocess.run(["launchctl", "bootstrap", DOMAIN, str(MAC_PLIST)], capture_output=True)
 
 
 def status_window():
@@ -140,7 +186,8 @@ def status_window():
     controls = tkinter.Frame(root, padx=16, pady=12)
     controls.pack(fill="x")
     tkinter.Button(controls, text="Start", command=start).pack(side="left", expand=True)
-    tkinter.Button(controls, text="Stop && Restore Deskflow", command=shutdown).pack(side="right", expand=True)
+    tkinter.Button(controls, text="Stop & Restore Deskflow", command=shutdown).pack(side="right", expand=True)
+    tkinter.Button(root, text="Recover mouse to Mac", command=recover).pack(fill="x", padx=16, pady=4)
     root.protocol("WM_DELETE_WINDOW", root.destroy)
     root.mainloop()
 
@@ -157,9 +204,9 @@ def status():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=("start", "stop", "status", "gui"))
+    parser.add_argument("action", choices=("start", "stop", "status", "gui", "recover"))
     args = parser.parse_args()
-    {"start": start, "stop": stop, "status": status, "gui": status_window}[args.action]()
+    {"start": start, "stop": stop, "status": status, "gui": status_window, "recover": recover}[args.action]()
 
 
 if __name__ == "__main__":

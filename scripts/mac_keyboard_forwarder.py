@@ -56,6 +56,7 @@ class MacKeyTap:
         self.sender = sender
         self.state = state
         self.down = set()
+        self.remote_keys_down = False
         self.cg = ctypes.cdll.LoadLibrary("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")
         self.cf = ctypes.cdll.LoadLibrary("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")
         self.callback_type = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p, ctypes.c_uint, ctypes.c_void_p, ctypes.c_void_p)
@@ -73,10 +74,11 @@ class MacKeyTap:
         self.cf.CFRunLoopRun.argtypes = []
 
     def release_all(self):
-        if self.down:
+        if self.down or self.remote_keys_down:
             try: self.sender.send("release_all")
             except OSError: pass
             self.down.clear()
+            self.remote_keys_down = False
 
     def forward(self, key, pressed, flags=0):
         """Send only while Windows is active; never consume on transport failure."""
@@ -85,6 +87,7 @@ class MacKeyTap:
             return False
         try:
             self.sender.send("key", key, pressed, flags)
+            self.remote_keys_down = True
             if pressed:
                 self.down.add(key)
             else:

@@ -124,8 +124,8 @@ class WindowsHidProtocolProbeStaticTests(unittest.TestCase):
         ):
             self.assertIn(required, task_controller)
         for required in (
-            "register-start|status|stop|remove",
-            "dry-run|watch",
+            "register-start|start|status|stop|remove",
+            "dry-run|watch|pointer-test",
             "BatchMode=yes",
             "StrictHostKeyChecking=yes",
             "windows_m585_edge_task_controller.ps1",

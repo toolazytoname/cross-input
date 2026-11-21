@@ -1,7 +1,7 @@
 param(
     [ValidateSet("register", "start", "status", "stop", "remove")]
     [string]$Operation = "status",
-    [ValidateSet("dry-run", "watch")]
+    [ValidateSet("dry-run", "watch", "pointer-test")]
     [string]$Mode = "dry-run"
 )
 
@@ -33,6 +33,14 @@ switch ($Operation) {
         })
     }
     "start" {
+        if ($Mode -eq 'pointer-test') {
+            & (Join-Path $root 'windows_pointer_probe.ps1') -X 400 -Y 450
+            Start-Sleep -Milliseconds 500
+            & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
+            Start-Sleep -Milliseconds 1000
+            & (Join-Path $root 'windows_pointer_probe.ps1') -X 100000 -Y 450
+            return
+        }
         Start-ScheduledTask -TaskName $taskName
         Convert-ToJsonLine (@{ operation = "start"; task_name = $taskName; started = $true })
     }
